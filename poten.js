@@ -76,23 +76,25 @@ function core(maxPot, evol, curr, targetLv, targetPot)
 			//DEBUG; console.log(localdebug+" Lowest level!");
 			return {level:0, pot:0, cost:[1], source:[]};
 		}
-		//能進化就進化
-		if(targetLv >= 1)
-		{
-			if(maxPot[targetLv-1] >= targetPot)
-			{
-				//DEBUG; console.log(localdebug+" Evolution!");
-				var prev = search(targetLv-1, targetPot, curr);
-				return {level:targetLv, pot:targetPot, cost:costAdd(prev.cost, evol[targetLv-1]), source:[prev]};
-			}
-		}
-		//搜尋強化合成組合
-		var halfPot = Math.floor(targetPot/2);
+		
+		//開始搜尋
 		var oldcurr = [];
 		var costnow = [10000];
 		var currleft = [];
 		var sub = [];
 		for(var k in curr) oldcurr[k] = curr[k].slice(0);
+		//若可以進化而來
+		if(targetLv >= 1 && maxPot[targetLv-1] >= targetPot)
+		{
+			//DEBUG; console.log(localdebug+" Try evolution!");
+			var prev = search(targetLv-1, targetPot, curr);
+			costnow = costAdd(prev.cost, evol[targetLv-1]);
+			sub = [prev];
+			for(var k in curr) currleft[k] = curr[k].slice(0);
+			for(var k in oldcurr) curr[k] = oldcurr[k].slice(0);
+		}
+		//搜尋強化合成組合
+		var halfPot = Math.floor(targetPot/2);
 		for(var big = halfPot; big <= targetPot - 1; big++)
 		{
 			//DEBUG; console.log(localdebug+" Try split " + targetPot + " into " + big + " + " + (targetPot-big-1) + "!");
