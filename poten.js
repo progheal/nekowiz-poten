@@ -32,7 +32,7 @@ function costCompare(cost1, cost2)
  maxPot: 最大潛能值
  evol: 進化材料，以陣列表示相當於底層素材多少；底層素材的 [0] 必定為最低階同卡
        亦即：
-       [0]：以一般素材進化
+       [] 或 [0]：以一般素材進化
        [1]：以最低階同卡進化
        [0,1]：以第一種特殊素材進化 (含被吃的分歧進化)
        [3,1]：分歧進化後互吃的被吃素材，此素材需三張最低階同卡及一張第一種特殊素材
@@ -47,7 +47,7 @@ function costCompare(cost1, cost2)
  回傳值：物件，內含：
  level: 本卡等級
  pot: 本卡潛能值
- cost: 本卡花費，不含已有的卡
+ cost: 本卡花費，不含已有的卡; [0] 為一般素材進化次數，[1] 以後為 evol 內容
  source: 來源，為一陣列
          長度 0 = 已有/最底
          長度 1 = 進化, [0] 為進化源，格式同此
@@ -74,7 +74,7 @@ function core(maxPot, evol, curr, targetLv, targetPot)
 		if(targetLv == 0 && targetPot == 0)
 		{
 			//DEBUG; console.log(localdebug+" Lowest level!");
-			return {level:0, pot:0, cost:[1], source:[]};
+			return {level:0, pot:0, cost:[0,1], source:[]};
 		}
 		
 		//開始搜尋
@@ -88,7 +88,10 @@ function core(maxPot, evol, curr, targetLv, targetPot)
 		{
 			//DEBUG; console.log(localdebug+" Try evolution!");
 			var prev = search(targetLv-1, targetPot, curr);
-			costnow = costAdd(prev.cost, evol[targetLv-1]);
+			if(costCompare(evol[targetLv-1], []) == 0)
+				costnow = costAdd(prev.cost, [1]);
+			else
+				costnow = costAdd(prev.cost, [0].concat(evol[targetLv-1]));
 			sub = [prev];
 			for(var k in curr) currleft[k] = curr[k].slice(0);
 			for(var k in oldcurr) curr[k] = oldcurr[k].slice(0);
