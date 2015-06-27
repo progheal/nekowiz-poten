@@ -1,17 +1,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Potential Calculator</title>
+<title>問答 RPG 魔法使與黑貓維茲　潛能計算器</title>
+<link rel="stylesheet" type="text/css" href="style.css"></script>
+<script language="javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script language="javascript" src="data.js"></script>
 <script language="javascript" src="poten.js"></script>
 <script language="javascript" src="display.js"></script>
 </head>
 <body>
-<script language="javascript">
-<!--
-document.write(toHTML(core([1,2,3,5],[[1],[1],[1]],[[],[],[],[0]],3,5)));
-//-->
-</script>
+<h2>問答 RPG 魔法使與黑貓維茲　潛能計算器</h2>
+<fieldset style="width: 800px; text-align: center">
+<p><!--搜尋/-->選擇角色：<!--input type="text" id="searchField" value="搜尋暫時未開放" disabled--></p>
+<div id="characterList"></div>
+<div id="panel">
+<p><span id="characterName"></span></p>
+<p id="control"><span id="controlIcon"></span><span id="controlPot"></span></p>
+<p><input id="panelSet" type="button" value="設為目標">
+<input id="panelAdd" type="button" value="新增為已有卡片"></p>
+<p><span id="target">目標：<span id="target0"></span></span></p>
+<fieldset style="width: 200px; margin: auto"><legend>已有卡片</legend>
+<span id="avail"></span></fieldset>
+<p><input id="go" type="button" value="開始計算"></p>
+</div>
+<div id="result"><div id="resultTable"></div><br>
+<input id="clearButton" type="button" value="清除重來"></div>
+</fieldset>
 </body>
 </html>
 
