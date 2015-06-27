@@ -39,6 +39,7 @@ function costCompare(cost1, cost2)
        最大等級不使用, 故陣列大小可少一
  curr: 目前所持，各等級以一陣列表示各張之潛能值
  targetLv: 目標等級
+ targetPot: 目標潛能值
 
  前兩參數對相同卡片是固定的，例如:
  帕查 maxPot = [1, 2, 3, 4, 7] 

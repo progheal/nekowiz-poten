@@ -102,5 +102,6 @@ function toHTML(result)
 		}
 		htmlgrid.push(str);
 	}
+	htmlgrid.push('<td colspan="' + width + '">Total cost: [' + result.cost.join(',') + ']</td>');
 	return '<table border="1" style="text-align:center"><tr>' + htmlgrid.join("</tr><tr>") + '</tr></table>';
 }
