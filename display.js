@@ -198,7 +198,7 @@ function characterSelect()
 	{
 		$('#controlIcon').append(
 			$('<span></span>')
-				.addClass("icon")
+				.addClass("icon clickable")
 				.append(iconImg(g_info.id[i]))
 				.bind("click", (function(i){
 					return function(){
@@ -210,7 +210,7 @@ function characterSelect()
 	}
 	$('#controlPot').append('　').append(
 		$('<span></span>')
-			.addClass('pot')
+			.addClass('pot clickable')
 			.append(img('HP_X',26,'無潛能'))
 			.bind("click", function(){
 				g_cur.pot = 0;
@@ -221,7 +221,7 @@ function characterSelect()
 	{
 		$('#controlPot').append(
 			$('<span></span>')
-				.addClass("pot")
+				.addClass("pot clickable")
 				.append(potImg(g_info.pots[i]))
 				.bind("click", (function(i){
 					return function(){
@@ -293,7 +293,7 @@ $(function(){
 	$.each(menu, function(key, value){
 		$('#characterList').append(
 			$('<span></span>')
-				.addClass("icon")
+				.addClass("icon clickable")
 				.append($(iconImg(value, data[value].name)))
 				.bind("click", function(){
 					$('#characterList .iconSel').removeClass("iconSel");
