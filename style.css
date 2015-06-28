@@ -6,8 +6,23 @@ fieldset {
 	margin: auto;
 }
 
+a {
+	text-decoration: none;
+	color: #3333ff;
+}
+
+a:link, a:visited {
+	color: #3333ff;
+}
+
+a:hover, a:active {
+	color: #9999ff;
+}
+
 #characterList {
+	width: 750px;
 	height: 210px;
+	margin: auto;
 	overflow-y: scroll;
 	text-align: left;
 	border: solid 2px #cccccc;
@@ -33,7 +48,7 @@ fieldset {
 	display: inline-block;
 	width: 60px;
 	height: 60px;
-	border: solid 8px #ffffff;
+	border: solid 6px #ffffff;
 	background-color: #ffffff;
 }
 

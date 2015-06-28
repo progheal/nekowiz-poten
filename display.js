@@ -144,7 +144,7 @@ function toHTML(info, result)
 		}
 		htmlgrid.push(str);
 	}
-	var lastline = '<td colspan="' + width + '">總計需要：';
+	var lastline = '<td colspan="' + width + '"><hr>總計還需要：';
 	lastline += iconImg(info.id[0]) + "x" + result.cost[1];
 	for(var k = 2; k < result.cost.length; k++)
 	{
@@ -163,6 +163,7 @@ var g_cur = {};
 function clear()
 {
 	$('#panel').hide();
+	$('#resultTable').empty();
 	$('#result').hide();
 	g_info = {};
 	g_target = {};
@@ -179,6 +180,7 @@ function characterSelect()
 	g_target.pot = g_info.maxPot[g_target.level];
 	g_cur.level = g_target.level;
 	g_cur.pot = 0;
+	g_availList = [];
 	updateTarget();
 	updateAvail();
 	$('#characterName').empty().append(g_info.name);
@@ -302,6 +304,6 @@ $(function(){
 		updateAvail();
 	});
 	$('#go').bind('click', function(){go();});
-	$('#resetButton').bind('click', function(){clear();});
+	$('#clearButton').bind('click', function(){clear();});
 	clear();
 });
