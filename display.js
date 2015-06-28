@@ -144,11 +144,19 @@ function toHTML(info, result)
 		}
 		htmlgrid.push(str);
 	}
-	var lastline = '<td colspan="' + width + '"><hr>總計還需要：';
-	lastline += iconImg(info.id[0]) + "x" + result.cost[1];
-	for(var k = 2; k < result.cost.length; k++)
+	var lastline = '<td colspan="' + width + '"><hr>';
+	if(result.cost.length < 2)
 	{
-		lastline += '、' + iconImg(info.special[k-2]) + "x" + result.cost[k];
+		lastline += '現有卡已足夠！'
+	}
+	else
+	{
+		lastline += '總計還需要：';
+		lastline += iconImg(info.id[0]) + "x" + result.cost[1];
+		for(var k = 2; k < result.cost.length; k++)
+		{
+			lastline += '、' + iconImg(info.special[k-2]) + "x" + result.cost[k];
+		}
 	}
 	lastline += '</td>';
 	htmlgrid.push(lastline);
