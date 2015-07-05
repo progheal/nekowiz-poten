@@ -313,5 +313,18 @@ $(function(){
 	});
 	$('#go').bind('click', function(){go();});
 	$('#clearButton').bind('click', function(){clear();});
+	$('#updateToggler').bind('click', function(event){
+		var ur = $('#updateRecord');
+		if(ur.is(':visible'))
+		{
+			ur.hide();
+			$(this).text("更新紀錄點此展開")
+		}
+		else
+		{
+			ur.show();
+			$(this).text("更新紀錄點此收合")
+		}
+	});
 	clear();
 });
