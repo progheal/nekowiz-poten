@@ -54,9 +54,9 @@ a:hover, a:active {
 
 .pot {
 	display: inline-block;
-	width: 26px;
+	width: 30px;
 	height: 32px;
-	padding-top: 5px;
+	padding: 5px 0px 5px 0px;
 	background-color: #ffffff;
 }
 

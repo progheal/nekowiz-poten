@@ -17,7 +17,7 @@ function iconImg(id, name)
 		return img(pad4(id), 60, name);
 }
 
-function potImg(potName) {return img(potData[potName].icon, 26, potData[potName].name);}
+function potImg(potName) {return img(potData[potName].icon, 30, potData[potName].name);}
 
 function iconAndPotImg(info, level, maxPot)
 {
@@ -211,7 +211,7 @@ function characterSelect()
 	$('#controlPot').append('　').append(
 		$('<span></span>')
 			.addClass('pot clickable')
-			.append(img('HP_X',26,'無潛能'))
+			.append(img('Senzai_X',30,'無潛能'))
 			.bind("click", function(){
 				g_cur.pot = 0;
 				updateCurrent();
