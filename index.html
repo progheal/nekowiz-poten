@@ -19,7 +19,7 @@
 <p><input id="panelSet" type="button" value="設為目標">
 <input id="panelAdd" type="button" value="新增為已有卡片"></p>
 <p><span id="target">目標：<span id="target0"></span></span></p>
-<fieldset style="width: 200px; margin: auto; text-align: left"><legend>已有卡片</legend>
+<fieldset style="min-width: 200px; display:inline-block; margin: auto; text-align: left"><legend>已有卡片</legend>
 <span id="avail"></span></fieldset>
 <p><input id="go" type="button" value="開始計算"></p>
 </div>
@@ -39,13 +39,18 @@
 若願意提供美化版面或其他方面的協助也很歡迎，想要直接發 pull request 過來也是 OK 的。
 </p>
 <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="創用 CC 授權條款" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" align="absmiddle"/></a> 本網頁及程式碼採用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權。</p>
-<p>角色圖片大多取自<a href="http://zh.nekowiz.wikia.com/wiki/">台版 wikia</a>，少部份台版 wikia 沒有的則是取自<a href="http://www61.atwiki.jp/nekowiz/">日版 wiki</a>；<br>
-潛能圖示則是取自<a href="http://quiz-rpg-the-world-of-mystic-wiz.wikia.com/wiki/">美版 wikia</a>，所以「九死一生」的圖案上是「Re」字而不是日版/台版的「根」字。</p>
+<p>角色圖片大多取自<a href="http://zh.nekowiz.wikia.com/wiki/">台版 wikia</a>，少部份台版 wikia 沒有的則是取自<a href="http://www61.atwiki.jp/nekowiz/">日版 wiki</a>；潛能圖示也是取自台版 wikia。</p>
 </div>
 <hr width="900" />
 <div style="width: 800px; text-align: left; margin: auto">
 <p>更新紀錄：</p>
 <div>
+[2015/7/15]<ul><li>新增《庫洛姆･麥格納Ⅲ臨海學校》的〈理查德〉、〈月影〉、〈友惠〉、〈登凱爾〉。<br>顯示的最終等級卡名暫以日版名字顯示，待台版卡名資訊確定後會更新。</li>
+<li>潛能圖示更換為台版維基上的版本。由於圖示本身也比美版的稍大，手機使用者應該會好點一些。</li>
+<li>修正當選擇已有卡片開四格以上潛能時，已有卡片框未擴大致使圖示換行的問題。</li></ul>
+</div>
+<p><a href="javascript:void(0)" id="updateToggler" class="clickable">點此展開更早的更新紀錄</a></p>
+<div id="updateRecord" style="display: none">
 [2015/7/7]<ul><li>新增《庫洛姆･麥格納Ⅱ學園祭》的〈彰〉及〈喬治〉。</li>
 <li>將上週結束的《歌頌永恆的克羅諾斯》卡片移到最後面。</li></ul>
 關於 7/8 的新副本：<ul>
@@ -59,9 +64,6 @@
 這副本的活動卡將等台版的協力作戰正式實裝後再新增。</li></ul>
 [2015/7/6]<ul><li>修正搜尋演算法中關於是否使用已開潛能的最低階卡片進化的 bug。</li></ul>
 </div>
-<!--p><a href="javascript:void(0)" id="updateToggler" class="clickable">點此展開更早的更新紀錄</a></p>
-<div id="updateRecord" style="display: none">
-</div-->
 </div>
 </body>
 </html>
