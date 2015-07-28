@@ -120,10 +120,21 @@ function toHTML(info, result)
 				{
 					var evolN = parseInt(grid[i][j].substr(4));
 					var material = info.material[evolN];
-					if(material != 0)
-						line.push([img('Evol2',120) + iconImg(material), 1, 0]);
+					if(Array.isArray(material))
+					{
+						var padlist = [];
+						var imglist = [];
+						for(var k in material)
+						{
+							padlist.push(img('Empty',60));
+							imglist.push(iconImg(material[k]));
+						}
+						line.push([padlist.concat([img('Evol',60)]).concat(imglist).join(""),1,0]);
+					}
+					else if(material != 0)
+						line.push([img('Empty',60) + img('Evol',60) + iconImg(material), 1, 0]);
 					else
-						line.push([img('Evol1',60), 1, 0]);
+						line.push([img('Evol',60), 1, 0]);
 				}
 				else if(grid[i][j] == "+")
 					line.push([img('EnhPlus',20), 1, 0]);
@@ -194,8 +205,13 @@ function characterSelect()
 	$('#characterName').empty().append(g_info.name);
 	$('#controlIcon').empty();
 	$('#controlPot').empty();
+	var linelen = g_info.id.length;
+	if(linelen > 6)
+		linelen = Math.floor((linelen + 1) / 2);
 	for(var i = 0; i < g_info.id.length; i++)
 	{
+		if(i > 0 && i % linelen == 0)
+			$('#controlIcon').append('<br/>');
 		$('#controlIcon').append(
 			$('<span></span>')
 				.addClass("icon clickable")
