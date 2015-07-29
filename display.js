@@ -253,7 +253,7 @@ function characterSelect()
 function updateCurrent()
 {
 	$('#control .iconSel').removeClass('iconSel');
-	$('#controlIcon').children().eq(g_cur.level).addClass('iconSel');
+	$('#controlIcon').children().filter('span').eq(g_cur.level).addClass('iconSel');
 	var lvMaxPot = g_info.maxPot[g_cur.level];
 	if(g_cur.pot > lvMaxPot) g_cur.pot = lvMaxPot;
 	$('#controlPot').children().show().slice(lvMaxPot+1).hide();
