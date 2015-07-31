@@ -88,40 +88,22 @@ function core(maxPot, evol, curr, targetLv, targetPot)
 		if(targetLv >= 1 && maxPot[targetLv-1] >= targetPot)
 		{
 			//DEBUG; console.log(localdebug+" Try evolution!");
-			var hasLowestEvo = (costCompare(evol[targetLv-1], [1]) == 0) && (curr[0].length > 0);
+			var hasLowestEvo = (costCompare(evol[targetLv-1], [1]) == 0) && (curr[0].indexOf(0) >= 0);
 			if(hasLowestEvo)
 			{
 				//DEBUG; console.log(localdebug+" Lowest self evolution material available!");
-				var m = Math.min.apply(null, curr[0]);
-				if(m > 0) //最低階卡只有已開潛能的
-				{
-					//先試著不使用已開潛能的最低階卡片進化
-					var prev = search(targetLv-1, targetPot, curr);
-					costnow = costAdd(prev.cost, [0,1]);
-					sub = [prev];
-					currleft = [];
-					for(var k in curr) currleft[k] = curr[k].slice(0);
-					for(var k in oldcurr) curr[k] = oldcurr[k].slice(0);
-					//回歸原本路線，測試使用已開潛能的最低階卡片進化
-				}
-				var p = curr[0].indexOf(m);
+				var p = curr[0].indexOf(0);
 				curr[0].splice(p, 1);
 			}
 			var prev = search(targetLv-1, targetPot, curr);
-			var cost;
 			if(costCompare(evol[targetLv-1], []) == 0)
-				cost = costAdd(prev.cost, [1]);
+				costnow = costAdd(prev.cost, [1]);
 			else if(hasLowestEvo)
-				cost = prev.cost;
+				costnow = prev.cost;
 			else
-				cost = costAdd(prev.cost, [0].concat(evol[targetLv-1]));
-			if(costCompare(cost, costnow) < 0)
-			{
-				costnow = cost;
-				currleft = [];
-				for(var k in curr) currleft[k] = curr[k].slice(0);
-				sub = [prev];
-			}
+				costnow = costAdd(prev.cost, [0].concat(evol[targetLv-1]));
+			sub = [prev];
+			for(var k in curr) currleft[k] = curr[k].slice(0);
 			for(var k in oldcurr) curr[k] = oldcurr[k].slice(0);
 		}
 		//搜尋強化合成組合
