@@ -166,7 +166,20 @@ function toHTML(info, result)
 		lastline += iconImg(info.id[0]) + "x" + result.cost[1];
 		for(var k = 2; k < result.cost.length; k++)
 		{
-			lastline += '、' + iconImg(info.special[k-2]) + "x" + result.cost[k];
+			var item = info.special[k-2];
+			var count = result.cost[k];
+			if(typeof(item) == "object")
+			{
+				lastline += '、' + iconImg(item[0]) + "x" + count;
+				for(var u = 1; u < item.length; u+=2)
+				{
+					if(u == 1) lastline += '（＝'; else lastline += '、';
+					lastline += iconImg(item[u]) + 'x' + (item[u+1] * count);
+				}
+				lastline += '）';
+			}
+			else
+				lastline += '、' + iconImg(item) + "x" + count;
 		}
 	}
 	lastline += '</td>';
