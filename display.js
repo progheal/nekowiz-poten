@@ -9,12 +9,12 @@ function img(name, size, alt)
 	return '<img src="icon/' + name + '.png" width="' + size + '" align="middle" title="' + alt + '">';
 }
 
-function iconImg(id, name)
+function iconImg(id)
 {
 	if(id < 0)
-		return img(id, 60, name);
+		return img(id, 60, cardname[id]);
 	else
-		return img(pad4(id), 60, name);
+		return img(pad4(id), 60, cardname[id]);
 }
 
 function potImg(potName) {return img(potData[potName].icon, 30, potData[potName].name);}
@@ -215,10 +215,10 @@ function characterSelect()
 	g_availList = [];
 	updateTarget();
 	updateAvail();
-	$('#characterName').empty().append(g_info.name);
 	$('#controlIcon').empty();
 	$('#controlPot').empty();
 	var linelen = g_info.id.length;
+	$('#characterName').empty().append(cardname[g_info.id[linelen-1]]);
 	if(linelen > 6)
 		linelen = Math.floor((linelen + 1) / 2);
 	for(var i = 0; i < g_info.id.length; i++)
@@ -323,7 +323,7 @@ $(function(){
 		$('#characterList').append(
 			$('<span></span>')
 				.addClass("icon clickable")
-				.append($(iconImg(value, data[value].name)))
+				.append($(iconImg(value)))
 				.bind("click", function(){
 					$('#characterList .iconSel').removeClass("iconSel");
 					$(this).addClass("iconSel");

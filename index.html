@@ -4,6 +4,7 @@
 <title>問答 RPG 魔法使與黑貓維茲　潛能計算器　v0.7</title>
 <link rel="stylesheet" type="text/css" href="style.css"></script>
 <script language="javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script language="javascript" src="cardname.js"></script>
 <script language="javascript" src="data.js"></script>
 <script language="javascript" src="poten.js"></script>
 <script language="javascript" src="display.js"></script>
@@ -47,7 +48,8 @@
 <div>
 [2015/8/12]<ul><li>新增《巧克力森林》的〈席比〉、〈帕爾菲〉、〈帕查〉、〈慕瑪〉，及《Dragon's Blader》的〈遠古龍〉。<br>最終等級卡名同樣待台版資訊確定後更新。<br>已知問題：帕查慕瑪互吃進化為 SS 的「素材 S 卡」所需卡片將不包含在計算當中。<br>（它會當作跟進化鏈無關的素材進行計算，但在總結時會顯示。）</li>
 <li>由於日版 wiki 發生問題，目前部份圖示使用<a href="http://wizbook.jpn.org/database/">《魔法使いと黒猫のウィズ＠画像保管庫β》</a>的無邊框圖，<br>待台版 wikia 有圖示上傳後會進行更新。</li>
-<li>將上週結束的《庫洛姆･麥格納Ⅲ臨海學校》卡片移到最後面。</li></ul>
+<li>將上週結束的《庫洛姆･麥格納Ⅲ臨海學校》卡片移到最後面。</li>
+<li>將所有角色圖示加上 tooltip 顯示名字。現在滑鼠移到圖示上會跟潛能一樣顯示該圖示為何。<br>（原先只有角色選擇框裡有）</li></ul>
 [2015/8/1]<ul><li>先前修正的「搜尋使用已開潛能卡進行進化」的部份被找出會使其他計算發生問題。<br>由於需要研究一下解法，暫時將這部份搜尋的程式碼移除；現在進化計算將只會使用未開潛能的卡。<br>不過也因為會造成這種狀況基本上都是不小心吃過頭以致於最低階卡的潛能被浪費，<br>若在強化時稍微注意一下應不會發生這種問題。</li></ul>
 </div>
 <p><a href="javascript:void(0)" id="updateToggler" class="clickable">點此展開更早的更新紀錄</a></p>
