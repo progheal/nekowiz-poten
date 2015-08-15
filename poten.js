@@ -88,18 +88,9 @@ function core(maxPot, evol, curr, targetLv, targetPot)
 		if(targetLv >= 1 && maxPot[targetLv-1] >= targetPot)
 		{
 			//DEBUG; console.log(localdebug+" Try evolution!");
-			var hasLowestEvo = (costCompare(evol[targetLv-1], [1]) == 0) && (curr[0].indexOf(0) >= 0);
-			if(hasLowestEvo)
-			{
-				//DEBUG; console.log(localdebug+" Lowest self evolution material available!");
-				var p = curr[0].indexOf(0);
-				curr[0].splice(p, 1);
-			}
 			var prev = search(targetLv-1, targetPot, curr);
 			if(costCompare(evol[targetLv-1], []) == 0)
 				costnow = costAdd(prev.cost, [1]);
-			else if(hasLowestEvo)
-				costnow = prev.cost;
 			else
 				costnow = costAdd(prev.cost, [0].concat(evol[targetLv-1]));
 			sub = [prev];
@@ -134,6 +125,8 @@ function core(maxPot, evol, curr, targetLv, targetPot)
 
 	var result = search(targetLv, targetPot, curr);
 	flattenEnhance(result);
+	// 扣除剩餘素材
+	if(result.cost.length > 1) result.cost[1] -= curr[0].length;
 	return result;
 }
 
