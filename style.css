@@ -44,6 +44,14 @@ a:hover, a:active {
 	text-align: left;
 }
 
+#evolTooltip {
+	display: none;
+	position: absolute;
+	background-color: #ffffff;
+	padding: 5px;
+	border: solid 5px #00ff00;
+}
+
 #avail {
 	text-align: left;
 }

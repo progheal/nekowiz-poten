@@ -3,18 +3,24 @@ function pad4(id)
 	return ("0000" + id).substr(-4);
 }
 
-function img(name, size, alt)
+function img(name, size, alt, cl)
 {
 	if(typeof(alt) == "undefined") alt = "";
-	return '<img src="icon/' + name + '.png" width="' + size + '" align="middle" title="' + alt + '">';
+	if(typeof(cl) == "undefined") cl = "";
+	return '<img src="icon/' + name + '.png" width="' + size + '" align="absmiddle" title="' + alt + '" class="' + cl + '">';
 }
 
-function iconImg(id)
+function iconImg(id, evol)
 {
 	if(id < 0)
 		return img(id, 60, cardname[id]);
 	else
-		return img(pad4(id), 60, cardname[id]);
+	{
+		if(evol)
+			return img(pad4(id), 60, '', 'evoltt'+id);
+		else
+			return img(pad4(id), 60, cardname[id], '');
+	}
 }
 
 function potImg(potName) {return img(potData[potName].icon, 30, potData[potName].name);}
@@ -127,12 +133,12 @@ function toHTML(info, result)
 						for(var k in material)
 						{
 							padlist.push(img('Empty',60));
-							imglist.push(iconImg(material[k]));
+							imglist.push(iconImg(material[k], true));
 						}
 						line.push([padlist.concat([img('Evol',60)]).concat(imglist).join(""),1,0]);
 					}
 					else if(material != 0)
-						line.push([img('Empty',60) + img('Evol',60) + iconImg(material), 1, 0]);
+						line.push([img('Empty',60) + img('Evol',60) + iconImg(material, true), 1, 0]);
 					else
 						line.push([img('Evol',60), 1, 0]);
 				}
@@ -348,6 +354,31 @@ function deleteMaterial(k)
 	updateAvail();
 }
 
+function bindEvolTooltip()
+{
+	for(var k in evolTooltip)
+	{
+		var elem = $('.evoltt' + k);
+		if(elem.length == 0) continue;
+		var tt = [];
+		for(var u in evolTooltip[k])
+		{
+			if(u > 0)
+				tt.push(img(pad4(u),30) + 'x' + evolTooltip[k][u]);
+			else
+				tt.push(img(u,30) + 'x' + evolTooltip[k][u]);
+		}
+		elem.bind('mouseenter', '<span>'+tt.join('、')+'</span>', function(e){
+			var thispos = $(this).offset();
+			$('#evolTooltip').empty().show().append($(e.data)).offset(
+				{top: thispos.top + 70, left: thispos.left}
+			);
+		}).bind('mouseleave', function(){
+			$('#evolTooltip').empty().hide();
+		})
+	}
+}
+
 function go()
 {
 	var curr = [];
@@ -367,6 +398,7 @@ function go()
 	var html = toHTML(g_info, result);
 	$('#resultTable').empty();
 	$('#resultTable').append($(html));
+	bindEvolTooltip();
 	$('#result').show();
 }
 
