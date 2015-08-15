@@ -38,6 +38,7 @@ function costCompare(cost1, cost2)
        [3,1]：分歧進化後互吃的被吃素材，此素材需三張最低階同卡及一張第一種特殊素材
        最大等級不使用, 故陣列大小可少一
  curr: 目前所持，各等級以一陣列表示各張之潛能值
+ special: 目前所持特殊進化素材，[0] 對應 evol 在 [1] 的素材，依此類推
  targetLv: 目標等級
  targetPot: 目標潛能值
 
@@ -54,7 +55,7 @@ function costCompare(cost1, cost2)
          長度 1 = 進化, [0] 為進化源，格式同此
          長度 >=2 = 強化, 各元素表示強化來源卡，格式同此
 */
-function core(maxPot, evol, curr, targetLv, targetPot)
+function core(maxPot, evol, curr, special, targetLv, targetPot)
 {
 	//DEBUG; var debug = 0;
 	//核心遞迴函式; 使用 maxPot 及 evol 故包在裡面做 closure
@@ -127,6 +128,10 @@ function core(maxPot, evol, curr, targetLv, targetPot)
 	flattenEnhance(result);
 	// 扣除剩餘素材
 	if(result.cost.length > 1) result.cost[1] -= curr[0].length;
+	for(var k = 0; k < special.length && k+2 < result.cost.length; k++)
+	{
+		result.cost[k+2] -= special[k];
+	}
 	return result;
 }
 

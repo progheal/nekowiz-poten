@@ -156,32 +156,33 @@ function toHTML(info, result)
 		htmlgrid.push(str);
 	}
 	var lastline = '<td colspan="' + width + '"><hr>';
-	if(result.cost.length < 2)
+	var needlist = [];
+	if(result.cost.length > 1 && result.cost[1] > 0) needlist.push(iconImg(info.id[0]) + "x" + result.cost[1]);
+	for(var k = 2; k < result.cost.length; k++)
 	{
-		lastline += '現有卡已足夠！'
-	}
-	else
-	{
-		lastline += '總計還需要：';
-		lastline += iconImg(info.id[0]) + "x" + result.cost[1];
-		for(var k = 2; k < result.cost.length; k++)
+		var item = info.special[k-2];
+		var count = result.cost[k];
+		if(count <= 0) continue;
+		if(typeof(item) == "object")
 		{
-			var item = info.special[k-2];
-			var count = result.cost[k];
-			if(typeof(item) == "object")
+			var complex = [];
+			for(var u = 1; u < item.length; u+=2)
 			{
-				lastline += '、' + iconImg(item[0]) + "x" + count;
-				for(var u = 1; u < item.length; u+=2)
-				{
-					if(u == 1) lastline += '（＝'; else lastline += '、';
-					lastline += iconImg(item[u]) + 'x' + (item[u+1] * count);
-				}
-				lastline += '）';
+				complex.push(iconImg(item[u]) + 'x' + (item[u+1] * count));
 			}
-			else
-				lastline += '、' + iconImg(item) + "x" + count;
+			needlist.push(
+				iconImg(item[0]) + "x" + count + '（＝' + complex.join('、') + '）'
+			);
+		}
+		else
+		{
+			needlist.push(iconImg(item) + "x" + count);
 		}
 	}
+	if(needlist.length > 0)
+		lastline += '總計還需要：' + needlist.join('、');
+	else
+		lastline += '現有卡已足夠！';
 	lastline += '</td>';
 	htmlgrid.push(lastline);
 	return '<table border="0" style="text-align:center; margin:auto"><tr>' + htmlgrid.join("</tr><tr>") + '</tr></table>';
@@ -190,6 +191,7 @@ function toHTML(info, result)
 var g_info = {};
 var g_target = {};
 var g_availList = [];
+var g_materialList = [];
 var g_cur = {};
 
 function clear()
@@ -200,6 +202,7 @@ function clear()
 	g_info = {};
 	g_target = {};
 	g_availList = [];
+	g_materialList = [];
 	g_cur = {};
 }
 
@@ -213,6 +216,7 @@ function characterSelect()
 	g_cur.level = g_target.level;
 	g_cur.pot = 0;
 	g_availList = [];
+	g_materialList = [];
 	updateTarget();
 	updateAvail();
 	$('#controlIcon').empty();
@@ -260,6 +264,29 @@ function characterSelect()
 				})(i+1))
 		);
 	}
+	if(typeof(g_info['special']) != 'undefined')
+	{
+		$('#material').show();
+		$('#specialIcon').empty();
+		for(var i = 0; i < g_info.special.length; i++)
+		{
+			$('#specialIcon').append(
+				$('<span></span>')
+					.addClass("icon clickable")
+					.append(iconImg(g_info.special[i]))
+					.bind("click", (function(i){
+						return function(){
+							g_materialList.push(i);
+							updateAvail();
+						};
+					})(i))
+			);
+		}
+	}
+	else
+	{
+		$('#material').hide();
+	}
 	updateCurrent();
 }
 
@@ -295,6 +322,18 @@ function updateAvail()
 			).append($('<br>'))
 		})(k);
 	}
+	for(var k in g_materialList)
+	{
+		(function(k){
+			$('#avail').append(
+				$('<input type="button" value="刪除">').bind('click',function(){
+					deleteMaterial(k);
+				})
+			).append(
+				$(iconImg(g_info.special[g_materialList[k]]))
+			).append($('<br>'))
+		})(k);
+	}
 }
 
 function deleteAvail(k)
@@ -303,15 +342,28 @@ function deleteAvail(k)
 	updateAvail();
 }
 
+function deleteMaterial(k)
+{
+	g_materialList.splice(k, 1);
+	updateAvail();
+}
+
 function go()
 {
 	var curr = [];
+	var special = [];
 	for(var i = 0; i < g_info.id.length; i++) curr[i] = [];
+	if(typeof(g_info['special']) != "undefined")
+		for(var i = 0; i < g_info.special.length; i++) special[i] = 0;
 	for(var k in g_availList)
 	{
 		curr[g_availList[k].level].push(g_availList[k].pot);
 	}
-	var result = core(g_info.maxPot, g_info.evol, curr, g_target.level, g_target.pot);
+	for(var k in g_materialList)
+	{
+		special[g_materialList[k]]++;
+	}
+	var result = core(g_info.maxPot, g_info.evol, curr, special, g_target.level, g_target.pot);
 	var html = toHTML(g_info, result);
 	$('#resultTable').empty();
 	$('#resultTable').append($(html));
