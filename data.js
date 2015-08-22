@@ -337,16 +337,16 @@ data = {
 		maxPot: [1,2,3,5],
 		pots: ["F1","C2","DT1","PW","AW1"],
 		evol: [[1],[1],[0,1]],
-		material: [1666,1666,-48],
-		special: [-48]
+		material: [1666,1666,-49],
+		special: [-49]
 	},
 	1670: {
 		id: [1666,1667,1668,1670],
 		maxPot: [1,2,3,5],
 		pots: ["F1","C2","DT1","PW","AW1"],
 		evol: [[1],[1],[0,1]],
-		material: [1666,1666,-49],
-		special: [-49]
+		material: [1666,1666,-48],
+		special: [-48]
 	},
 };
 

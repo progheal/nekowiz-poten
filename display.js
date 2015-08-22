@@ -431,12 +431,12 @@ $(function(){
 		if(ur.is(':visible'))
 		{
 			ur.hide();
-			$(this).text("更新紀錄點此展開")
+			$(this).text("▲點此展開更早的更新紀錄▲")
 		}
 		else
 		{
 			ur.show();
-			$(this).text("更新紀錄點此收合")
+			$(this).text("▼更新紀錄點此收合▼")
 		}
 	});
 	clear();
