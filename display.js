@@ -379,7 +379,7 @@ function bindEvolTooltip()
 	}
 }
 
-function go()
+function asyncgo()
 {
 	var curr = [];
 	var special = [];
@@ -400,6 +400,7 @@ function go()
 	$('#resultTable').append($(html));
 	bindEvolTooltip();
 	$('#result').show();
+	$('#go').attr('value', '開始計算').prop('disabled', false);
 }
 
 $(function(){
@@ -424,7 +425,11 @@ $(function(){
 		g_availList.push({level: g_cur.level, pot: g_cur.pot});
 		updateAvail();
 	});
-	$('#go').bind('click', function(){go();});
+	$('#go').bind('click', function(){
+		$(this).attr('value', '計算中…').prop('disabled', true);
+		$('#result').hide();
+		setTimeout('asyncgo()', 10);
+	});
 	$('#clearButton').bind('click', function(){clear();});
 	$('#updateToggler').bind('click', function(event){
 		var ur = $('#updateRecord');

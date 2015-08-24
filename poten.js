@@ -64,6 +64,9 @@ function core(maxPot, evol, curr, special, targetLv, targetPot)
 		//DEBUG; debug++;
 		//DEBUG; var localdebug = "[" + debug + "]";
 		//DEBUG; console.log(localdebug + "(" + targetLv + ", " + targetPot + ", [" + curr.map(function(v,i){return "["+v.join(",")+"]"}).join(",") + "]");
+		var empty = true;
+		for(var i = 1; i < curr.length; i++) empty &= (curr[i].length == 0);
+		for(var k in curr[0]) empty &= (curr[0][k] == 0);
 		//已有的卡直接用
 		var p = curr[targetLv].indexOf(targetPot);
 		if(p != -1)
@@ -102,6 +105,7 @@ function core(maxPot, evol, curr, special, targetLv, targetPot)
 		var halfPot = Math.floor(targetPot/2);
 		for(var big = halfPot; big <= targetPot - 1; big++)
 		{
+			//先搜小再搜大
 			//DEBUG; console.log(localdebug+" Try split " + targetPot + " into " + big + " + " + (targetPot-big-1) + "!");
 			var smallsrc = search(targetLv, targetPot - big - 1, curr);
 			//DEBUG; console.log(localdebug+" smallsrc = ");
@@ -119,6 +123,27 @@ function core(maxPot, evol, curr, special, targetLv, targetPot)
 				sub = [bigsrc, smallsrc];
 			}
 			for(var k in oldcurr) curr[k] = oldcurr[k].slice(0);
+			//若有除了葉素材之外的卡則額外先搜大再搜小
+			/*
+			XXX: 假設全部的已有材料全部用在同一邊可能會發生錯誤，
+			     但目前已有卡片應該沒有會計算錯誤的狀況，
+			     因此做為應急處理先使用這種解法。參見 Issue #1。
+			*/
+			if(!empty)
+			{
+				bigsrc = search(targetLv, big, curr);
+				smallsrc = search(targetLv, targetPot - big - 1, curr);
+				var cost = costAdd(bigsrc.cost, smallsrc.cost);
+				if(costCompare(cost, costnow) < 0)
+				{
+					//DEBUG; console.log(localdebug+" Smaller!");
+					costnow = cost;
+					currleft = [];
+					for(var k in curr) currleft[k] = curr[k].slice(0);
+					sub = [bigsrc, smallsrc];
+				}
+				for(var k in oldcurr) curr[k] = oldcurr[k].slice(0);
+			}
 		}
 		for(var k in currleft) curr[k] = currleft[k].slice(0);
 		return {level:targetLv, pot:targetPot, cost:costnow, source:sub};
