@@ -8,14 +8,21 @@ potData = {
 	A1:  {icon: "Senzai_ATK",        name: "攻擊力上升Ⅰ"},
 	A2:  {icon: "Senzai_ATK",        name: "攻擊力上升Ⅱ"},
 	HF1: {icon: "Senzai_HP_F",       name: "火屬性HP上升Ⅰ"},
+	HF2: {icon: "Senzai_HP_F",       name: "火屬性HP上升Ⅱ"},
 	HW1: {icon: "Senzai_HP_W",       name: "水屬性HP上升Ⅰ"},
+	HW2: {icon: "Senzai_HP_W",       name: "水屬性HP上升Ⅱ"},
 	HT1: {icon: "Senzai_HP_T",       name: "雷屬性HP上升Ⅰ"},
+	HT2: {icon: "Senzai_HP_T",       name: "雷屬性HP上升Ⅱ"},
 	HA1: {icon: "Senzai_HP_F",       name: "全屬性HP上升Ⅰ"},
 	HA2: {icon: "Senzai_HP_F",       name: "全屬性HP上升Ⅱ"},
 	AF1: {icon: "Senzai_ATK_F",      name: "火屬性攻擊力上升Ⅰ"},
+	AF2: {icon: "Senzai_ATK_F",      name: "火屬性攻擊力上升Ⅱ"},
 	AW1: {icon: "Senzai_ATK_W",      name: "水屬性攻擊力上升Ⅰ"},
+	AW2: {icon: "Senzai_ATK_W",      name: "水屬性攻擊力上升Ⅱ"},
 	AT1: {icon: "Senzai_ATK_T",      name: "雷屬性攻擊力上升Ⅰ"},
+	AT2: {icon: "Senzai_ATK_T",      name: "雷屬性攻擊力上升Ⅱ"},
 	AA1: {icon: "Senzai_ATK_F",      name: "全屬性攻擊力上升Ⅰ"},
+	AA2: {icon: "Senzai_ATK_F",      name: "全屬性攻擊力上升Ⅱ"},
 	DF1: {icon: "Senzai_Shield_F",   name: "減輕火屬性傷害Ⅰ"},
 	DW1: {icon: "Senzai_Shield_W",   name: "減輕水屬性傷害Ⅰ"},
 	DT1: {icon: "Senzai_Shield_T",   name: "減輕雷屬性傷害Ⅰ"},
@@ -348,6 +355,35 @@ data = {
 		material: [1666,1666,-48],
 		special: [-48]
 	},
+	// 來者何貘：黑與白的激戰
+	800003: {
+		id: [800001,800002,800003],
+		maxPot: [2,3,4],
+		pots: ["A1","H2","F1","AF2"],
+		evol: [[1],[1]],
+		material: [800001,800001]
+	},
+	800006: {
+		id: [800004,800005,800006],
+		maxPot: [3,4,5],
+		pots: ["F1","H2","A2","C2","PW"],
+		evol: [[1],[1]],
+		material: [800004,800004]
+	},
+	800010: {
+		id: [800007,800008,800009,800010],
+		maxPot: [3,5,7,9],
+		pots: ["R1","A2","H2","H1","C2","F1","A1","DF1","AT2"],
+		evol: [[1],[1],[1]],
+		material: [800007,800007,800007]
+	},
+	800013: {
+		id: [800011,800012,800013],
+		maxPot: [2,3,5],
+		pots: ["F1","A2","H2","C2","PT"],
+		evol: [[1],[1]],
+		material: [800011,800011]
+	},
 };
 
 evolTooltip = {
@@ -362,12 +398,10 @@ evolTooltip = {
 menu = [
 	/*御三家*/
 	1507,1508,1509,
-	/*妖精花園*/
-	1399,1403,1517,1407,
-	/*巧克力森林*/
-	1424,1428,2493,2494,2495,2496,
 	/*古代森林的千年櫻花*/
 	1657,1661,1665,1669,1670,
+	/*來者何貘：黑與白的激戰*/
+	800003,800006,800010,800013,
 	/*Dragon's Blader*/
 	422,
 	/*惡作劇女神與兔子的故事*/
@@ -382,4 +416,8 @@ menu = [
 	815,819,
 	/*庫洛姆‧麥格納Ⅲ臨海學校*/
 	2319,2323,2327,2331,
+	/*妖精花園*/
+	1399,1403,1517,1407,
+	/*巧克力森林*/
+	1424,1428,2493,2494,2495,2496,
 ];

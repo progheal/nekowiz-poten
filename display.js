@@ -1,6 +1,6 @@
 function pad4(id)
 {
-	return ("0000" + id).substr(-4);
+	return id < 1000 ? ("0000" + id).substr(-4) : (''+id);
 }
 
 function img(name, size, alt, cl)
