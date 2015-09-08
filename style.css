@@ -30,13 +30,13 @@ a:hover, a:active {
 
 #controlIcon {
 	display: inline-block;
-	width: 440px;
+	width: 420px;
 	text-align: right;
 }
 
 #controlPot {
 	display: inline-block;
-	width: 340px;
+	width: 360px;
 	text-align: left;
 }
 
