@@ -66,29 +66,19 @@ function toGrid(result)
 		var grid = [];
 		for(var i = 0; i < height; i++)
 		{
-			var line = [];
-			for(var j = 0; j < childlen; j++)
+			grid[i] = childgrid.reduce(function(line,g)
 			{
-				if(i == 0)
-				{
-					if(j != 0) line.push("+");
-				}
+				line.push((i == 0) ? "+" : "");
+				if(i < g.length)
+					line = line.concat(g[i]);
 				else
 				{
-					if(j != 0) line.push("");
+					var l = g[0].length;
+					while(l--) line.push("");
 				}
-				if(i < childgrid[j].length)
-					line = line.concat(childgrid[j][i]);
-				else
-				{
-					var l = childgrid[j][0].length;
-					while(l--)
-					{
-						line.push("");
-					}
-				}
-			}
-			grid[i] = line;
+				return line;
+			}, []);
+			grid[i].shift();
 		}
 		var width = grid[0].length;
 		var tmp = ["EnhTo"];
@@ -383,12 +373,15 @@ function asyncgo()
 {
 	var curr = [];
 	var special = [];
-	for(var i = 0; i < g_info.id.length; i++) curr[i] = [];
+	for(var i = 0; i < g_info.id.length; i++)
+	{
+		curr[i] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0].slice(0,g_info.maxPot[i]+1);
+	}
 	if(typeof(g_info['special']) != "undefined")
 		for(var i = 0; i < g_info.special.length; i++) special[i] = 0;
 	for(var k in g_availList)
 	{
-		curr[g_availList[k].level].push(g_availList[k].pot);
+		curr[g_availList[k].level][g_availList[k].pot]++;
 	}
 	for(var k in g_materialList)
 	{

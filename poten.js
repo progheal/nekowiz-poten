@@ -19,8 +19,8 @@ function costCompare(cost1, cost2)
 	var len2 = cost2.length;
 	for(var i = 0; i < len1 || i < len2; i++)
 	{
-		if(i >= len1) return -1;
-		else if(i >= len2) return 1;
+		if(i >= len1) {if(cost2[i] > 0) return -1;}
+		else if(i >= len2) {if(cost1[i] > 0) return 1;}
 		else if(cost1[i] < cost2[i]) return -1;
 		else if(cost1[i] > cost2[i]) return 1;
 	}
@@ -37,7 +37,7 @@ function costCompare(cost1, cost2)
        [0,1]：以第一種特殊素材進化 (含被吃的分歧進化)
        [3,1]：分歧進化後互吃的被吃素材，此素材需三張最低階同卡及一張第一種特殊素材
        最大等級不使用, 故陣列大小可少一
- curr: 目前所持，各等級以一陣列表示各張之潛能值
+ curr: 目前所持，各等級以一陣列表示各張各潛能值各有幾張
  special: 目前所持特殊進化素材，[0] 對應 evol 在 [1] 的素材，依此類推
  targetLv: 目標等級
  targetPot: 目標潛能值
@@ -57,72 +57,62 @@ function costCompare(cost1, cost2)
 */
 function core(maxPot, evol, curr, special, targetLv, targetPot)
 {
-	//DEBUG; var debug = 0;
+	//二維複製
+	function TwoDClone(arr){return arr.map(function(v){return v.slice(0);})}
+	//更新最佳解
+	function updateBest(best, newcost, currleft, sub)
+	{
+		if(costCompare(newcost, best.cost) < 0)
+		{
+			best.cost = newcost;
+			best.left = TwoDClone(currleft);
+			best.source = sub;
+		}
+	}
 	//核心遞迴函式; 使用 maxPot 及 evol 故包在裡面做 closure
+	//遞迴呼叫時手動複製 curr 參數做 CBV
+	//回傳值: 大函式回傳值, 但新增 left: 剩餘卡片
 	function search(targetLv, targetPot, curr)
 	{
-		//DEBUG; debug++;
-		//DEBUG; var localdebug = "[" + debug + "]";
-		//DEBUG; console.log(localdebug + "(" + targetLv + ", " + targetPot + ", [" + curr.map(function(v,i){return "["+v.join(",")+"]"}).join(",") + "]");
-		var empty = true;
-		for(var i = 1; i < curr.length; i++) empty &= (curr[i].length == 0);
-		for(var k in curr[0]) empty &= (curr[0][k] == 0);
+		var empty = curr.reduce(function(e,v,i){
+			return v.reduce(function(ee,vv,ii){
+				return ee && (vv == 0 || (i == 0 && ii == 0));
+			},e);
+		},true);
 		//已有的卡直接用
-		var p = curr[targetLv].indexOf(targetPot);
-		if(p != -1)
+		if(curr[targetLv][targetPot] > 0)
 		{
-			//DEBUG; console.log(localdebug+" Already available!");
-			curr[targetLv].splice(p, 1);
-			return {level:targetLv, pot:targetPot, cost:[], source:[]};
+			curr[targetLv][targetPot]--;
+			return {level:targetLv, pot:targetPot, cost:[], source:[], left: curr};
 		}
 		//最低階
 		if(targetLv == 0 && targetPot == 0)
 		{
-			//DEBUG; console.log(localdebug+" Lowest level!");
-			return {level:0, pot:0, cost:[0,1], source:[]};
+			return {level:0, pot:0, cost:[0,1], source:[], left: curr};
 		}
 		
 		//開始搜尋
-		var oldcurr = [];
-		var costnow = [10000];
-		var currleft = [];
-		var sub = [];
-		for(var k in curr) oldcurr[k] = curr[k].slice(0);
+		var best = {level: targetLv, pot: targetPot, cost: [10000], source: [], left: []};
 		//若可以進化而來
 		if(targetLv >= 1 && maxPot[targetLv-1] >= targetPot)
 		{
-			//DEBUG; console.log(localdebug+" Try evolution!");
-			var prev = search(targetLv-1, targetPot, curr);
+			var prev = search(targetLv-1, targetPot, TwoDClone(curr));
+			var cost;
 			if(costCompare(evol[targetLv-1], []) == 0)
-				costnow = costAdd(prev.cost, [1]);
+				cost = costAdd(prev.cost, [1]);
 			else
-				costnow = costAdd(prev.cost, [0].concat(evol[targetLv-1]));
-			sub = [prev];
-			for(var k in curr) currleft[k] = curr[k].slice(0);
-			for(var k in oldcurr) curr[k] = oldcurr[k].slice(0);
+				cost = costAdd(prev.cost, [0].concat(evol[targetLv-1]));
+			updateBest(best, cost, prev.left, [prev]);
 		}
 		//搜尋強化合成組合
 		var halfPot = Math.floor(targetPot/2);
 		for(var big = halfPot; big <= targetPot - 1; big++)
 		{
 			//先搜小再搜大
-			//DEBUG; console.log(localdebug+" Try split " + targetPot + " into " + big + " + " + (targetPot-big-1) + "!");
-			var smallsrc = search(targetLv, targetPot - big - 1, curr);
-			//DEBUG; console.log(localdebug+" smallsrc = ");
-			//DEBUG; console.log(smallsrc);
-			var bigsrc = search(targetLv, big, curr);
-			//DEBUG; console.log(localdebug+" bigsrc = ");
-			//DEBUG; console.log(bigsrc);
-			var cost = costAdd(bigsrc.cost, smallsrc.cost);
-			if(costCompare(cost, costnow) < 0)
-			{
-				//DEBUG; console.log(localdebug+" Smaller!");
-				costnow = cost;
-				currleft = [];
-				for(var k in curr) currleft[k] = curr[k].slice(0);
-				sub = [bigsrc, smallsrc];
-			}
-			for(var k in oldcurr) curr[k] = oldcurr[k].slice(0);
+			var smallbest = search(targetLv, targetPot - big - 1, TwoDClone(curr));
+			var bigbest = search(targetLv, big, TwoDClone(smallbest.left));
+			var cost = costAdd(bigbest.cost, smallbest.cost);
+			updateBest(best, cost, bigbest.left, [bigbest, smallbest]);
 			//若有除了葉素材之外的卡則額外先搜大再搜小
 			/*
 			XXX: 假設全部的已有材料全部用在同一邊可能會發生錯誤，
@@ -131,28 +121,20 @@ function core(maxPot, evol, curr, special, targetLv, targetPot)
 			*/
 			if(!empty)
 			{
-				bigsrc = search(targetLv, big, curr);
-				smallsrc = search(targetLv, targetPot - big - 1, curr);
-				var cost = costAdd(bigsrc.cost, smallsrc.cost);
-				if(costCompare(cost, costnow) < 0)
-				{
-					//DEBUG; console.log(localdebug+" Smaller!");
-					costnow = cost;
-					currleft = [];
-					for(var k in curr) currleft[k] = curr[k].slice(0);
-					sub = [bigsrc, smallsrc];
-				}
-				for(var k in oldcurr) curr[k] = oldcurr[k].slice(0);
+				bigbest = search(targetLv, big, TwoDClone(curr));
+				smallbest = search(targetLv, targetPot - big - 1, TwoDClone(bigbest.left));
+				var cost = costAdd(bigbest.cost, smallbest.cost);
+				updateBest(best, cost, smallbest.left, [bigbest, smallbest]);
 			}
 		}
-		for(var k in currleft) curr[k] = currleft[k].slice(0);
-		return {level:targetLv, pot:targetPot, cost:costnow, source:sub};
+		return best;
 	}
 
 	var result = search(targetLv, targetPot, curr);
+	var left = result.left;
 	flattenEnhance(result);
 	// 扣除剩餘素材
-	if(result.cost.length > 1) result.cost[1] -= curr[0].length;
+	if(result.cost.length > 1) result.cost[1] -= left[0].reduce(function(a,b){return a+b;});
 	for(var k = 0; k < special.length && k+2 < result.cost.length; k++)
 	{
 		result.cost[k+2] -= special[k];
@@ -163,10 +145,7 @@ function core(maxPot, evol, curr, special, targetLv, targetPot)
 // 將結果陣列中連續強化的攤平
 function flattenEnhance(result)
 {
-	for(var p = 0; p < result.source.length; p++)
-	{
-		flattenEnhance(result.source[p]);
-	}
+	result.source.forEach(flattenEnhance);
 	if(result.source.length >= 2)
 	{
 		var newsource = [];
