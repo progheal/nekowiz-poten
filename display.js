@@ -221,9 +221,11 @@ function characterSelect()
 	$('#characterName').empty().append(cardname[g_info.id[linelen-1]]);
 	if(linelen > 6)
 		linelen = Math.floor((linelen + 1) / 2);
+	if(g_info.id[0] == 1237)
+		linelen = 3;
 	for(var i = 0; i < g_info.id.length; i++)
 	{
-		if(i > 0 && i % linelen == 0)
+		if(i == linelen)
 			$('#controlIcon').append('<br/>');
 		$('#controlIcon').append(
 			$('<span></span>')
@@ -387,8 +389,17 @@ function asyncgo()
 	{
 		special[g_materialList[k]]++;
 	}
-	var result = core(g_info.maxPot, g_info.evol, curr, special, g_target.level, g_target.pot);
-	var html = toHTML(g_info, result);
+	var result, html;
+	if(g_info.id[0] == 1231 || g_info.id[0] == 1237)
+	{
+		result = bahamut(g_info.id[0], curr, special, g_target.level, g_target.pot);
+		html = bahamut_toHTML(g_info, result);
+	}
+	else
+	{
+		result = core(g_info.maxPot, g_info.evol, curr, special, g_target.level, g_target.pot);
+		html = toHTML(g_info, result);
+	}
 	$('#resultTable').empty();
 	$('#resultTable').append($(html));
 	bindEvolTooltip();

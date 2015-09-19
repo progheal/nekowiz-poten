@@ -8,6 +8,7 @@
 <script language="javascript" src="data.js"></script>
 <script language="javascript" src="poten.js"></script>
 <script language="javascript" src="display.js"></script>
+<script language="javascript" src="bahamut.js"></script>
 </head>
 <body>
 <h2>問答 RPG 魔法使與黑貓維茲　潛能計算器　v0.7</h2>
@@ -19,7 +20,7 @@
 <p id="control"><span id="controlIcon"></span><span id="controlPot"></span></p>
 <p><input id="panelSet" type="button" value="設為目標">
 <input id="panelAdd" type="button" value="新增為已有卡片"></p>
-<p id="material">特殊進化素材：(直接點選即可加入已有卡片)<span id="specialIcon"></span></p>
+<p id="material">特殊進化素材：(直接點選加入已有卡片)<span id="specialIcon"></span></p>
 <p><span id="target">目標：<span id="target0"></span></span></p>
 <fieldset style="min-width: 200px; display:inline-block; margin: auto; text-align: left"><legend>已有卡片</legend>
 <span id="avail"></span></fieldset>
@@ -47,13 +48,17 @@
 <div style="width: 800px; text-align: left; margin: auto">
 <p>更新紀錄：</p>
 <div>
+[2015/9/20]<ul><li>新增《神龍降臨Ⅰ》的〈龍帝〉及〈龍妃〉。對於這兩隻有幾個地方需要注意：
+	<ol><li>雖然進化樹稍微複雜，但這兩隻基本上可以當成各自的進化鍊，<br>只有在進化素材方面需要另一條進化鍊上的卡而已；<br>因此在選擇時會將這條進化鍊的卡顯示為可選擇潛能格數的卡，<br>另一條進化鍊的卡則當做特殊素材顯示供選擇。
+	<li>對於〈邪龍〉的合成進化，本計算器在同樣條件下傾向將需求算在〈火龍〉身上，<br>這是由於〈火龍〉是中級關卡的掉落，相對於〈冰龍〉的高級，周回刷卡較不耗體也比較容易。<br>若要調整進化方式的請自行參考進化圖表調整。</li></ol></li>
+<li>大部份的《神龍降臨Ⅱ》卡片卡名更新。</li></ul>
 [2015/9/16]<ul><li>新增《神龍降臨Ⅱ》的〈賈斯喀斯〉、〈蓋德薩〉、〈蕾茲尤〉、〈耶爾諾〉。<br>卡名待台版資訊確定後更新。</li>
 <li>《神龍降臨Ⅰ》的〈龍帝〉及〈龍妃〉由於它們稍微複雜的進化樹，預計週末更新。</li>
 <li>將上週結束的《古代森林的千年櫻花》移到最後。</li></ul>
-[2015/9/9]<ul><li>新增《Demon's Blader》的〈阿斯莫德烏斯〉。中間三階的卡名 tooltip 同樣待台版資訊確定後更新。<br>圖示暫時取自<a href="http://quiz-wiz.com/">《クイズRPG黒猫のウィズ攻略DB》</a>。<br>特別注意這張卡片的進化是吃<b>相同等級卡片</b>進化；滑鼠移到該素材上面會顯示它需要 A 級卡多少張。<br>這張卡由於有五階十格潛能，對於在已有部份卡片的計算可能會花較多時間，請多見諒。<br>另外雖然尚未確認，但這個潛能格數似乎有可能會有 8/24 所提到的計算錯誤；<br>詳細技術細節同樣參見 <a href="https://github.com/progheal/nekowiz-poten/issues/1">github 專案的 Issue #1</a>。</li></ul>
 </div>
 <p><a href="javascript:void(0)" id="updateToggler" class="clickable">▲點此展開更早的更新紀錄▲</a></p>
 <div id="updateRecord" style="display: none">
+[2015/9/9]<ul><li>新增《Demon's Blader》的〈阿斯莫德烏斯〉。中間三階的卡名 tooltip 同樣待台版資訊確定後更新。<br>圖示暫時取自<a href="http://quiz-wiz.com/">《クイズRPG黒猫のウィズ攻略DB》</a>。<br>特別注意這張卡片的進化是吃<b>相同等級卡片</b>進化；滑鼠移到該素材上面會顯示它需要 A 級卡多少張。<br>這張卡由於有五階十格潛能，對於在已有部份卡片的計算可能會花較多時間，請多見諒。<br>另外雖然尚未確認，但這個潛能格數似乎有可能會有 8/24 所提到的計算錯誤；<br>詳細技術細節同樣參見 <a href="https://github.com/progheal/nekowiz-poten/issues/1">github 專案的 Issue #1</a>。</li></ul>
 [2015/9/6]<ul><li>讓各位久等了，新增《來者何貘：黑與白的激戰》的三張馬來貘和圓仔。</li>
 <li>將已結束的《妖精花園》和《巧克力森林》移到最後。</li>
 <li>〈慕瑪〉、〈帕查〉的 SS 卡名及〈愛莎〉的卡名更新。</li></ul>
