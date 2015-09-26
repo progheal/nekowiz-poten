@@ -10,13 +10,15 @@ function img(name, size, alt, cl)
 	return '<img src="icon/' + name + '.png" width="' + size + '" align="absmiddle" title="' + alt + '" class="' + cl + '">';
 }
 
-function iconImg(id, evol)
+function iconImg(id, tag)
 {
 	if(id < 0)
 		return img(id, 60, cardname[id]);
 	else
 	{
-		if(evol)
+		if(typeof(tag) == "string")
+			return img(pad4(id), 60, '', tag);
+		else if(typeof(tag) == "boolean" && tag)
 			return img(pad4(id), 60, '', 'evoltt'+id);
 		else
 			return img(pad4(id), 60, cardname[id], '');
@@ -25,11 +27,26 @@ function iconImg(id, evol)
 
 function potImg(potName) {return img(potData[potName].icon, 30, potData[potName].name);}
 
+function getPotList(info, level, potNum)
+{
+	if(typeof(info.pots2) == "undefined")
+	{
+		return info.pots.slice(0, potNum);
+	}
+	else
+	{
+		if(info.maxPot[level] <= info.pots2.length)
+			return info.pots2.slice(0, potNum);
+		else
+			return info.pots.slice(0, potNum);
+	}
+}
+
 function iconAndPotImg(info, level, maxPot)
 {
-	var html = iconImg(info.id[level]);
-	for(var k = 0; k < maxPot; k++) html += potImg(info.pots[k]);
-	return html;
+	return getPotList(info, level, maxPot).reduce(function(html,pot){
+		return html + potImg(pot);
+	},iconImg(info.id[level]));
 }
 
 function toGrid(result)
@@ -44,7 +61,12 @@ function toGrid(result)
 		// 進化
 		var child = toGrid(result.source[0]);
 		var width = child[0].length;
-		var tmp = ["Evol"+(result.level-1)];
+		var tmp;
+		if(typeof(result.evolist) == "undefined")
+			tmp = ["Evol"+(result.level-1)];
+		else
+			tmp = ["Evol"+(result.level-1)+"#"+
+				result.evolist.reduce(function(s,v){return s+v;},"")];
 		tmp.length = width;
 		child.unshift(tmp);
 		tmp = [{level: result.level, pot: result.pot}];
@@ -128,7 +150,16 @@ function toHTML(info, result)
 						line.push([padlist.concat([img('Evol',60)]).concat(imglist).join(""),1,0]);
 					}
 					else if(material != 0)
-						line.push([img('Empty',60) + img('Evol',60) + iconImg(material, true), 1, 0]);
+					{
+						var hash = grid[i][j].indexOf("#");
+						if(hash != -1)
+						{
+							var add = grid[i][j].substr(hash+1);
+							line.push([img('Empty',60) + img('Evol',60) + iconImg(material, "evx evx"+add) + "＊", 1, 0]);
+						}
+						else
+							line.push([img('Empty',60) + img('Evol',60) + iconImg(material, true), 1, 0]);
+					}
 					else
 						line.push([img('Evol',60), 1, 0]);
 				}
@@ -294,6 +325,27 @@ function updateCurrent()
 	$('#controlIcon').children().filter('span').eq(g_cur.level).addClass('iconSel');
 	var lvMaxPot = g_info.maxPot[g_cur.level];
 	if(g_cur.pot > lvMaxPot) g_cur.pot = lvMaxPot;
+	if(typeof(g_info.pots2) != "undefined")
+	{
+		if(lvMaxPot <= g_info.pots2.length)
+		{
+			$('#controlPot').children().slice(0,lvMaxPot+1).not(":first-child").each(
+				function(index)
+				{
+					$(this).children().replaceWith(potImg(g_info.pots2[index]));
+				}
+			);
+		}
+		else
+		{
+			$('#controlPot').children().slice(0,lvMaxPot+1).not(":first-child").each(
+				function(index)
+				{
+					$(this).children().replaceWith(potImg(g_info.pots[index]));
+				}
+			);
+		}
+	}
 	$('#controlPot').children().show().slice(lvMaxPot+1).hide();
 	$('#controlPot').children().slice(0,g_cur.pot+1).addClass('iconSel');
 }
@@ -346,6 +398,39 @@ function deleteMaterial(k)
 	updateAvail();
 }
 
+function bindTooltipOn(object, ttSelector, html, topOffset, leftOffset)
+{
+	object.bind('mouseenter', html, function(e){
+		var thispos = $(this).offset();
+		$(ttSelector).empty().show().append($(e.data)).offset(
+			{top: thispos.top + topOffset, left: thispos.left + leftOffset}
+		);
+	}).bind('mouseleave', function(){
+		$(ttSelector).empty().hide();
+	});
+}
+
+function bindEvx(info)
+{
+	$(".evx").each(function(){
+		var $this = $(this);
+		$this.attr('class').split(' ').forEach(function(cname){
+			if(cname.substr(0,3) == "evx" && cname.length > 3)
+			{
+				var tally = cname.substr(3).split('').reduce(function(a,v){
+					var i = parseInt(v);
+					a[i] = (+a[i] || 0) + 1;
+					return a;
+				},{});
+				var htmllist = '<span>使用已有卡片：'+Object.keys(tally).map(function(k){
+					return img(pad4(info.id[k]),30) + "x" + tally[k];
+				}).join('、')+'</span>';
+				bindTooltipOn($this, '#evolTooltip', htmllist, 70, 0);
+			}
+		});
+	});
+}
+
 function bindEvolTooltip()
 {
 	for(var k in evolTooltip)
@@ -360,14 +445,7 @@ function bindEvolTooltip()
 			else
 				tt.push(img(u,30) + 'x' + evolTooltip[k][u]);
 		}
-		elem.bind('mouseenter', '<span>'+tt.join('、')+'</span>', function(e){
-			var thispos = $(this).offset();
-			$('#evolTooltip').empty().show().append($(e.data)).offset(
-				{top: thispos.top + 70, left: thispos.left}
-			);
-		}).bind('mouseleave', function(){
-			$('#evolTooltip').empty().hide();
-		})
+		bindTooltipOn(elem, '#evolTooltip', '<span>'+tt.join('、')+'</span>', 70, 0);
 	}
 }
 
@@ -397,12 +475,14 @@ function asyncgo()
 	}
 	else
 	{
-		result = core(g_info.maxPot, g_info.evol, curr, special, g_target.level, g_target.pot);
+		var materialLevel = g_info.material.map(function(v){return g_info.id.indexOf(v);});
+		result = core(g_info.maxPot, g_info.evol, materialLevel, curr, special, g_target.level, g_target.pot);
 		html = toHTML(g_info, result);
 	}
 	$('#resultTable').empty();
 	$('#resultTable').append($(html));
 	bindEvolTooltip();
+	bindEvx(g_info);
 	$('#result').show();
 	$('#go').attr('value', '開始計算').prop('disabled', false);
 }

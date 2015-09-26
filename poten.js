@@ -37,6 +37,7 @@ function costCompare(cost1, cost2)
        [0,1]：以第一種特殊素材進化 (含被吃的分歧進化)
        [3,1]：分歧進化後互吃的被吃素材，此素材需三張最低階同卡及一張第一種特殊素材
        最大等級不使用, 故陣列大小可少一
+ materialLevel: 陣列，表示此階進化素材為何階自己；非自己則為 -1
  curr: 目前所持，各等級以一陣列表示各張各潛能值各有幾張
  special: 目前所持特殊進化素材，[0] 對應 evol 在 [1] 的素材，依此類推
  targetLv: 目標等級
@@ -55,7 +56,7 @@ function costCompare(cost1, cost2)
          長度 1 = 進化, [0] 為進化源，格式同此
          長度 >=2 = 強化, 各元素表示強化來源卡，格式同此
 */
-function core(maxPot, evol, curr, special, targetLv, targetPot)
+function core(maxPot, evol, materialLevel, curr, special, targetLv, targetPot)
 {
 	//二維複製
 	function TwoDClone(arr){return arr.map(function(v){return v.slice(0);})}
@@ -83,16 +84,16 @@ function core(maxPot, evol, curr, special, targetLv, targetPot)
 		if(curr[targetLv][targetPot] > 0)
 		{
 			curr[targetLv][targetPot]--;
-			return {level:targetLv, pot:targetPot, cost:[], source:[], left: curr};
+			return {level:targetLv, pot:targetPot, cost:[], source:[], left:curr};
 		}
 		//最低階
 		if(targetLv == 0 && targetPot == 0)
 		{
-			return {level:0, pot:0, cost:[0,1], source:[], left: curr};
+			return {level:0, pot:0, cost:[0,1], source:[], left:curr};
 		}
 		
 		//開始搜尋
-		var best = {level: targetLv, pot: targetPot, cost: [10000], source: [], left: []};
+		var best = {level:targetLv, pot:targetPot, cost:[10000], source:[], left:[]};
 		//若可以進化而來
 		if(targetLv >= 1 && maxPot[targetLv-1] >= targetPot)
 		{
@@ -129,17 +130,90 @@ function core(maxPot, evol, curr, special, targetLv, targetPot)
 		}
 		return best;
 	}
-
-	var result = search(targetLv, targetPot, curr);
-	var left = result.left;
-	flattenEnhance(result);
-	// 扣除剩餘素材
-	if(result.cost.length > 1) result.cost[1] -= left[0].reduce(function(a,b){return a+b;});
-	for(var k = 0; k < special.length && k+2 < result.cost.length; k++)
+	
+	function searchOnce(targetLv, targetPot, curr)
 	{
-		result.cost[k+2] -= special[k];
+		var result = search(targetLv, targetPot, curr);
+		var left = result.left;
+		flattenEnhance(result);
+		// 扣除剩餘素材
+		if(result.cost.length > 1) result.cost[1] -= left[0].reduce(function(a,b){return a+b;});
+		for(var k = 0; k < special.length && k+2 < result.cost.length; k++)
+		{
+			result.cost[k+2] -= special[k];
+		}
+		return result;
 	}
-	return result;
+	
+	//簡化進化素材搜尋結果
+	function simplifyEvoResult(result)
+	{
+		//result 僅應包含進化
+		var flat = [];
+		var ptr = result;
+		while(ptr.source.length > 0)
+		{
+			ptr = ptr.source[0];
+		}
+		flat.push(ptr.level);
+		return flat;
+	}
+	function reduceHighLevelEvolution(result, noPoten)
+	{
+		var childReduced = 0;
+		var costReduced = 0;
+		if(result.source.length == 1 && materialLevel[result.level-1] > 0 && noPoten.length > 0)
+		{
+			var mLevel = materialLevel[result.level-1];
+			var max = noPoten.reduce(function(v,x){
+				return x > mLevel ? v : Math.max(v,x);
+			},-1);
+			if(max != -1)
+			{
+				var idx = noPoten.indexOf(max);
+				noPoten.splice(idx, 1);
+				var cloneCurr = TwoDClone(curr);
+				for(var k1 in cloneCurr) for(var k2 in cloneCurr[k1]) cloneCurr[k1][k2] = 0;
+				var nouse = search(mLevel, 0, TwoDClone(cloneCurr));
+				cloneCurr[max][0] = 1;
+				var use = search(mLevel, 0, TwoDClone(cloneCurr));
+				costReduced = (nouse.cost.length > 1 ? nouse.cost[1] : 0) - (use.cost.length > 1 ? use.cost[1] : 0);
+				result.cost[1] -= costReduced;
+				result.evolist = [max];
+			}
+		}
+		result.source.forEach(function(source){
+			childReduced += reduceHighLevelEvolution(source, noPoten);
+		});
+		result.cost[1] -= childReduced;
+		return childReduced + costReduced;
+	}
+	
+	var maxMaterialLevel = materialLevel.reduce(function(x,y){return Math.max(x,y);},-1);
+	if(maxMaterialLevel <= 0)
+	{
+		//沒有高階卡為素材，直接搜尋
+		return searchOnce(targetLv, targetPot, curr);
+	}
+	//有高階卡為素材，由其開始逐一拿掉
+	var bestresult = searchOnce(targetLv, targetPot, TwoDClone(curr));;
+	var noPoten = [];
+	var ptrLevel = maxMaterialLevel;
+	while(true)
+	{
+		while(curr[ptrLevel][0] <= 0 && ptrLevel > 0) ptrLevel--;
+		if(ptrLevel == 0) break;
+		
+		noPoten.push(ptrLevel);
+		curr[ptrLevel][0]--;
+		var result = searchOnce(targetLv, targetPot, TwoDClone(curr));
+		var input = noPoten.slice(0);
+		reduceHighLevelEvolution(result, input);
+		if(costCompare(result.cost, bestresult.cost) < 0)
+			bestresult = result;
+		if(input.length > 0) break;
+	}
+	return bestresult;
 }
 
 // 將結果陣列中連續強化的攤平
