@@ -1,9 +1,11 @@
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>問答 RPG 魔法使與黑貓維茲　潛能計算器　v0.7</title>
-<link rel="stylesheet" type="text/css" href="style.css"></script>
+<link rel="stylesheet" type="text/css" href="style.css" />
 <script language="javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script language="javascript" src="modernizr-custom.js"></script>
 <script language="javascript" src="cardname.js"></script>
 <script language="javascript" src="data.js"></script>
 <script language="javascript" src="poten.js"></script>
@@ -32,7 +34,7 @@
 <hr width="900" />
 <div style="width: 800px; text-align:left; margin: auto">
 <p>By Isatis @ PTT (IGN：依莎緹絲)，歡迎追隨 :D</p>
-<p>關於潛能激發藥：由於激發藥用在最終階段上是最省的，因此直接在指定目標題扣除你要用的激發藥個數即可。<br>(激發藥相當於所合成目標角色無潛能覺醒一張，所以最終階段最省。)
+<p>關於潛能激發藥：由於激發藥用在最終階段上是最省的，因此直接在指定目標時扣除你要用的激發藥個數即可。<br>(激發藥相當於所合成目標角色無潛能覺醒一張，所以最終階段最省。)
 <p>太久沒有做網頁了，技術還停在 HTML4，所以暫時版面以實用為主 XD<br>預計之後的更新：</p>
 <ul><li>新增搜尋功能；目前由於資料庫只有御三家和近期活動角，暫時用不到所以暫緩。</li>
 <li>補足其他角色資料：大多數人的需求應該也只有御三家跟活動角，所以這裡會跟著活動開放/復刻更新活動角，抽卡機的角色則看我有沒有時間了。</li></ul>
@@ -46,17 +48,23 @@
 <div style="width: 800px; text-align: left; margin: auto">
 <p>更新紀錄：</p>
 <div>
+[2015/10/1]<ul><li>新增《珍妮佛的冒險》的〈佩特拉〉。
+<br>由於此卡未來開放 SS 之後，進化素材需求和現在不同，因此這裡提供 S 級跟 SS 級的佩特拉供選擇：
+<br>選取 S 級佩特拉是為現在版本，進化素材需求較多；
+<br>選取灰階圖示的 SS 級佩特拉是未來版本，進化素材需求較少。（她的 SS 級素材亦一併以灰階顯示）
+<br>可依需求（現在開潛能或是等未來 SS 級開放再開潛能）選擇。
+<br>SS 等級佩特拉在本次復刻結束之後將暫時移除，待未來 SS 級開放後再行新增。</li></ul>
 [2015/9/26]<ul><li>新增《異界神的祝福試煉》的〈年獸〉、〈福神〉和〈財神〉。</li>
 <li>修正當進化素材包含非最低等的同卡時，已有卡片使用錯誤問題；<br>這種狀況下當已有的卡片是無潛卡時，將它做為素材會比較節省所需材料。<br>現在遇到這種狀況時，進化圖表的素材旁若有使用已有的非最低等卡時會有個「＊」字在旁邊，<br>滑鼠移上去時會顯示這張卡使用了哪些已有素材。</li>
 <li>將上週結束的《來者何貘：黑與白的激戰》及《Demon's Blader》移到最後。</li>
 <li>開了一個推特 <a href="http://twitter.com/IsatisCrucifer">@IsatisCrucifer</a> :D</li></ul>
+</div>
+<p><a href="javascript:void(0)" id="updateToggler" class="clickable">▲點此展開更早的更新紀錄▲</a></p>
+<div id="updateRecord" style="display: none">
 [2015/9/20]<ul><li>新增《神龍降臨Ⅰ》的〈龍帝〉及〈龍妃〉。對於這兩隻有幾個地方需要注意：
 	<ol><li>雖然進化樹稍微複雜，但這兩隻基本上可以當成各自的進化鍊，<br>只有在進化素材方面需要另一條進化鍊上的卡而已；<br>因此在選擇時會將這條進化鍊的卡顯示為可選擇潛能格數的卡，<br>另一條進化鍊的卡則當做特殊素材顯示供選擇。
 	<li>對於〈邪龍〉的合成進化，本計算器在同樣條件下傾向將需求算在〈火龍〉身上，<br>這是由於〈火龍〉是中級關卡的掉落，相對於〈冰龍〉的高級，周回刷卡較不耗體也比較容易。<br>若要調整進化方式的請自行參考進化圖表調整。</li></ol></li>
 <li>大部份的《神龍降臨Ⅱ》卡片卡名更新。</li></ul>
-</div>
-<p><a href="javascript:void(0)" id="updateToggler" class="clickable">▲點此展開更早的更新紀錄▲</a></p>
-<div id="updateRecord" style="display: none">
 [2015/9/16]<ul><li>新增《神龍降臨Ⅱ》的〈賈斯喀斯〉、〈蓋德薩〉、〈蕾茲尤〉、〈耶爾諾〉。<br>卡名待台版資訊確定後更新。</li>
 <li>《神龍降臨Ⅰ》的〈龍帝〉及〈龍妃〉由於它們稍微複雜的進化樹，預計週末更新。</li>
 <li>將上週結束的《古代森林的千年櫻花》移到最後。</li></ul>
@@ -103,4 +111,3 @@
 </div>
 </body>
 </html>
-

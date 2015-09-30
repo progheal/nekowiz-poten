@@ -12,16 +12,19 @@ function img(name, size, alt, cl)
 
 function iconImg(id, tag)
 {
+	var gray = (grayiconlist.indexOf(id) != -1);
+	var gsuf = ((gray && !Modernizr.cssfilters) ? 'g' : '');
+	var gcl = ((gray && Modernizr.cssfilters) ? ' grayscale' : '');
 	if(id < 0)
-		return img(id, 60, cardname[id]);
+		return img(id + gsuf, 60, cardname[id], '' + gcl);
 	else
 	{
 		if(typeof(tag) == "string")
-			return img(pad4(id), 60, '', tag);
+			return img(pad4(id) + gsuf, 60, '', tag + gcl);
 		else if(typeof(tag) == "boolean" && tag)
-			return img(pad4(id), 60, '', 'evoltt'+id);
+			return img(pad4(id) + gsuf, 60, '', ('evoltt'+id) + gcl);
 		else
-			return img(pad4(id), 60, cardname[id], '');
+			return img(pad4(id) + gsuf, 60, cardname[id], '' + gcl);
 	}
 }
 
@@ -140,14 +143,28 @@ function toHTML(info, result)
 					var material = info.material[evolN];
 					if(Array.isArray(material))
 					{
-						var padlist = [];
-						var imglist = [];
-						for(var k in material)
+						var leftlist = [];
+						var rightlist = [];
+						if(material.length >= 4)
 						{
-							padlist.push(img('Empty',60));
-							imglist.push(iconImg(material[k], true));
+							var leftThreshold = material.length / 2;
+							for(var k = 0; k < material.length; k++)
+							{
+								if(k < leftThreshold)
+									leftlist.push(iconImg(material[k], true));
+								else
+									rightlist.push(iconImg(material[k], true));
+							}
 						}
-						line.push([padlist.concat([img('Evol',60)]).concat(imglist).join(""),1,0]);
+						else
+						{
+							for(var k in material)
+							{
+								leftlist.push(img('Empty',60));
+								rightlist.push(iconImg(material[k], true));
+							}
+						}
+						line.push([leftlist.concat([img('Evol',60)]).concat(rightlist).join(""),1,0]);
 					}
 					else if(material != 0)
 					{
@@ -177,8 +194,9 @@ function toHTML(info, result)
 		{
 			str += '<td';
 			if(line[k][1] > 1) str += ' colspan="' + line[k][1] + '"';
-			if(line[k][2] == 1) str += ' style="background-image:url(icon/EnhBg.png)"';
-			str += '>' + line[k][0] + '</td>';
+			str += ' style="white-space:nowrap';
+			if(line[k][2] == 1) str += '; background-image:url(icon/EnhBg.png)';
+			str += '">' + line[k][0] + '</td>';
 		}
 		htmlgrid.push(str);
 	}

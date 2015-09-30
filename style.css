@@ -80,3 +80,11 @@ a:hover, a:active {
 .clickable {
 	cursor: pointer;
 }
+
+/*
+ * Use CSS3 filter; non-support browser will use pre-rendered grayscale icon
+ */
+.cssfilters .grayscale {
+  -webkit-filter: grayscale(1);
+  filter: grayscale(1);
+}
