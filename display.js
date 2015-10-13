@@ -258,6 +258,8 @@ function characterSelect()
 	$('#result').hide();
 	g_target.level = g_info.maxPot.length-1;
 	g_target.pot = g_info.maxPot[g_target.level];
+	if(typeof(g_info.maxPossible) != "undefined")
+		g_target.pot = g_info.maxPossible;
 	g_cur.level = g_target.level;
 	g_cur.pot = 0;
 	g_availList = [];
@@ -304,10 +306,18 @@ function characterSelect()
 				.addClass("pot clickable")
 				.append(potImg(g_info.pots[i]))
 				.bind("click", (function(i){
-					return function(){
-						g_cur.pot = i;
-						updateCurrent();
-					};
+					if(typeof(g_info.maxPossible) != "undefined" && i > g_info.maxPossible)
+						return function(){
+							alert("由於進化素材不足，\n不使用潛能藥無法達到 "+i+" 格潛能。\n"+
+								"改選為最大可能格數 ("+g_info.maxPossible+" 格)。");
+							g_cur.pot = g_info.maxPossible;
+							updateCurrent();
+						};
+					else
+						return function(){
+							g_cur.pot = i;
+							updateCurrent();
+						};
 				})(i+1))
 		);
 	}
@@ -323,6 +333,15 @@ function characterSelect()
 					.append(iconImg(g_info.special[i]))
 					.bind("click", (function(i){
 						return function(){
+							if(typeof(g_info.maxSpecial) != "undefined")
+							{
+								var curCount = g_materialList.reduce(function(n,v){return n+(v==i?1:0);},0);
+								if(curCount >= g_info.maxSpecial[i])
+								{
+									alert("此素材不會獲得多於 "+g_info.maxSpecial[i]+" 個。");
+									return;
+								}
+							}
 							g_materialList.push(i);
 							updateAvail();
 						};

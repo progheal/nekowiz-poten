@@ -36,6 +36,46 @@ potData = {
 	E1:  {icon: "Senzai_EXP",        name: "微幅提升獲得的經驗值"},
 	G1:  {icon: "Senzai_Gold",       name: "微幅提升獲得的金幣"},
 	B1:  {icon: "Senzai_Unknown",    name: "戰鬥結束後回復全體隊友的HP"},
+	AWA1:{icon: "Senzai_ATK_Unknown",name: "戰士攻擊力上升Ⅰ"}, // WA = Warrior
+	AWA2:{icon: "Senzai_ATK_Unknown",name: "戰士攻擊力上升Ⅱ"},
+	HWA1:{icon: "Senzai_HP_Unknown", name: "戰士HP上升Ⅰ"},
+	HWA2:{icon: "Senzai_HP_Unknown", name: "戰士HP上升Ⅱ"},
+	ASO1:{icon: "Senzai_ATK_Unknown",name: "術士攻擊力上升Ⅰ"}, // SO = Sorcerer
+	ASO2:{icon: "Senzai_ATK_Unknown",name: "術士攻擊力上升Ⅱ"},
+	HSO1:{icon: "Senzai_HP_Unknown", name: "術士HP上升Ⅰ"},
+	HSO2:{icon: "Senzai_HP_Unknown", name: "術士HP上升Ⅱ"},
+	AFA1:{icon: "Senzai_ATK_Unknown",name: "妖精攻擊力上升Ⅰ"}, // FA = Fairy
+	AFA2:{icon: "Senzai_ATK_Unknown",name: "妖精攻擊力上升Ⅱ"},
+	HFA1:{icon: "Senzai_HP_Unknown", name: "妖精HP上升Ⅰ"},
+	HFA2:{icon: "Senzai_HP_Unknown", name: "妖精HP上升Ⅱ"},
+	AAN1:{icon: "Senzai_ATK_Unknown",name: "天使攻擊力上升Ⅰ"}, // AN = Angel
+	AAN2:{icon: "Senzai_ATK_Unknown",name: "天使攻擊力上升Ⅱ"},
+	HAN1:{icon: "Senzai_HP_Unknown", name: "天使HP上升Ⅰ"},
+	HAN2:{icon: "Senzai_HP_Unknown", name: "天使HP上升Ⅱ"},
+	ADE1:{icon: "Senzai_ATK_Unknown",name: "魔族攻擊力上升Ⅰ"}, // DE = Demon
+	ADE2:{icon: "Senzai_ATK_Unknown",name: "魔族攻擊力上升Ⅱ"},
+	HDE1:{icon: "Senzai_HP_Unknown", name: "魔族HP上升Ⅰ"},
+	HDE2:{icon: "Senzai_HP_Unknown", name: "魔族HP上升Ⅱ"},
+	ADH1:{icon: "Senzai_ATK_Unknown",name: "亞人攻擊力上升Ⅰ"}, // DH = Demi Human
+	ADH2:{icon: "Senzai_ATK_Unknown",name: "亞人攻擊力上升Ⅱ"},
+	HDH1:{icon: "Senzai_HP_Unknown", name: "亞人HP上升Ⅰ"},
+	HDH2:{icon: "Senzai_HP_Unknown", name: "亞人HP上升Ⅱ"},
+	ADR1:{icon: "Senzai_ATK_Unknown",name: "龍族攻擊力上升Ⅰ"}, // DR = Dragon
+	ADR2:{icon: "Senzai_ATK_Unknown",name: "龍族攻擊力上升Ⅱ"},
+	HDR1:{icon: "Senzai_HP_Unknown", name: "龍族HP上升Ⅰ"},
+	HDR2:{icon: "Senzai_HP_Unknown", name: "龍族HP上升Ⅱ"},
+	AGO1:{icon: "Senzai_ATK_Unknown",name: "神族攻擊力上升Ⅰ"}, // GO = God
+	AGO2:{icon: "Senzai_ATK_Unknown",name: "神族攻擊力上升Ⅱ"},
+	HGO1:{icon: "Senzai_HP_Unknown", name: "神族HP上升Ⅰ"},
+	HGO2:{icon: "Senzai_HP_Unknown", name: "神族HP上升Ⅱ"},
+	AMA1:{icon: "Senzai_ATK_Unknown",name: "物質攻擊力上升Ⅰ"}, // MA = Material
+	AMA2:{icon: "Senzai_ATK_Unknown",name: "物質攻擊力上升Ⅱ"},
+	HMA1:{icon: "Senzai_HP_Unknown", name: "物質HP上升Ⅰ"},
+	HMA2:{icon: "Senzai_HP_Unknown", name: "物質HP上升Ⅱ"},
+//	AAB1:{icon: "Senzai_ATK_Unknown",name: "AbCd攻擊力上升Ⅰ"},
+//	AAB2:{icon: "Senzai_ATK_Unknown",name: "AbCd攻擊力上升Ⅱ"},
+//	HAB1:{icon: "Senzai_HP_Unknown", name: "AbCd HP上升Ⅰ"},
+//	HAB2:{icon: "Senzai_HP_Unknown", name: "AbCd HP上升Ⅱ"},
 }
 
 data = {
@@ -132,10 +172,12 @@ data = {
 	2277: {
 		id: [595,596,597,598,2277],
 		maxPot: [1,2,3,4,7],
+		maxPossible: 4,
 		pots: ["A2","A2","H2","H2","C2","AW1","PW"],
 		evol: [[],[],[],[0,2]],
 		material: [0,0,0,[-33,-33]],
-		special: [-33]
+		special: [-33],
+		maxSpecial: [2]
 	},
 	614: {
 		id: [611,612,613,614],
@@ -476,6 +518,56 @@ data = {
 		material: [474,474,474,[2694,2690,2686,2682]],
 		special: [2694,2690,2686,2682]
 	},
+	// Halloween Night
+	908: {
+		id: [905,906,907,908],
+		maxPot: [2,3,4,5],
+		pots: ["H2","PT","A2","H2","PT"],
+		evol: [[1],[1],[1]],
+		material: [905,905,905]
+	},
+	2789: {
+		id: [2786,2787,2788,2789],
+		maxPot: [1,2,3,5],
+		pots: ["PF","F1","PF","F1","HF1"],
+		evol: [[1],[1],[1]],
+		material: [2786,2786,2786]
+	},
+	2785: {
+		id: [909,910,911,912,2785],
+		maxPot: [2,3,4,6,8],
+		pots: ["C2","PW","C2","A2","F1","AW1","R1","ADH1"],
+		evol: [[1],[1],[1],[1]],
+		material: [909,909,909,909]
+	},
+	2794: {
+		id: [2790,2791,2792,2793,2794],
+		maxPot: [2,3,4,6,8],
+		pots: ["F1","PF","DF1","R1","H2","A2","F1","HF1"],
+		evol: [[1],[1],[1],[1]],
+		material: [2790,2790,2790,2790]
+	},
+	// 桃娘傳
+	3425: {
+		id: [979,980,981,982,3425],
+		maxPot: [2,3,4,6,10],
+		maxPossible: 6,
+		pots: ["A2","A2","H2","H2","C2","C2","A2","PF","F2","ADE2"],
+		evol: [[1],[1],[1],[0,1]],
+		material: [979,979,979,3426],
+		special: [3426],
+		maxSpecial: [1]
+	},
+	3427: {
+		id: [983,984,985,986,3427],
+		maxPot: [2,4,6,7,10],
+		maxPossible: 7,
+		pots: ["DF1","DF1","H2","H2","C2","C2","A2","PT","F2","ADE2"],
+		evol: [[1],[1],[1],[0,1]],
+		material: [983,983,983,3428],
+		special: [3428],
+		maxSpecial: [1]
+	},
 };
 
 evolTooltip = {
@@ -510,16 +602,16 @@ grayiconlist = [
 menu = [
 	/*御三家*/
 	1507,1508,1509,
-	/*神龍降臨Ⅰ*/
-	1244,1248,
-	/*神龍降臨Ⅱ*/
-	2144,2147,2151,2155,
 	/*異界神的祝福試煉*/
 	800016,800017,800018,
 	/*珍妮佛的冒險*/
 	477,2695,
 	/*Demon's Blader*/
 	1733,
+	/*Halloween Night*/
+	2789,908,2785,2794,
+	/*桃娘傳*/
+	3425,3427,
 	/*惡作劇女神與兔子的故事*/
 	1756,1760,1764,1768,
 	/*歌頌永恆的克羅諾斯*/
@@ -542,4 +634,8 @@ menu = [
 	1657,1661,1665,1669,1670,
 	/*來者何貘：黑與白的激戰*/
 	800003,800006,800010,800013,
+	/*神龍降臨Ⅰ*/
+	1244,1248,
+	/*神龍降臨Ⅱ*/
+	2144,2147,2151,2155,
 ];
