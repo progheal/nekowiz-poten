@@ -21,7 +21,7 @@ a:hover, a:active {
 
 #characterList {
 	width: 750px;
-	height: 210px;
+	height: 280px;
 	margin: auto;
 	overflow-y: scroll;
 	text-align: left;

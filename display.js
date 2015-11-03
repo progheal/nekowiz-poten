@@ -526,17 +526,24 @@ function asyncgo()
 
 $(function(){
 	$.each(menu, function(key, value){
-		$('#characterList').append(
-			$('<span></span>')
-				.addClass("icon clickable")
-				.append($(iconImg(value)))
-				.bind("click", function(){
-					$('#characterList .iconSel').removeClass("iconSel");
-					$(this).addClass("iconSel");
-					g_info = data[value];
-					characterSelect();
-				})
-		);
+		if(value == 0)
+		{
+			$('#characterList').append($('<br><hr>'));
+		}
+		else
+		{
+			$('#characterList').append(
+				$('<span></span>')
+					.addClass("icon clickable")
+					.append($(iconImg(value)))
+					.bind("click", function(){
+						$('#characterList .iconSel').removeClass("iconSel");
+						$(this).addClass("iconSel");
+						g_info = data[value];
+						characterSelect();
+					})
+			);
+		}
 	});
 	$('#panelSet').bind('click', function(){
 		g_target = {level: g_cur.level, pot: g_cur.pot};
