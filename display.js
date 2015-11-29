@@ -559,17 +559,32 @@ $(function(){
 		setTimeout('asyncgo()', 10);
 	});
 	$('#clearButton').bind('click', function(){clear();});
+	var PUstatus = 0;
 	$('#updateToggler').bind('click', function(event){
+		var ut = $(this);
 		var ur = $('#updateRecord');
-		if(ur.is(':visible'))
+		if(PUstatus == 0)
 		{
-			ur.hide();
-			$(this).text("▲點此展開更早的更新紀錄▲")
-		}
-		else
-		{
+			PUstatus = 1;
+			ut.text('');
 			ur.show();
-			$(this).text("▼更新紀錄點此收合▼")
+			ur.load("./pastupdate.html", function(){
+				PUstatus = 2;
+				ut.text("▼更新紀錄點此收合▼");
+			});
+		}
+		else if(PUstatus == 2)
+		{
+			if(ur.is(':visible'))
+			{
+				ur.hide();
+				ut.text("▲點此展開更早的更新紀錄▲")
+			}
+			else
+			{
+				ur.show();
+				ut.text("▼更新紀錄點此收合▼")
+			}
 		}
 	});
 	clear();
