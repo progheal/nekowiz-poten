@@ -80,16 +80,16 @@ function core(maxPot, evol, materialLevel, curr, special, targetLv, targetPot)
 				return ee && (vv == 0 || (i == 0 && ii == 0));
 			},e);
 		},true);
+		//最低階
+		if(targetLv == 0 && targetPot == 0)
+		{
+			return {level:0, pot:0, cost:[0,1], source:[], left:curr};
+		}
 		//已有的卡直接用
 		if(curr[targetLv][targetPot] > 0)
 		{
 			curr[targetLv][targetPot]--;
 			return {level:targetLv, pot:targetPot, cost:[], source:[], left:curr};
-		}
-		//最低階
-		if(targetLv == 0 && targetPot == 0)
-		{
-			return {level:0, pot:0, cost:[0,1], source:[], left:curr};
 		}
 		
 		//開始搜尋
