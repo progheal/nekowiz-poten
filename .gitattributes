@@ -1,0 +1,14 @@
+# Default
+* text=auto
+
+# Text files
+*.html text diff=html
+*.js text
+*.css text
+*.md text
+LICENSE text
+
+# Pictures
+*.png binary
+*.gif binary
+
