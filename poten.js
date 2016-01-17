@@ -73,10 +73,10 @@ function core(maxPot, evol, materialLevel, curr, special, targetLv, targetPot)
 	//核心遞迴函式; 使用 maxPot 及 evol 故包在裡面做 closure
 	//遞迴呼叫時手動複製 curr 參數做 CBV
 	//回傳值: 大函式回傳值, 但新增 left: 剩餘卡片
-	function search(targetLv, targetPot, curr)
+	function search(targetLv, targetPot, curr, parentbestcost, parentcurrcost)
 	{
 		var empty = curr.reduce(function(e,v,i){
-			return v.reduce(function(ee,vv,ii){
+			return (i > targetLv) ? e : v.reduce(function(ee,vv,ii){
 				return ee && (vv == 0 || (i == 0 && ii == 0));
 			},e);
 		},true);
@@ -97,7 +97,7 @@ function core(maxPot, evol, materialLevel, curr, special, targetLv, targetPot)
 		//若可以進化而來
 		if(targetLv >= 1 && maxPot[targetLv-1] >= targetPot)
 		{
-			var prev = search(targetLv-1, targetPot, TwoDClone(curr));
+			var prev = search(targetLv-1, targetPot, TwoDClone(curr), best.cost, []);
 			var cost;
 			if(costCompare(evol[targetLv-1], []) == 0)
 				cost = costAdd(prev.cost, [1]);
@@ -107,25 +107,32 @@ function core(maxPot, evol, materialLevel, curr, special, targetLv, targetPot)
 		}
 		//搜尋強化合成組合
 		var halfPot = Math.floor(targetPot/2);
+		var odd = targetPot % 2;
 		for(var big = halfPot; big <= targetPot - 1; big++)
 		{
 			//先搜小再搜大
-			var smallbest = search(targetLv, targetPot - big - 1, TwoDClone(curr));
-			var bigbest = search(targetLv, big, TwoDClone(smallbest.left));
-			var cost = costAdd(bigbest.cost, smallbest.cost);
-			updateBest(best, cost, bigbest.left, [bigbest, smallbest]);
+			var smallbest = search(targetLv, targetPot - big - 1, TwoDClone(curr), best.cost, []);
+			if(costCompare(costAdd(parentcurrcost, smallbest.cost), parentbestcost) < 0)
+			{
+				var bigbest = search(targetLv, big, TwoDClone(smallbest.left), best.cost, smallbest.cost);
+				var cost = costAdd(bigbest.cost, smallbest.cost);
+				updateBest(best, cost, bigbest.left, [bigbest, smallbest]);
+			}
 			//若有除了葉素材之外的卡則額外先搜大再搜小
 			/*
 			XXX: 假設全部的已有材料全部用在同一邊可能會發生錯誤，
 			     但目前已有卡片應該沒有會計算錯誤的狀況，
 			     因此做為應急處理先使用這種解法。參見 Issue #1。
 			*/
-			if(!empty)
+			if(!empty && !(odd && big == halfPot))
 			{
-				bigbest = search(targetLv, big, TwoDClone(curr));
-				smallbest = search(targetLv, targetPot - big - 1, TwoDClone(bigbest.left));
-				var cost = costAdd(bigbest.cost, smallbest.cost);
-				updateBest(best, cost, smallbest.left, [bigbest, smallbest]);
+				bigbest = search(targetLv, big, TwoDClone(curr), best.cost, []);
+				if(costCompare(costAdd(parentcurrcost, bigbest.cost), parentbestcost) < 0)
+				{
+					smallbest = search(targetLv, targetPot - big - 1, TwoDClone(bigbest.left), best.cost, bigbest.cost);
+					var cost = costAdd(bigbest.cost, smallbest.cost);
+					updateBest(best, cost, smallbest.left, [bigbest, smallbest]);
+				}
 			}
 		}
 		return best;
@@ -133,7 +140,7 @@ function core(maxPot, evol, materialLevel, curr, special, targetLv, targetPot)
 	
 	function searchOnce(targetLv, targetPot, curr)
 	{
-		var result = search(targetLv, targetPot, curr);
+		var result = search(targetLv, targetPot, curr, [10000], []);
 		var left = result.left;
 		flattenEnhance(result);
 		// 扣除剩餘素材
