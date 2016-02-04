@@ -324,22 +324,18 @@ data = {
 	3425: {
 		id: [979,980,981,982,3425],
 		maxPot: [2,3,4,6,10],
-		maxPossible: 6,
 		pots: ["A2","A2","H2","H2","C2","C2","A2","PF","F2","ADE2"],
 		evol: [[1],[1],[1],[0,1]],
 		material: [979,979,979,3426],
-		special: [3426],
-		maxSpecial: [1]
+		special: [3426]
 	},
 	3427: {
 		id: [983,984,985,986,3427],
 		maxPot: [2,4,6,7,10],
-		maxPossible: 7,
 		pots: ["DF1","DF1","H2","H2","C2","C2","A2","PT","F2","ADE2"],
 		evol: [[1],[1],[1],[0,1]],
 		material: [983,983,983,3428],
-		special: [3428],
-		maxSpecial: [1]
+		special: [3428]
 	},
 	// Halloween魔導盃
 	2798: {
