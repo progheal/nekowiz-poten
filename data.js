@@ -78,69 +78,116 @@ potData = {
 //	HAB2:{icon: "Senzai_HP_Unknown", name: "AbCd HP上升Ⅱ"},
 }
 
-function SimpleSelfWithId(idlist, maxPot, pots)
+function GenerateIdList(last, size)
 {
-	var len = idlist.length;
-	var evolarray = [];
-	var matarray = [];
-	for(var i = 1; i < len; i++) {evolarray.push([1]); matarray.push(idlist[0]);}
+	return Array(size).fill(last-size+1).map(function(v,i){return v+i;})
+}
+
+function SimpleEvol(idlist, maxPot, pots, evolone, evolmat)
+{
 	return {
 		id: idlist,
 		maxPot: maxPot,
 		pots: pots,
-		evol: evolarray,
-		material: matarray
+		evol: Array(idlist.length-1).fill(evolone),
+		material: Array(idlist.length-1).fill(evolmat)
 	};
 }
 
 // For cards that simply eats the lowest itself to evolve
+function SimpleSelfWithId(idlist, maxPot, pots)
+{
+	return SimpleEvol(idlist, maxPot, pots, [1], idlist[0]);
+}
+
 function SimpleSelf(lastid, maxPot, pots)
 {
-	var len = maxPot.length;
-	var firstid = lastid - len + 1;
-	var idarray = [];
-	for(var i = firstid; i <= lastid; i++) {idarray.push(i);}
-	return SimpleSelfWithId(idarray, maxPot, pots);
+	return SimpleSelfWithId(GenerateIdList(lastid, maxPot.length), maxPot, pots);
+}
+
+// For cards that uses material to evolve
+function SimpleMaterialWithId(idlist, maxPot, pots)
+{
+	return SimpleEvol(idlist, maxPot, pots, [], 0);
+}
+
+function SimpleMaterial(lastid, maxPot, pots)
+{
+	return SimpleEvol(GenerateIdList(lastid, maxPot.length), maxPot, pots, [], 0);
+}
+
+// For cards that only last evolution uses special material(s)
+function LastSpecialWithId(idlist, special, maxPot, pots)
+{
+	var len = idlist.length;
+	var evolarray = Array(len-2).fill([1]);
+	var matarray = Array(len-2).fill(idlist[0]);
+	if(Array.isArray(special))
+	{
+		var specialUnique = [];
+		var specialTally = {};
+		special.forEach(function(n){
+			if(specialTally[n])
+				specialTally[n]++;
+			else
+			{
+				specialUnique.push(n);
+				specialTally[n] = 1;
+			}
+		});
+		var specialCount = specialUnique.map(function(n){return specialTally[n];});
+		specialCount.unshift(0);
+		evolarray.push(specialCount);
+		matarray.push(special);
+		return {
+			id: idlist,
+			maxPot: maxPot,
+			pots: pots,
+			evol: evolarray,
+			material: matarray,
+			special: specialUnique
+		};
+	}
+	else
+	{
+		evolarray.push([0,1]);
+		matarray.push(special);
+		return {
+			id: idlist,
+			maxPot: maxPot,
+			pots: pots,
+			evol: evolarray,
+			material: matarray,
+			special: [special]
+		};
+	}
+}
+
+function LastSpecial(lastid, special, maxPot, pots)
+{
+	return LastSpecialWithId(GenerateIdList(lastid, maxPot.length), special, maxPot, pots);
+}
+
+function LastSpecial2(lastid, special, maxPot, pots)
+{
+	var idlist = GenerateIdList(lastid-1, maxPot.length);
+	idlist[maxPot.length - 1]++;
+	return LastSpecialWithId(idlist, special, maxPot, pots);
 }
 
 data = {
 	// 御三家
-	3626: {
-		id: [1,2,3,4,1507,3626],
-		maxPot: [1,2,4,6,6,9],
-		pots: ["H2","A2","H2","A2","HF1","AF1","PF","F2","AWA2"],
-		evol: [[],[],[],[],[]],
-		material: [0,0,0,0,0]
-	},
-	3627: {
-		id: [5,6,7,8,1509,3627],
-		maxPot: [2,3,5,6,6,9],
-		pots: ["H2","A2","A2","H2","HW1","AW1","HSO2","F2","ASO2"],
-		evol: [[],[],[],[],[]],
-		material: [0,0,0,0,0]
-	},
-	3628: {
-		id: [9,10,11,12,1508,3628],
-		maxPot: [2,4,5,6,6,9],
-		pots: ["A2","H2","A2","H2","HT1","AT1","ADR2","HDR2","F2"],
-		evol: [[],[],[],[],[]],
-		material: [0,0,0,0,0]
-	},
+	3626: SimpleMaterialWithId([1,2,3,4,1507,3626],    [1,2,4,6,6,9], ["H2","A2","H2","A2","HF1","AF1","PF","F2","AWA2"]),
+	3627: SimpleMaterialWithId([5,6,7,8,1509,3627],    [2,3,5,6,6,9], ["H2","A2","A2","H2","HW1","AW1","HSO2","F2","ASO2"]),
+	3628: SimpleMaterialWithId([9,10,11,12,1508,3628], [2,4,5,6,6,9], ["A2","H2","A2","H2","HT1","AT1","ADR2","HDR2","F2"]),
 	// 惡作劇女神與兔子的故事
 	1756: SimpleSelf(1756, [1,1,2,3], ["A1","A1","F1"]),
 	1760: SimpleSelf(1760, [1,2,3,5], ["F1","PF","H1","R1","A2"]),
 	1764: SimpleSelf(1764, [2,3,4,6], ["A1","F1","C2","A2","PW","A2"]),
 	1768: SimpleSelf(1768, [1,2,3,5], ["A1","C2","PT","A2","F1"]),
 	// 庫洛姆‧麥格納Ⅰ魔導學園
-	2277: {
-		id: [595,596,597,598,2277],
-		maxPot: [1,2,3,4,7],
-		pots: ["A2","A2","H2","H2","C2","AW1","PW"],
-		evol: [[],[],[],[0,2]],
-		material: [0,0,0,[-33,-33]],
-		special: [-33],
-	},
-	614: SimpleSelf(614, [1,2,3,4], ["C2","C2","C2","A1"]),
+	2277: LastSpecialWithId([595,596,597,598,2277], [-33,-33], [1,2,3,4,7], ["A2","A2","H2","H2","C2","AW1","PW"]),
+	614: SimpleSelf(614, [1,2,3,4], ["C2","C2","C2","A1"], ['校長']),
 	// 庫洛姆‧麥格納Ⅱ學園祭
 	815: SimpleSelf(815, [1,2,3,4], ["H2","A2","H2","A2"]),
 	819: SimpleSelf(819, [1,2,3,4], ["A2","A2","C2","HF1"]),
@@ -150,40 +197,12 @@ data = {
 	2327: SimpleSelf(2327, [1,2,3,9], ["DW1","F1","PT","C2","DF1","A2","DT1","PT","AT1"]),
 	2331: SimpleSelf(2331, [1,2,3,8], ["A2","C2","F1","PW","C2","A2","F1","AW1"]),
 	// 黃昏的四神書
-	1595: SimpleSelf(1595, [1,2,4],   ["C2","A1","F1","PF"]),
-	1599: SimpleSelf(1599, [1,2,3,4], ["C2","A1","PW","F1"]),
-	1591: {
-		id: [1588,1589,1590,1591],
-		maxPot: [1,2,3,5],
-		pots: ["A1","H1","HT1","F1","PT"],
-		evol: [[1],[1],[0,1]],
-		material: [1588,1588,-35],
-		special: [-35]
-	},
-	1592: {
-		id: [1588,1589,1590,1592],
-		maxPot: [1,2,3,5],
-		pots: ["A1","H1","HT1","F1","PT"],
-		evol: [[1],[1],[0,1]],
-		material: [1588,1588,-36],
-		special: [-36]
-	},
-	1586: {
-		id: [1583,1584,1585,1586],
-		maxPot: [1,3,4,6],
-		pots: ["H1","F1","F1","A1","AF1","AF1"],
-		evol: [[1],[1],[0,1]],
-		material: [1583,1583,-37],
-		special: [-37]
-	},
-	1587: {
-		id: [1583,1584,1585,1587],
-		maxPot: [1,3,4,6],
-		pots: ["H1","F1","F1","A1","HF1","HF1"],
-		evol: [[1],[1],[0,1]],
-		material: [1583,1583,-38],
-		special: [-38]
-	},
+	1595: SimpleSelf(1595,          [1,2,4],   ["C2","A1","F1","PF"]),
+	1599: SimpleSelf(1599,          [1,2,3,4], ["C2","A1","PW","F1"]),
+	1591: LastSpecial(1591,  [-35], [1,2,3,5], ["A1","H1","HT1","F1","PT"]),
+	1592: LastSpecial2(1592, [-36], [1,2,3,5], ["A1","H1","HT1","F1","PT"]),
+	1586: LastSpecial(1586,  [-37], [1,3,4,6], ["H1","F1","F1","A1","AF1","AF1"]),
+	1587: LastSpecial2(1587, [-38], [1,3,4,6], ["H1","F1","F1","A1","HF1","HF1"]),
 	// 妖精花園
 	1399: SimpleSelf(1399, [1,2,3,4], ["H1","F1","A1","H1"]),
 	1403: SimpleSelf(1403, [1,2,3,5], ["DF1","H1","A2","C2","A2"]),
@@ -234,25 +253,11 @@ data = {
 		special: [-18,-17]
 	},
 	// 古代森林的千年櫻花
-	1657: SimpleSelf(1657, [1,2,3,5], ["C2","A1","PT","A1","H1"]),
-	1661: SimpleSelf(1661, [1,2,3,5], ["C2","F1","HW1","F1","A2"]),
-	1665: SimpleSelf(1665, [1,2,3,4], ["F1","A2","F1","C2"]),
-	1669: {
-		id: [1666,1667,1668,1669],
-		maxPot: [1,2,3,5],
-		pots: ["F1","C2","DT1","PW","AW1"],
-		evol: [[1],[1],[0,1]],
-		material: [1666,1666,-49],
-		special: [-49]
-	},
-	1670: {
-		id: [1666,1667,1668,1670],
-		maxPot: [1,2,3,5],
-		pots: ["F1","C2","DT1","PW","AW1"],
-		evol: [[1],[1],[0,1]],
-		material: [1666,1666,-48],
-		special: [-48]
-	},
+	1657: SimpleSelf(1657,          [1,2,3,5], ["C2","A1","PT","A1","H1"]),
+	1661: SimpleSelf(1661,          [1,2,3,5], ["C2","F1","HW1","F1","A2"]),
+	1665: SimpleSelf(1665,          [1,2,3,4], ["F1","A2","F1","C2"]),
+	1669: LastSpecial(1669,  [-49], [1,2,3,5], ["F1","C2","DT1","PW","AW1"]),
+	1670: LastSpecial2(1670, [-48], [1,2,3,5], ["F1","C2","DT1","PW","AW1"]),
 	// 來者何貘：黑與白的激戰
 	800003: SimpleSelf(800003, [2,3,4],   ["A1","H2","F1","AF2"]),
 	800006: SimpleSelf(800006, [3,4,5],   ["F1","H2","A2","C2","PW"]),
@@ -321,52 +326,13 @@ data = {
 	2785: SimpleSelfWithId([909,910,911,912,2785], [2,3,4,6,8], ["C2","PW","C2","A2","F1","AW1","R1","ADH1"]),
 	2794: SimpleSelf(2794, [2,3,4,6,8], ["F1","PF","DF1","R1","H2","A2","F1","HF1"]),
 	// 桃娘傳
-	3425: {
-		id: [979,980,981,982,3425],
-		maxPot: [2,3,4,6,10],
-		pots: ["A2","A2","H2","H2","C2","C2","A2","PF","F2","ADE2"],
-		evol: [[1],[1],[1],[0,1]],
-		material: [979,979,979,3426],
-		special: [3426]
-	},
-	3427: {
-		id: [983,984,985,986,3427],
-		maxPot: [2,4,6,7,10],
-		pots: ["DF1","DF1","H2","H2","C2","C2","A2","PT","F2","ADE2"],
-		evol: [[1],[1],[1],[0,1]],
-		material: [983,983,983,3428],
-		special: [3428]
-	},
+	3425: LastSpecialWithId([979,980,981,982,3425], [3426], [2,3,4,6,10], ["A2","A2","H2","H2","C2","C2","A2","PF","F2","ADE2"]),
+	3427: LastSpecialWithId([983,984,985,986,3427], [3428], [2,4,6,7,10], ["DF1","DF1","H2","H2","C2","C2","A2","PT","F2","ADE2"]),
 	// Halloween魔導盃
-	2798: {
-		id: [2795,2796,2797,2798],
-		maxPot: [2,3,4,6],
-		maxPossible: 3,
-		pots: ["F1","H1","PF","A1","HF1","R1"],
-		evol: [[1],[1],[1]],
-		material: [2795,2795,2795]
-	},
-	2802: {
-		id: [2799,2800,2801,2802],
-		maxPot: [2,4,6,8],
-		pots: ["AF1","C2","A1","H1","PF","F1","C2","PF"],
-		evol: [[],[],[]],
-		material: [0,0,0]
-	},
-	2806: {
-		id: [2803,2804,2805,2806],
-		maxPot: [2,4,6,8],
-		pots: ["C2","R1","PF","A1","F1","H1","F1","HF1"],
-		evol: [[],[],[]],
-		material: [0,0,0]
-	},
-	2810: {
-		id: [2807,2808,2809,2810],
-		maxPot: [2,4,6,8],
-		pots: ["C2","PF","H1","F1","R1","A1","F1","AF1"],
-		evol: [[],[],[]],
-		material: [0,0,0]
-	},
+	2798: $.extend(SimpleSelf(2798, [2,3,4,6], ["F1","H1","PF","A1","HF1","R1"]), {maxPossible: 3}),
+	2802: SimpleMaterial(2802, [2,4,6,8], ["AF1","C2","A1","H1","PF","F1","C2","PF"]),
+	2806: SimpleMaterial(2806, [2,4,6,8], ["C2","R1","PF","A1","F1","H1","F1","HF1"]),
+	2810: SimpleMaterial(2810, [2,4,6,8], ["C2","PF","H1","F1","R1","A1","F1","AF1"]),
 	// 異空間棒球 黑貓維茲PRIDE
 	1876: SimpleSelf(1876, [2,3,4],   ["H1","A1","H1","A2"]),
 	1880: SimpleSelf(1880, [1,2,3,4], ["DW1","F1","H1","A1"]),
