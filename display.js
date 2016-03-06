@@ -535,6 +535,7 @@ $(function(){
 			$('#characterList').append(
 				$('<span></span>')
 					.addClass("icon clickable")
+					.data('searchid', value)
 					.append($(iconImg(value)))
 					.bind("click", function(){
 						$('#characterList .iconSel').removeClass("iconSel");

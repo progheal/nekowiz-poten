@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>問答 RPG 魔法使與黑貓維茲　潛能計算器　v0.7</title>
+<title>問答 RPG 魔法使與黑貓維茲　潛能計算器　v0.8</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
 <script language="javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script language="javascript" src="modernizr-custom.js"></script>
@@ -11,11 +11,12 @@
 <script language="javascript" src="poten.js"></script>
 <script language="javascript" src="display.js"></script>
 <script language="javascript" src="bahamut.js"></script>
+<script language="javascript" src="search.js"></script>
 </head>
 <body>
-<h2>問答 RPG 魔法使與黑貓維茲　潛能計算器　v0.7</h2>
+<h2>問答 RPG 魔法使與黑貓維茲　潛能計算器　v0.8</h2>
 <fieldset style="width: 800px; text-align: center">
-<p><!--搜尋/-->選擇角色：<!--input type="text" id="searchField" value="搜尋暫時未開放" disabled--></p>
+<p>搜尋／選擇角色：<input type="text" id="searchField"></p>
 <div id="characterList"></div>
 <div id="panel">
 <p><span id="characterName"></span></p>
@@ -35,9 +36,9 @@
 <div style="width: 800px; text-align:left; margin: auto">
 <p>By Isatis @ PTT (IGN：依莎緹絲)，歡迎追隨 :D</p>
 <p>關於潛能激發藥：由於激發藥用在最終階段上是最省的，因此直接在指定目標時扣除你要用的激發藥個數即可。<br>(激發藥相當於所合成目標角色無潛能覺醒一張，所以最終階段最省。)
-<p>太久沒有做網頁了，技術還停在 HTML4，所以暫時版面以實用為主 XD<br>預計之後的更新：</p>
-<ul><li>新增搜尋功能；目前由於資料庫只有御三家和近期活動角，暫時用不到所以暫緩。</li>
-<li>補足其他角色資料：大多數人的需求應該也只有御三家跟活動角，所以這裡會跟著活動開放/復刻更新活動角，抽卡機的角色則看我有沒有時間了。</li></ul>
+<p>太久沒有做網頁了，技術還停在 HTML4，所以暫時版面以實用為主 XD</p>
+<p>由於大多數人的需求應該也只有御三家跟活動角，所以這裡會跟著活動開放/復刻更新副本的活動角，抽卡機的卡應該是不會放上來，魔導盃的角色則看需求再決定是否新增。</p>
+<p><img src="new.gif">新功能：卡片搜尋！可以輸入角色名或活動副本名搜尋。只要該卡的所有等級的卡名或是副本名當中有部份符合搜尋條件者即會顯示。可用空格分隔多個搜尋條件，會找到符合所有條件的角色；如「彰 學園4」可找到《庫洛姆‧麥格納Ⅳ》的〈彰〉。另外支援一些常見暱稱 (如「紅慕瑪」、「校長」或「未來妙舞」等)，如果有需要新增暱稱的話請多多回報！</p>
 <p>有任何問題或建議可寄 PTT 站內信至 Isatis、發推特到 <a href="http://twitter.com/IsatisCrucifer">@IsatisCrucifer</a>，或是在 <a href="https://github.com/progheal/nekowiz-poten">github 專案</a>裡開 issue；<br>
 若願意提供美化版面或其他方面的協助也很歡迎，想要直接發 pull request 過來也是 OK 的。
 </p>
@@ -46,11 +47,11 @@
 </div>
 <hr width="900" />
 <div style="width: 800px; text-align: left; margin: auto">
-<p>更新紀錄：</p>
+<p>近期更新紀錄：</p>
 <div>
+[2016/3/7]<ul><li>終於抽時間寫了一個簡單的搜尋了。</li></ul>
 [2016/3/2]<ul><li>新增《幻魔特區朱雀》的〈威爾戈〉、〈威爾戈野獸〉、〈辰守〉、〈塔蒙〉。</li></ul>
 [2016/2/24]<ul><li>前移《妖精花園》。</li></ul>
-[2016/2/17]<ul><li>新增《天界的雙子 訣別的年代記》的〈伊亞迪爾〉、〈亞克薩納〉、〈魅魔〉、〈亞蒙〉、〈布拉弗摩〉。</li></ul>
 </div>
 <p><a href="javascript:void(0)" id="updateToggler" class="clickable">▲點此展開更早的更新紀錄▲</a></p>
 <div id="updateRecord" style="display: none">載入中……<img src="ajax-loader.gif"></div>
