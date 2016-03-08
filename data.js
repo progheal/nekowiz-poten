@@ -80,7 +80,7 @@ potData = {
 
 function GenerateIdList(last, size)
 {
-	return Array(size).fill(last-size+1).map(function(v,i){return v+i;})
+	return $.map(Array(size), function(v,i){return last-size+1+i;})
 }
 
 function SimpleEvol(idlist, maxPot, pots, evolone, evolmat, alias)
@@ -90,8 +90,8 @@ function SimpleEvol(idlist, maxPot, pots, evolone, evolmat, alias)
 		id: idlist,
 		maxPot: maxPot,
 		pots: pots,
-		evol: Array(idlist.length-1).fill(evolone),
-		material: Array(idlist.length-1).fill(evolmat)
+		evol: $.map(Array(idlist.length-1), function(){return evolone;}),
+		material: $.map(Array(idlist.length-1), function(){return evolmat;})
 	};
 }
 
@@ -121,8 +121,8 @@ function SimpleMaterial(lastid, maxPot, pots, alias)
 function LastSpecialWithId(idlist, special, maxPot, pots, alias)
 {
 	var len = idlist.length;
-	var evolarray = Array(len-2).fill([1]);
-	var matarray = Array(len-2).fill(idlist[0]);
+	var evolarray = $.map(Array(len-2), function(){return [1];});
+	var matarray = $.map(Array(len-2), function(){return idlist[0];});
 	if(Array.isArray(special))
 	{
 		var specialUnique = [];
