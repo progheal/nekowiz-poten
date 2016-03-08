@@ -90,7 +90,7 @@ function SimpleEvol(idlist, maxPot, pots, evolone, evolmat, alias)
 		id: idlist,
 		maxPot: maxPot,
 		pots: pots,
-		evol: $.map(Array(idlist.length-1), function(){return evolone;}),
+		evol: $.map(Array(idlist.length-1), function(){return [evolone];}),
 		material: $.map(Array(idlist.length-1), function(){return evolmat;})
 	};
 }
@@ -121,7 +121,7 @@ function SimpleMaterial(lastid, maxPot, pots, alias)
 function LastSpecialWithId(idlist, special, maxPot, pots, alias)
 {
 	var len = idlist.length;
-	var evolarray = $.map(Array(len-2), function(){return [1];});
+	var evolarray = $.map(Array(len-2), function(){return [[1]];});
 	var matarray = $.map(Array(len-2), function(){return idlist[0];});
 	if(Array.isArray(special))
 	{
