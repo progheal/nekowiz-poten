@@ -12,7 +12,7 @@ $(function(){
 		var text = $(this).val().replace(/\u3000/g,''); //delete all full-width spaces to accomodate IME input
 		if(last == text) return;
 		last = text;
-		var token = text.split(/[\s‧]/).filter(function(s){return s.length > 0;});
+		var token = text.split(/[\s‧]/).filter(function(s){return s.length > 0;}).map(function(s){return s.toUpperCase();});
 		
 		if(text.length == 0)
 			$('#characterList').children().show();
@@ -35,7 +35,7 @@ $(function(){
 						       .filter(function(s){return !s.match(/[\u3040-\u30ff]/);}) //Filter out Kanas since we don't want Japanese name match
 					);
 					if(info.alias) Array.prototype.push.apply(keywords, info.alias);
-					keywords = Array.prototype.concat.apply([],keywords.map(variations))
+					keywords = Array.prototype.concat.apply([],keywords.map(variations)).map(function(s){return s.toUpperCase();});
 					
 					return token.every(function(tk){return keywords.some(function(kw){return kw.indexOf(tk) != -1;});});
 				})())
