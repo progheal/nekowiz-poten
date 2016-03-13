@@ -56,7 +56,7 @@ function costCompare(cost1, cost2)
          長度 1 = 進化, [0] 為進化源，格式同此
          長度 >=2 = 強化, 各元素表示強化來源卡，格式同此
 */
-function core(maxPot, evol, materialLevel, curr, special, targetLv, targetPot)
+function core(maxPot, evol, materialLevel, curr, special, targetLv, targetPot, overflow)
 {
 	//二維複製
 	function TwoDClone(arr){return arr.map(function(v){return v.slice(0);})}
@@ -106,32 +106,37 @@ function core(maxPot, evol, materialLevel, curr, special, targetLv, targetPot)
 			updateBest(best, cost, prev.left, [prev]);
 		}
 		//搜尋強化合成組合
-		var halfPot = Math.floor(targetPot/2);
-		var odd = targetPot % 2;
-		for(var big = halfPot; big <= targetPot - 1; big++)
+		var targetLow = targetPot;
+		var targetHigh = (targetPot == maxPot[targetLv]) ? Math.min(maxPot[targetLv]*2-1, targetPot+overflow) : targetPot;
+		for(var target = targetLow; target <= targetHigh; target++)
 		{
-			//先搜小再搜大
-			var smallbest = search(targetLv, targetPot - big - 1, TwoDClone(curr), best.cost, []);
-			if(costCompare(costAdd(parentcurrcost, smallbest.cost), parentbestcost) < 0)
+			var halfPot = Math.floor(target/2);
+			var odd = target % 2;
+			for(var big = halfPot; big <= Math.min(target - 1, maxPot[targetLv] - 1); big++)
 			{
-				var bigbest = search(targetLv, big, TwoDClone(smallbest.left), best.cost, smallbest.cost);
-				var cost = costAdd(bigbest.cost, smallbest.cost);
-				updateBest(best, cost, bigbest.left, [bigbest, smallbest]);
-			}
-			//若有除了葉素材之外的卡則額外先搜大再搜小
-			/*
-			XXX: 假設全部的已有材料全部用在同一邊可能會發生錯誤，
-			     但目前已有卡片應該沒有會計算錯誤的狀況，
-			     因此做為應急處理先使用這種解法。參見 Issue #1。
-			*/
-			if(!empty && !(odd && big == halfPot))
-			{
-				bigbest = search(targetLv, big, TwoDClone(curr), best.cost, []);
-				if(costCompare(costAdd(parentcurrcost, bigbest.cost), parentbestcost) < 0)
+				//先搜小再搜大
+				var smallbest = search(targetLv, target - big - 1, TwoDClone(curr), best.cost, []);
+				if(costCompare(costAdd(parentcurrcost, smallbest.cost), parentbestcost) < 0)
 				{
-					smallbest = search(targetLv, targetPot - big - 1, TwoDClone(bigbest.left), best.cost, bigbest.cost);
+					var bigbest = search(targetLv, big, TwoDClone(smallbest.left), best.cost, smallbest.cost);
 					var cost = costAdd(bigbest.cost, smallbest.cost);
-					updateBest(best, cost, smallbest.left, [bigbest, smallbest]);
+					updateBest(best, cost, bigbest.left, [bigbest, smallbest]);
+				}
+				//若有除了葉素材之外的卡則額外先搜大再搜小
+				/*
+				XXX: 假設全部的已有材料全部用在同一邊可能會發生錯誤，
+				     但目前已有卡片應該沒有會計算錯誤的狀況，
+				     因此做為應急處理先使用這種解法。參見 Issue #1。
+				*/
+				if(!empty && !(odd && big == halfPot))
+				{
+					bigbest = search(targetLv, big, TwoDClone(curr), best.cost, []);
+					if(costCompare(costAdd(parentcurrcost, bigbest.cost), parentbestcost) < 0)
+					{
+						smallbest = search(targetLv, target - big - 1, TwoDClone(bigbest.left), best.cost, bigbest.cost);
+						var cost = costAdd(bigbest.cost, smallbest.cost);
+						updateBest(best, cost, smallbest.left, [bigbest, smallbest]);
+					}
 				}
 			}
 		}

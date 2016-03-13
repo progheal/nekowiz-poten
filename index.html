@@ -27,6 +27,7 @@
 <p><span id="target">目標：<span id="target0"></span></span></p>
 <fieldset style="min-width: 200px; display:inline-block; margin: auto; text-align: left"><legend>已有卡片</legend>
 <span id="avail"></span></fieldset>
+<p>溢出參數：<select id="overflow"><option>0</option><option>1</option><option>2</option><option value="10">≧3</option></select>&nbsp;&nbsp;<img src="help.png" id="overflowhelp" align="absmiddle"></p>
 <p><input id="go" type="button" value="開始計算"></p>
 </div>
 <div id="result"><div id="resultTable"></div><div id="evolTooltip"></div><br>
@@ -49,6 +50,9 @@
 <div style="width: 800px; text-align: left; margin: auto">
 <p>近期更新紀錄：</p>
 <div>
+[2016/3/13]<ul><li>之前由於會大幅增加計算時間，計算器並未考慮強化合成有溢出格數的狀況；<br>
+經實驗似乎考慮一兩格溢出的計算時間勉強在合理範圍中，因此加設選項供調整之。<br>
+建議在持有的卡片過多可能造成潛能溢出時再行調整。</li></ul>
 [2016/3/10]<ul><li>新增《Orlha Report 懷著怨念的亡君》的〈傑爾〉。</li>
 <li>《電子☆驚魂L》和上次開放時相同不予新增，《安》的進化素材量就請自行掌握了。</li></ul>
 [2016/3/7]<ul><li>終於抽時間寫了一個簡單的搜尋了。</li></ul>

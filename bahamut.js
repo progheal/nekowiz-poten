@@ -24,7 +24,7 @@ bahamut_data = [
 /*
  * 入口
  */
-function bahamut(lowid, curr, special, target, pot)
+function bahamut(lowid, curr, special, target, pot, overflow)
 {
 	var currAll = [];
 	if(lowid == 1231) // 龍王
@@ -72,7 +72,7 @@ function bahamut(lowid, curr, special, target, pot)
 		realTarget = [6,7,8,14,15,16,17][target];
 	}
 	
-	return bahamut_core(currAll, realTarget, pot);
+	return bahamut_core(currAll, realTarget, pot, overflow);
 }
 
 /*
@@ -91,7 +91,7 @@ function bahamut(lowid, curr, special, target, pot)
  * evo: 實際進化素材數, 為 {0:火龍A, 2:火龍S, 3:冰龍A, 5:冰龍S, 6:雷龍A, 8:雷龍S, 9:邪龍}
  * left: 剩餘卡片
  */
-function bahamut_core(curr, target, pot)
+function bahamut_core(curr, target, pot, overflow)
 {
 	//進化素材計數
 	function evoCountAdd(evo1, evo2)
@@ -165,21 +165,26 @@ function bahamut_core(curr, target, pot)
 			}
 		});
 		//搜尋強化合成組合
-		var halfPot = Math.floor(pot/2);
-		for(var big = halfPot; big <= pot - 1; big++)
+		var potLow = pot;
+		var potHigh = (pot == bahamut_data[target].maxPot) ? Math.min(bahamut_data[target].maxPot*2-1, pot + overflow) : pot;
+		for(var searchPot = potLow; searchPot <= potHigh; searchPot++)
 		{
-			//先搜小再搜大
-			var smallbest = search(target, pot - big - 1, TwoDClone(curr));
-			var bigbest = search(target, big, TwoDClone(smallbest.left));
-			var cost = costAdd(bigbest.cost, smallbest.cost);
-			var evoCost = evoCountAdd(bigbest.evo, smallbest.evo);
-			updateBest(best, cost, bigbest.left, [bigbest, smallbest], evoCost);
-			//先搜大再搜小
-			bigbest = search(target, big, TwoDClone(curr));
-			smallbest = search(target, pot - big - 1, TwoDClone(bigbest.left));
-			cost = costAdd(bigbest.cost, smallbest.cost);
-			evoCost = evoCountAdd(bigbest.evo, smallbest.evo);
-			updateBest(best, cost, smallbest.left, [bigbest, smallbest], evoCost);
+			var halfPot = Math.floor(searchPot/2);
+			for(var big = halfPot; big <= searchPot - 1; big++)
+			{
+				//先搜小再搜大
+				var smallbest = search(target, searchPot - big - 1, TwoDClone(curr));
+				var bigbest = search(target, big, TwoDClone(smallbest.left));
+				var cost = costAdd(bigbest.cost, smallbest.cost);
+				var evoCost = evoCountAdd(bigbest.evo, smallbest.evo);
+				updateBest(best, cost, bigbest.left, [bigbest, smallbest], evoCost);
+				//先搜大再搜小
+				bigbest = search(target, big, TwoDClone(curr));
+				smallbest = search(target, searchPot - big - 1, TwoDClone(bigbest.left));
+				cost = costAdd(bigbest.cost, smallbest.cost);
+				evoCost = evoCountAdd(bigbest.evo, smallbest.evo);
+				updateBest(best, cost, smallbest.left, [bigbest, smallbest], evoCost);
+			}
 		}
 		return best;
 	}

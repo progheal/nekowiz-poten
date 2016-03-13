@@ -490,6 +490,7 @@ function asyncgo()
 {
 	var curr = [];
 	var special = [];
+	var overflow = parseInt($('#overflow').val(),10);
 	for(var i = 0; i < g_info.id.length; i++)
 	{
 		curr[i] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0].slice(0,g_info.maxPot[i]+1);
@@ -507,13 +508,13 @@ function asyncgo()
 	var result, html;
 	if(g_info.id[0] == 1231 || g_info.id[0] == 1237)
 	{
-		result = bahamut(g_info.id[0], curr, special, g_target.level, g_target.pot);
+		result = bahamut(g_info.id[0], curr, special, g_target.level, g_target.pot, overflow);
 		html = bahamut_toHTML(g_info, result);
 	}
 	else
 	{
 		var materialLevel = g_info.material.map(function(v){return g_info.id.indexOf(v);});
-		result = core(g_info.maxPot, g_info.evol, materialLevel, curr, special, g_target.level, g_target.pot);
+		result = core(g_info.maxPot, g_info.evol, materialLevel, curr, special, g_target.level, g_target.pot, overflow);
 		html = toHTML(g_info, result);
 	}
 	$('#resultTable').empty();
@@ -546,6 +547,8 @@ $(function(){
 			);
 		}
 	});
+	var overflowhelptext = "調整溢出計算參數，數字表示考慮溢出多少格數。\n一般狀況使用 0 即可，非零值可能會大幅增加計算時間。";
+	$('#overflowhelp').attr('title',overflowhelptext).bind('click', function(){alert(overflowhelptext);});
 	$('#panelSet').bind('click', function(){
 		g_target = {level: g_cur.level, pot: g_cur.pot};
 		updateTarget();
