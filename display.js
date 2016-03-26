@@ -145,9 +145,9 @@ function toHTML(info, result)
 					{
 						var leftlist = [];
 						var rightlist = [];
-						if(material.length >= 4)
+						if(material.length >= 3)
 						{
-							var leftThreshold = material.length / 2;
+							var leftThreshold = Math.floor(material.length / 2);
 							for(var k = 0; k < material.length; k++)
 							{
 								if(k < leftThreshold)
@@ -160,9 +160,12 @@ function toHTML(info, result)
 						{
 							for(var k in material)
 							{
-								leftlist.push(img('Empty',60));
 								rightlist.push(iconImg(material[k], true));
 							}
+						}
+						while(leftlist.length < rightlist.length)
+						{
+							leftlist.unshift(img('Empty',60));
 						}
 						line.push([leftlist.concat([img('Evol',60)]).concat(rightlist).join(""),1,0]);
 					}
