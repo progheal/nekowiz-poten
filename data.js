@@ -519,7 +519,7 @@ series = {
 	'幻魔特區 朱雀': [3681,3685,3689,3693],
 	'Orlha Report 懷著怨念的亡君': [2891],
 	'Orlha Report 無罪的罪人': [3090],
-	'菇菇方程式': [800065,800069,800082]
+	'菇菇方程式': [800065,800069,800082],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
