@@ -33,7 +33,8 @@ potData = {
 	G3:  {icon: "Senzai_Gold",       name: "獲得金幣量上升Ⅲ"},
 	B1:  {icon: "Senzai_BattleEnd",  name: "戰鬥結束後回復全體隊友的HP"},
 	CG1: {icon: "Senzai_Chain_guard",name: "於一次任務中，僅限一次保護連鎖數"},
-	INV: {icon: "Senzai_Invalidate", name: "使敵方技能的特殊技能封印失效"}
+	INV: {icon: "Senzai_Invalidate", name: "使敵方技能的特殊技能封印失效"},
+	SHIN:{icon: "Senzai_Shingan",    name: "心眼：看穿肉眼無從得見的真實"},
 }
 
 {
@@ -720,6 +721,12 @@ data = {
 	6951: SimpleSelf(6951, [3,5,8,10], ["F1","PT","AT1","HT1","PT","H2","AT1","A2","PT2","R1"]),
 	6955: SimpleSelf(6955, [3,5,8,10], ["A2","R1","HW1","H2","PW","PW2","F2","AW1","HW1D1","AW1D1"]),
 	6959: SimpleSelf(6959, [4,6,8,10], ["R1","A2","H2","PF","F2","AF1","PF2","HF1","HDE2","ADE2"]),
+	// 白貓×黑貓×glico 快樂甜點嘉年華
+	5613: SimpleSelf(5613, [4,5,6,10], ["HF1","PF2","H2","AF1","HF1","PF2","F2","HFA3","AFA3","INV"]),
+	5617: SimpleSelf(5617, [4,5,6,10], ["F2","HT1","PT2","A2","HT1","PT2","AT1","HFA3","AFA3","R3"]),
+	5621: SimpleSelf(5621, [4,5,6,10], ["E1","HW1","PW2","H2","AW1","A2","F2","HFA3","AFA3","SHIN"]),
+	5623: SimpleSelf(5623, [4,10],     ["PF2","HF1","PF2","AF1","H2","AF1","F2","A2","HFA3","AFA3"]),
+	5627: SimpleSelf(5627, [4,6,8,10], ["PF","F1","R1","H2","AF1","PF2","HF1","A2","AF1","F2"]),
 };
 
 series = {
@@ -786,6 +793,7 @@ series = {
 	'YAOYORO Z': [6857,6861,6865],
 	'雙翼的失落伊甸Ⅱ WWMF': [7170,7174,7178],
 	'庫洛姆‧麥格納 零':[6947,6951,6955,6959],
+	'白貓×黑貓×glico 快樂甜點嘉年華': [5613,5617,5621,5623,5627],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -816,6 +824,7 @@ seriesAlias = {
 	'YAOYORO Z': ['八百萬諸神祕聞Ｚ','八百萬Ｚ','八百萬諸神祕聞Z','八百萬Z','800wz','800z'],
 	'雙翼的失落伊甸Ⅱ WWMF': ['雙翼Ⅱ'],
 	'庫洛姆‧麥格納 零':['學園零','學園0'],
+	'白貓×黑貓×glico 快樂甜點嘉年華':['固力果'],
 };
 
 evolTooltip = {
@@ -883,6 +892,8 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
+	'白貓×黑貓×glico 快樂甜點嘉年華',
+	'===近期結束副本',
 	'庫洛姆‧麥格納 零',
 	'===魔導士之家',
 	"Demon's Blader",
@@ -896,7 +907,6 @@ menuOrder = [
 	'AbyssCode05 冥世的天蓋',
 	'AbyssCode06 劫末之獸',
 	'古代森林的千年櫻花', // 8/31
-	//'===近期結束副本',
 	'===過去副本',
 	'雙翼的失落伊甸Ⅱ WWMF',
 	'八百萬諸神祕聞',
