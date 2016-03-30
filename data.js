@@ -589,6 +589,11 @@ grayiconlist = [
 menuOrder = [
 	'御三家',
 	'菇菇方程式',
+	'古代森林的千年櫻花',
+	"Dragon's Blader",
+	"Demon's Blader",
+	'Divine Blader',
+	'Heretic Blader',
 	'---',
 	'Orlha Report 無罪的罪人',
 	'幻魔特區 朱雀',
@@ -603,10 +608,6 @@ menuOrder = [
 	'歌頌永恆的克羅諾斯',
 	'桃娘傳',
 	'異界神的祝福試煉',
-	"Dragon's Blader",
-	"Demon's Blader",
-	'Divine Blader',
-	'Heretic Blader',
 	'庫洛姆‧麥格納Ⅳ單戀☆狂想曲',
 	'庫洛姆‧麥格納Ⅰ魔導學園',
 	'庫洛姆‧麥格納Ⅱ學園祭',
@@ -623,7 +624,6 @@ menuOrder = [
 	'Halloween Night',
 	'Halloween魔導盃',
 	'來者何貘：黑與白的激戰',
-	'古代森林的千年櫻花',
 ];
 
 menu = [];
