@@ -482,6 +482,14 @@ data = {
 		material: [[-139,-140,-141,800064,800080,800081]],
 		special: [-139,-140,-141,800062,800080,800081]
 	},
+	// Orlha Report 茸毛頑偶熊
+	3655: {
+		id: [3651,3652,3653,3654,3655],
+		maxPot: [2,3,4,6,10],
+		pots: ["A1","PT","H2","A2","F1","PT","H2","A2","F2","ADE2"],
+		evol: [[1],[2],[4],[8]],
+		material: [3651,3652,3653,3654]
+	},
 };
 
 series = {
@@ -520,6 +528,7 @@ series = {
 	'Orlha Report 懷著怨念的亡君': [2891],
 	'Orlha Report 無罪的罪人': [3090],
 	'菇菇方程式': [800065,800069,800082],
+	'Orlha Report 茸毛頑偶熊': [3655],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -579,6 +588,10 @@ evolTooltip = {
 	3089: {3086:8},
 	// 菇菇方程式
 	800064: {800062:1,'-139':2,'-140':2,'-141':2},
+	// Orlha Report 茸毛頑偶熊
+	3652: {3651:2},
+	3653: {3651:4},
+	3654: {3651:8},
 };
 
 grayiconlist = [
@@ -588,8 +601,10 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
+	'Orlha Report 茸毛頑偶熊',
 	'菇菇方程式',
 	'古代森林的千年櫻花',
+	'---',
 	"Dragon's Blader",
 	"Demon's Blader",
 	'Divine Blader',
@@ -597,7 +612,6 @@ menuOrder = [
 	'---',
 	'Orlha Report 無罪的罪人',
 	'幻魔特區 朱雀',
-	'---',
 	'Orlha Report 懷著怨念的亡君',
 	'妖精花園',
 	'天界的雙子 訣別的年代記',
