@@ -72,10 +72,10 @@ potData = {
 	AMA2:{icon: "Senzai_ATK_Unknown",name: "物質攻擊力上升Ⅱ"},
 	HMA1:{icon: "Senzai_HP_Unknown", name: "物質HP上升Ⅰ"},
 	HMA2:{icon: "Senzai_HP_Unknown", name: "物質HP上升Ⅱ"},
-//	AAB1:{icon: "Senzai_ATK_Unknown",name: "AbCd攻擊力上升Ⅰ"},
-//	AAB2:{icon: "Senzai_ATK_Unknown",name: "AbCd攻擊力上升Ⅱ"},
-//	HAB1:{icon: "Senzai_HP_Unknown", name: "AbCd HP上升Ⅰ"},
-//	HAB2:{icon: "Senzai_HP_Unknown", name: "AbCd HP上升Ⅱ"},
+	AAB1:{icon: "Senzai_ATK_Unknown",name: "AbCd攻擊力上升Ⅰ"},
+	AAB2:{icon: "Senzai_ATK_Unknown",name: "AbCd攻擊力上升Ⅱ"},
+	HAB1:{icon: "Senzai_HP_Unknown", name: "AbCd HP上升Ⅰ"},
+	HAB2:{icon: "Senzai_HP_Unknown", name: "AbCd HP上升Ⅱ"},
 }
 
 function GenerateIdList(last, size)
@@ -472,6 +472,14 @@ data = {
 	},
 	// Orlha Report 茸毛頑偶熊
 	3655: HardDungeon(3655, [2,3,4,6,10], ["A1","PT","H2","A2","F1","PT","H2","A2","F2","ADE2"]),
+	// AbyssCode01 黑殼之王
+	2529: HardDungeon(2529, [1,2,3,5,10], ["C2","F1","C2","F1","PF","HF1","C2","A2","F1","A2"], ['AbCd-X']),
+	// AbyssCode02 盲目的調和
+	2864: HardDungeon(2864, [1,2,3,5,10], ["C2","DA1","C2","DA1","R1","DA1","C2","DA1","R1","DA1"], ['AbCd-y']),
+	// AbyssCode03 生而墮於虛無
+	3068: HardDungeon(3068, [1,2,3,5,10], ["C2","A2","F1","H2","C2","F2","DA1","PW","AW1","HW1"], ['AbCd-A']),
+	// AbyssCode04 燃燒殆盡的陽光
+	3362: HardDungeon(3362, [2,3,5,7,10], ["C2","F1","DW1","PF","C2","R1","AF1","F1","HAB2","AAB2"], ['AbCd-O']),
 };
 
 series = {
@@ -511,6 +519,10 @@ series = {
 	'Orlha Report 無罪的罪人': [3090],
 	'菇菇方程式': [800065,800069,800082],
 	'Orlha Report 茸毛頑偶熊': [3655],
+	'AbyssCode01 黑殼之王': [2529],
+	'AbyssCode02 盲目的調和': [2864],
+	'AbyssCode03 生而墮於虛無': [3068],
+	'AbyssCode04 燃燒殆盡的陽光': [3362],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -523,6 +535,10 @@ seriesAlias = {
 	'神龍降臨Ⅰ':['神龍Ⅰ'],
 	'神龍降臨Ⅱ':['神龍Ⅱ'],
 	'歌頌永恆的克羅諾斯':['克羅諾斯Ⅰ'],
+	'AbyssCode01 黑殼之王':['AbyssCode1','AbCd1','AbCd01'],
+	'AbyssCode02 盲目的調和':['AbyssCode2','AbCd2','AbCd02'],
+	'AbyssCode03 生而墮於虛無':['AbyssCode3','AbCd3','AbCd03'],
+	'AbyssCode04 燃燒殆盡的陽光':['AbyssCode4','AbCd4','AbCd04'],
 };
 
 evolTooltip = {
@@ -559,6 +575,10 @@ hardDungeonTooltip = [
 	data[series['Orlha Report 懷著怨念的亡君'][0]].id,
 	data[series['Orlha Report 無罪的罪人'][0]].id,
 	data[series['Orlha Report 茸毛頑偶熊'][0]].id,
+	data[series['AbyssCode01 黑殼之王'][0]].id,
+	data[series['AbyssCode02 盲目的調和'][0]].id,
+	data[series['AbyssCode03 生而墮於虛無'][0]].id,
+	data[series['AbyssCode04 燃燒殆盡的陽光'][0]].id,
 ]
 
 hardDungeonTooltip.forEach(function(idlist){
@@ -576,14 +596,18 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
+	'AbyssCode01 黑殼之王',
+	'AbyssCode02 盲目的調和',
+	'AbyssCode03 生而墮於虛無',
+	'AbyssCode04 燃燒殆盡的陽光',
 	'霸眼戰線',
 	'天界的雙子 訣別的年代記',
 	'天上岬～永恆的公主～',
+	'---',
 	'菇菇方程式',
 	'古代森林的千年櫻花',
 	'---',
 	'Orlha Report 茸毛頑偶熊',
-	'---',
 	"Dragon's Blader",
 	"Demon's Blader",
 	'Divine Blader',
