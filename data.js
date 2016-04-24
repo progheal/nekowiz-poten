@@ -178,6 +178,24 @@ function LastSpecial2(lastid, special, maxPot, pots, alias)
 	return LastSpecialWithId(idlist, special, maxPot, pots, alias);
 }
 
+// for hard dungeon cards that requires same level itself to evolve
+function HardDungeonWithId(idlist, maxPot, pots, alias)
+{
+	return {
+		alias: alias,
+		id: idlist,
+		maxPot: maxPot,
+		pots: pots,
+		evol: $.map(Array(idlist.length-1), function(v,i){return [[1<<i]];}),
+		material: idlist.slice(0, idlist.length-1)
+	};
+}
+
+function HardDungeon(lastid, maxPot, pots, alias)
+{
+	return HardDungeonWithId(GenerateIdList(lastid, maxPot.length), maxPot, pots, alias);
+}
+
 data = {
 	// 御三家
 	3626: SimpleMaterialWithId([1,2,3,4,1507,3626],    [1,2,4,6,6,9], ["H2","A2","H2","A2","HF1","AF1","PF","F2","AWA2"]),
@@ -271,13 +289,7 @@ data = {
 	800010: SimpleSelf(800010, [3,5,7,9], ["R1","A2","H2","H1","C2","F1","A1","DF1","AT2"], ['雷來貘']),
 	800013: SimpleSelf(800013, [2,3,5],   ["F1","A2","H2","C2","PT"]),
 	// Demon's Blader
-	1733: {
-		id: [1729,1730,1731,1732,1733],
-		maxPot: [1,2,3,5,10],
-		pots: ["A1","C2","H1","HF1","C2","PF","H1","AF1","A1","AF1"],
-		evol: [[1],[2],[4],[8]],
-		material: [1729,1730,1731,1732]
-	},
+	1733: HardDungeon(1733, [1,2,3,5,10], ["A1","C2","H1","HF1","C2","PF","H1","AF1","A1","AF1"]),
 	// 神龍降臨Ⅰ；這裡資料僅供選擇時使用
 	1244: {
 		id: [1231,1232,1233,1234,1235,1236,1240,1241,1242,1243,1244],
@@ -339,13 +351,7 @@ data = {
 	1888: SimpleSelf(1888, [1,3,4,5], ["DT1","PT","F1","A2","F1"]),
 	1892: SimpleSelf(1892, [1,3,4,6], ["A1","C2","F1","C2","A2","A2"]),
 	// Divine Blader
-	2137: {
-		id: [2133,2134,2135,2136,2137],
-		maxPot: [1,2,3,5,10],
-		pots: ["C2","A1","H1","C2","PT","AT1","H1","PT","A1","HT1"],
-		evol: [[1],[2],[4],[8]],
-		material: [2133,2134,2135,2136]
-	},
+	2137: HardDungeon(2137, [1,2,3,5,10], ["C2","A1","H1","C2","PT","AT1","H1","PT","A1","HT1"]),
 	// 珍妮佛的冒險
 	/*477: { // 舊版佩特拉
 		id: [474,475,476,477],
@@ -380,13 +386,7 @@ data = {
 	1176: SimpleSelf(1176, [2,3,4,6], ["H2","PW","A2","C2","C2","F1"]),
 	1180: SimpleSelf(1180, [1,2,3,6], ["A2","F1","H2","A1","H1","C2"]),
 	// Heretic Blader
-	2302: {
-		id: [2298,2299,2300,2301,2302],
-		maxPot: [1,2,3,5,10],
-		pots: ["C2","F1","H1","HW1","C2","C2","A2","PW","AW1","F1"],
-		evol: [[1],[2],[4],[8]],
-		material: [2298,2299,2300,2301]
-	},
+	2302: HardDungeon(2302, [1,2,3,5,10], ["C2","F1","H1","HW1","C2","C2","A2","PW","AW1","F1"]),
 	// 霸眼戰線
 	3278: SimpleSelf(3278, [2,3,4,7],  ["PW","H1","F1","H2","A2","HW1","PW"]),
 	3282: SimpleSelf(3282, [2,3,4,7],  ["F1","A1","F1","H2","F1","A2","PF"]),
@@ -441,21 +441,9 @@ data = {
 	3689: SimpleSelf(3689, [2,4,6,9],  ["H2","F1","A2","F1","H2","R1","PW","AW1","ADE2"]),
 	3693: SimpleSelf(3693, [2,4,7,10], ["A2","PT","H2","F1","A2","DT1","PT","F2","ADE1","HDE2"]),
 	// Orlha Report 懷著怨念的亡君
-	2891: {
-		id: [2887,2888,2889,2890,2891],
-		maxPot: [1,2,3,5,10],
-		pots: ["A2","C2","H2","F1","C2","PF","F2","C2","A2","AF2"],
-		evol: [[1],[2],[4],[8]],
-		material: [2887,2888,2889,2890]
-	},
+	2891: HardDungeon(2891, [1,2,3,5,10], ["A2","C2","H2","F1","C2","PF","F2","C2","A2","AF2"]),
 	// Orlha Report 無罪的罪人
-	3090: {
-		id: [3086,3087,3088,3089,3090],
-		maxPot: [2,3,4,6,10],
-		pots: ["A1","H1","PW","F1","A1","H1","PW","A2","AW1","F1"],
-		evol: [[1],[2],[4],[8]],
-		material: [3086,3087,3088,3089]
-	},
+	3090: HardDungeon(3090, [2,3,4,6,10], ["A1","H1","PW","F1","A1","H1","PW","A2","AW1","F1"]),
 	// 菇菇方程式
 	800065: {
 		id: [800062,800063,800064,800065],
@@ -483,13 +471,7 @@ data = {
 		special: [-139,-140,-141,800062,800080,800081]
 	},
 	// Orlha Report 茸毛頑偶熊
-	3655: {
-		id: [3651,3652,3653,3654,3655],
-		maxPot: [2,3,4,6,10],
-		pots: ["A1","PT","H2","A2","F1","PT","H2","A2","F2","ADE2"],
-		evol: [[1],[2],[4],[8]],
-		material: [3651,3652,3653,3654]
-	},
+	3655: HardDungeon(3655, [2,3,4,6,10], ["A1","PT","H2","A2","F1","PT","H2","A2","F2","ADE2"]),
 };
 
 series = {
@@ -552,10 +534,6 @@ evolTooltip = {
 	1433: {1429:3,'-16':1},
 	1437: {1434:3,'-17':1},
 	1438: {1434:3,'-18':1},
-	// Demon's Blader
-	1730: {1729:2},
-	1731: {1729:4},
-	1732: {1729:8},
 	// 神龍降臨Ⅰ
 	1233: {1231:3},
 	1236: {1234:3},
@@ -565,34 +543,31 @@ evolTooltip = {
 	80004: {80002:3},
 	80007: {80005:3},
 	80011: {80008:4},
-	// Divine Blader
-	2134: {2133:2},
-	2135: {2133:4},
-	2136: {2133:8},
 	// 新生珍妮佛的冒險
 	2682: {2679:4},
 	2686: {2683:4},
 	2690: {2687:4},
 	2694: {2691:4},
-	// Heretic Blader
-	2299: {2298:2},
-	2300: {2298:4},
-	2301: {2298:8},
-	// Orlha Report 懷著怨念的亡君
-	2888: {2887:2},
-	2889: {2887:4},
-	2890: {2887:8},
-	// Orlha Report 無罪的罪人
-	3087: {3086:2},
-	3088: {3086:4},
-	3089: {3086:8},
 	// 菇菇方程式
 	800064: {800062:1,'-139':2,'-140':2,'-141':2},
-	// Orlha Report 茸毛頑偶熊
-	3652: {3651:2},
-	3653: {3651:4},
-	3654: {3651:8},
 };
+
+hardDungeonTooltip = [
+	data[series["Demon's Blader"][0]].id,
+	data[series['Divine Blader'][0]].id,
+	data[series['Heretic Blader'][0]].id,
+	data[series['Orlha Report 懷著怨念的亡君'][0]].id,
+	data[series['Orlha Report 無罪的罪人'][0]].id,
+	data[series['Orlha Report 茸毛頑偶熊'][0]].id,
+]
+
+hardDungeonTooltip.forEach(function(idlist){
+	var len = idlist.length;
+	for(var i = 1; i < len - 1; i++)
+	{
+		evolTooltip[idlist[i]] = {[idlist[0]]: 1<<i};
+	}
+})
 
 grayiconlist = [
 	//新版珍妮佛的冒險
