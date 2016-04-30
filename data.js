@@ -585,7 +585,9 @@ hardDungeonTooltip.forEach(function(idlist){
 	var len = idlist.length;
 	for(var i = 1; i < len - 1; i++)
 	{
-		evolTooltip[idlist[i]] = {[idlist[0]]: 1<<i};
+		var list = {};
+		list[idlist[0]] = 1<<i;
+		evolTooltip[idlist[i]] = list;
 	}
 })
 
