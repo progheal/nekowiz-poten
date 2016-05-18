@@ -486,6 +486,11 @@ data = {
 	3068: HardDungeon(3068, [1,2,3,5,10], ["C2","A2","F1","H2","C2","F2","DA1","PW","AW1","HW1"], ['AbCd-A']),
 	// AbyssCode04 燃燒殆盡的陽光
 	3362: HardDungeon(3362, [2,3,5,7,10], ["C2","F1","DW1","PF","C2","R1","AF1","F1","HAB2","AAB2"], ['AbCd-O']),
+	// 八百萬諸神祕聞
+	4091: SimpleSelf(4091, [2,3,4,6], ["H1","A1","PT","F1","A2","AGO2"]),
+	4095: SimpleSelf(4095, [3,5,6,8], ["PF","F1","H2","A2","AF1","C2","AGO2","AGO2"]),
+	4099: SimpleSelf(4099, [3,5,6,9], ["F1","H1","A1","H2","PT","HT1","F2","AT1","AGO2"]),
+	4103: SimpleSelf(4103, [3,6,7,9], ["F1","HW1","PW","F1","AW1","H2","HW1","PW","AGO2"]),
 };
 
 series = {
@@ -529,6 +534,7 @@ series = {
 	'AbyssCode02 盲目的調和': [2864],
 	'AbyssCode03 生而墮於虛無': [3068],
 	'AbyssCode04 燃燒殆盡的陽光': [3362],
+	'八百萬諸神祕聞': [4091,4095,4099,4103],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -604,6 +610,8 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
+	'八百萬諸神祕聞',
+	'---',
 	"Dragon's Blader",
 	"Demon's Blader",
 	'Divine Blader',
@@ -616,7 +624,6 @@ menuOrder = [
 	'霸眼戰線',
 	'天界的雙子 訣別的年代記',
 	'天上岬～永恆的公主～',
-	'---',
 	'菇菇方程式',
 	'古代森林的千年櫻花',
 	'Orlha Report 茸毛頑偶熊',
