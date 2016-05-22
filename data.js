@@ -491,6 +491,8 @@ data = {
 	4095: SimpleSelf(4095, [3,5,6,8], ["PF","F1","H2","A2","AF1","C2","AGO2","AGO2"]),
 	4099: SimpleSelf(4099, [3,5,6,9], ["F1","H1","A1","H2","PT","HT1","F2","AT1","AGO2"]),
 	4103: SimpleSelf(4103, [3,6,7,9], ["F1","HW1","PW","F1","AW1","H2","HW1","PW","AGO2"]),
+	// Dragon's Blader ZERO
+	4021: HardDungeon(4021, [1,2,3,5,10], ["PF","HF1","F1","HDR2","PF","ADR1","AF1","F2","HDR2","ADR2"]),
 };
 
 series = {
@@ -535,6 +537,7 @@ series = {
 	'AbyssCode03 生而墮於虛無': [3068],
 	'AbyssCode04 燃燒殆盡的陽光': [3362],
 	'八百萬諸神祕聞': [4091,4095,4099,4103],
+	"Dragon's Blader ZERO": [4021],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -591,6 +594,7 @@ hardDungeonTooltip = [
 	data[series['AbyssCode02 盲目的調和'][0]].id,
 	data[series['AbyssCode03 生而墮於虛無'][0]].id,
 	data[series['AbyssCode04 燃燒殆盡的陽光'][0]].id,
+	data[series["Dragon's Blader ZERO"][0]].id,
 ]
 
 hardDungeonTooltip.forEach(function(idlist){
@@ -610,6 +614,7 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
+	"Dragon's Blader ZERO",
 	'八百萬諸神祕聞',
 	'---',
 	"Dragon's Blader",
