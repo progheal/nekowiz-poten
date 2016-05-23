@@ -76,6 +76,8 @@ potData = {
 	AAB2:{icon: "Senzai_ATK_Unknown",name: "AbCd攻擊力上升Ⅱ"},
 	HAB1:{icon: "Senzai_HP_Unknown", name: "AbCd HP上升Ⅰ"},
 	HAB2:{icon: "Senzai_HP_Unknown", name: "AbCd HP上升Ⅱ"},
+	ADG2:{icon: "Senzai_ATK_Unknown",name: "神族、龍族攻擊力上升Ⅱ"},
+	HDG2:{icon: "Senzai_HP_Unknown", name: "神族、龍族HP上升Ⅱ"},
 }
 
 function GenerateIdList(last, size)
@@ -493,6 +495,8 @@ data = {
 	4103: SimpleSelf(4103, [3,6,7,9], ["F1","HW1","PW","F1","AW1","H2","HW1","PW","AGO2"]),
 	// Dragon's Blader ZERO
 	4021: HardDungeon(4021, [1,2,3,5,10], ["PF","HF1","F1","HDR2","PF","ADR1","AF1","F2","HDR2","ADR2"]),
+	// Tempest Blader
+	3719: HardDungeon(3719, [2,3,5,7,10], ["H2","F1","R1","PF","HF1","PF","AF1","HDG2","F2","ADG2"]),
 };
 
 series = {
@@ -538,6 +542,7 @@ series = {
 	'AbyssCode04 燃燒殆盡的陽光': [3362],
 	'八百萬諸神祕聞': [4091,4095,4099,4103],
 	"Dragon's Blader ZERO": [4021],
+	'Tempest Blader': [3719],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -595,6 +600,7 @@ hardDungeonTooltip = [
 	data[series['AbyssCode03 生而墮於虛無'][0]].id,
 	data[series['AbyssCode04 燃燒殆盡的陽光'][0]].id,
 	data[series["Dragon's Blader ZERO"][0]].id,
+	data[series['Tempest Blader'][0]].id,
 ]
 
 hardDungeonTooltip.forEach(function(idlist){
@@ -614,14 +620,15 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
-	"Dragon's Blader ZERO",
+	'Tempest Blader',
 	'八百萬諸神祕聞',
+	'---',
+	"Dragon's Blader ZERO",
 	'---',
 	"Dragon's Blader",
 	"Demon's Blader",
 	'Divine Blader',
 	'Heretic Blader',
-	'---',
 	'AbyssCode01 黑殼之王',
 	'AbyssCode02 盲目的調和',
 	'AbyssCode03 生而墮於虛無',
