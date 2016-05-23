@@ -7,77 +7,58 @@ potData = {
 	H2:  {icon: "Senzai_HP",         name: "HP上升Ⅱ"},
 	A1:  {icon: "Senzai_ATK",        name: "攻擊力上升Ⅰ"},
 	A2:  {icon: "Senzai_ATK",        name: "攻擊力上升Ⅱ"},
-	HF1: {icon: "Senzai_HP_F",       name: "火屬性HP上升Ⅰ"},
-	HF2: {icon: "Senzai_HP_F",       name: "火屬性HP上升Ⅱ"},
-	HW1: {icon: "Senzai_HP_W",       name: "水屬性HP上升Ⅰ"},
-	HW2: {icon: "Senzai_HP_W",       name: "水屬性HP上升Ⅱ"},
-	HT1: {icon: "Senzai_HP_T",       name: "雷屬性HP上升Ⅰ"},
-	HT2: {icon: "Senzai_HP_T",       name: "雷屬性HP上升Ⅱ"},
-	HA1: {icon: "Senzai_HP_F",       name: "全屬性HP上升Ⅰ"},
-	HA2: {icon: "Senzai_HP_F",       name: "全屬性HP上升Ⅱ"},
-	AF1: {icon: "Senzai_ATK_F",      name: "火屬性攻擊力上升Ⅰ"},
-	AF2: {icon: "Senzai_ATK_F",      name: "火屬性攻擊力上升Ⅱ"},
-	AW1: {icon: "Senzai_ATK_W",      name: "水屬性攻擊力上升Ⅰ"},
-	AW2: {icon: "Senzai_ATK_W",      name: "水屬性攻擊力上升Ⅱ"},
-	AT1: {icon: "Senzai_ATK_T",      name: "雷屬性攻擊力上升Ⅰ"},
-	AT2: {icon: "Senzai_ATK_T",      name: "雷屬性攻擊力上升Ⅱ"},
-	AA1: {icon: "Senzai_ATK_F",      name: "全屬性攻擊力上升Ⅰ"},
-	AA2: {icon: "Senzai_ATK_F",      name: "全屬性攻擊力上升Ⅱ"},
-	DF1: {icon: "Senzai_Shield_F",   name: "減輕火屬性傷害Ⅰ"},
-	DW1: {icon: "Senzai_Shield_W",   name: "減輕水屬性傷害Ⅰ"},
-	DT1: {icon: "Senzai_Shield_T",   name: "減輕雷屬性傷害Ⅰ"},
-	DFW1:{icon: "Senzai_Shield_FW",  name: "減輕火、水屬性傷害Ⅰ"},
-	DFT1:{icon: "Senzai_Shield_FT",  name: "減輕火、雷屬性傷害Ⅰ"},
-	DWT1:{icon: "Senzai_Shield_WT",  name: "減輕水、雷屬性傷害Ⅰ"},
-	DA1: {icon: "Senzai_Shield_FWT", name: "減輕全屬性傷害Ⅰ"},
 	PF:  {icon: "Senzai_Appear_F",   name: "問題類型屬性提昇·火"},
 	PW:  {icon: "Senzai_Appear_W",   name: "問題類型屬性提昇·水"},
 	PT:  {icon: "Senzai_Appear_T",   name: "問題類型屬性提昇·雷"},
 	E1:  {icon: "Senzai_EXP",        name: "微幅提升獲得的經驗值"},
 	G1:  {icon: "Senzai_Gold",       name: "微幅提升獲得的金幣"},
-	B1:  {icon: "Senzai_Unknown",    name: "戰鬥結束後回復全體隊友的HP"},
-	AWA1:{icon: "Senzai_ATK_Unknown",name: "戰士攻擊力上升Ⅰ"}, // WA = Warrior
-	AWA2:{icon: "Senzai_ATK_Unknown",name: "戰士攻擊力上升Ⅱ"},
-	HWA1:{icon: "Senzai_HP_Unknown", name: "戰士HP上升Ⅰ"},
-	HWA2:{icon: "Senzai_HP_Unknown", name: "戰士HP上升Ⅱ"},
-	ASO1:{icon: "Senzai_ATK_Unknown",name: "術士攻擊力上升Ⅰ"}, // SO = Sorcerer
-	ASO2:{icon: "Senzai_ATK_Unknown",name: "術士攻擊力上升Ⅱ"},
-	HSO1:{icon: "Senzai_HP_Unknown", name: "術士HP上升Ⅰ"},
-	HSO2:{icon: "Senzai_HP_Unknown", name: "術士HP上升Ⅱ"},
-	AFA1:{icon: "Senzai_ATK_Unknown",name: "妖精攻擊力上升Ⅰ"}, // FA = Fairy
-	AFA2:{icon: "Senzai_ATK_Unknown",name: "妖精攻擊力上升Ⅱ"},
-	HFA1:{icon: "Senzai_HP_Unknown", name: "妖精HP上升Ⅰ"},
-	HFA2:{icon: "Senzai_HP_Unknown", name: "妖精HP上升Ⅱ"},
-	AAN1:{icon: "Senzai_ATK_Unknown",name: "天使攻擊力上升Ⅰ"}, // AN = Angel
-	AAN2:{icon: "Senzai_ATK_Unknown",name: "天使攻擊力上升Ⅱ"},
-	HAN1:{icon: "Senzai_HP_Unknown", name: "天使HP上升Ⅰ"},
-	HAN2:{icon: "Senzai_HP_Unknown", name: "天使HP上升Ⅱ"},
-	ADE1:{icon: "Senzai_ATK_Unknown",name: "魔族攻擊力上升Ⅰ"}, // DE = Demon
-	ADE2:{icon: "Senzai_ATK_Unknown",name: "魔族攻擊力上升Ⅱ"},
-	HDE1:{icon: "Senzai_HP_Unknown", name: "魔族HP上升Ⅰ"},
-	HDE2:{icon: "Senzai_HP_Unknown", name: "魔族HP上升Ⅱ"},
-	ADH1:{icon: "Senzai_ATK_Unknown",name: "亞人攻擊力上升Ⅰ"}, // DH = Demi Human
-	ADH2:{icon: "Senzai_ATK_Unknown",name: "亞人攻擊力上升Ⅱ"},
-	HDH1:{icon: "Senzai_HP_Unknown", name: "亞人HP上升Ⅰ"},
-	HDH2:{icon: "Senzai_HP_Unknown", name: "亞人HP上升Ⅱ"},
-	ADR1:{icon: "Senzai_ATK_Unknown",name: "龍族攻擊力上升Ⅰ"}, // DR = Dragon
-	ADR2:{icon: "Senzai_ATK_Unknown",name: "龍族攻擊力上升Ⅱ"},
-	HDR1:{icon: "Senzai_HP_Unknown", name: "龍族HP上升Ⅰ"},
-	HDR2:{icon: "Senzai_HP_Unknown", name: "龍族HP上升Ⅱ"},
-	AGO1:{icon: "Senzai_ATK_Unknown",name: "神族攻擊力上升Ⅰ"}, // GO = God
-	AGO2:{icon: "Senzai_ATK_Unknown",name: "神族攻擊力上升Ⅱ"},
-	HGO1:{icon: "Senzai_HP_Unknown", name: "神族HP上升Ⅰ"},
-	HGO2:{icon: "Senzai_HP_Unknown", name: "神族HP上升Ⅱ"},
-	AMA1:{icon: "Senzai_ATK_Unknown",name: "物質攻擊力上升Ⅰ"}, // MA = Material
-	AMA2:{icon: "Senzai_ATK_Unknown",name: "物質攻擊力上升Ⅱ"},
-	HMA1:{icon: "Senzai_HP_Unknown", name: "物質HP上升Ⅰ"},
-	HMA2:{icon: "Senzai_HP_Unknown", name: "物質HP上升Ⅱ"},
-	AAB1:{icon: "Senzai_ATK_Unknown",name: "AbCd攻擊力上升Ⅰ"},
-	AAB2:{icon: "Senzai_ATK_Unknown",name: "AbCd攻擊力上升Ⅱ"},
-	HAB1:{icon: "Senzai_HP_Unknown", name: "AbCd HP上升Ⅰ"},
-	HAB2:{icon: "Senzai_HP_Unknown", name: "AbCd HP上升Ⅱ"},
-	ADG2:{icon: "Senzai_ATK_Unknown",name: "神族、龍族攻擊力上升Ⅱ"},
-	HDG2:{icon: "Senzai_HP_Unknown", name: "神族、龍族HP上升Ⅱ"},
+	B1:  {icon: "Senzai_BattleEnd",  name: "戰鬥結束後回復全體隊友的HP"},
+}
+
+{
+	var Type = {F:'火屬性', W:'水屬性', T:'雷屬性', A:'全屬性'}
+	var DualType = {FW:'火、水屬性', FT:'火、雷屬性', WT:'水、雷屬性'}
+	var Race = {WA:'戰士', SO:'術士', FA:'妖精', AN:'天使', DE:'魔族', DH:'亞人', DR:'龍族', GO:'神族', MA:'物質', AB:'AbCd '}
+	var DualRace = {GODR:'神族、龍族'}
+	var Roman = {'1':'Ⅰ', '2':'Ⅱ'}
+	var Attribute = {
+		A:function(x){return x+'攻擊力上升';},
+		H:function(x){return x+'HP上升';},
+		D:function(x){return '減輕'+x+'傷害';},
+	}
+	var AttrIcon = {A:'ATK', H:'HP', D:'Shield'}
+
+	for(var attr in Attribute)
+	{
+		for(var t in Type)
+		{
+			for(var num in Roman)
+			{
+				potData[attr+t+num] = {icon: "Senzai_"+AttrIcon[attr]+"_"+t, name: Attribute[attr](Type[t])+Roman[num]};
+			}
+		}
+	}
+
+	for(var dt in DualType)
+	{
+		for(var num in Roman)
+		{
+			potData['D'+dt+num] = {icon: "Senzai_Shield_"+dt, name: Attribute.D(DualType[dt])+Roman[num]};
+		}
+	}
+
+	var r = $.extend({},Race,DualRace);
+	for(var attr in Attribute)
+	{
+		if(attr == 'D') continue;
+		for(var token in r)
+		{
+			for(var num in Roman)
+			{
+				potData[attr+token+num] = {icon: "Senzai_"+AttrIcon[attr]+"_Race", name: Attribute[attr](r[token])+Roman[num]};
+			}
+		}
+	}
 }
 
 function GenerateIdList(last, size)
@@ -496,7 +477,7 @@ data = {
 	// Dragon's Blader ZERO
 	4021: HardDungeon(4021, [1,2,3,5,10], ["PF","HF1","F1","HDR2","PF","ADR1","AF1","F2","HDR2","ADR2"]),
 	// Tempest Blader
-	3719: HardDungeon(3719, [2,3,5,7,10], ["H2","F1","R1","PF","HF1","PF","AF1","HDG2","F2","ADG2"]),
+	3719: HardDungeon(3719, [2,3,5,7,10], ["H2","F1","R1","PF","HF1","PF","AF1","HGODR2","F2","AGODR2"]),
 };
 
 series = {
