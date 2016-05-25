@@ -3,6 +3,8 @@ potData = {
 	F2:  {icon: "Senzai_FastSkill",  name: "快速技能Ⅱ"},
 	C2:  {icon: "Senzai_CostDown",   name: "減少COSTⅡ"},
 	R1:  {icon: "Senzai_Konki",      name: "九死一生Ⅰ"},
+	R2:  {icon: "Senzai_Konki",      name: "九死一生Ⅱ"},
+	R3:  {icon: "Senzai_Konki",      name: "九死一生Ⅲ"},
 	H1:  {icon: "Senzai_HP",         name: "HP上升Ⅰ"},
 	H2:  {icon: "Senzai_HP",         name: "HP上升Ⅱ"},
 	A1:  {icon: "Senzai_ATK",        name: "攻擊力上升Ⅰ"},
@@ -478,6 +480,8 @@ data = {
 	4021: HardDungeon(4021, [1,2,3,5,10], ["PF","HF1","F1","HDR2","PF","ADR1","AF1","F2","HDR2","ADR2"]),
 	// Tempest Blader
 	3719: HardDungeon(3719, [2,3,5,7,10], ["H2","F1","R1","PF","HF1","PF","AF1","HGODR2","F2","AGODR2"]),
+	// AbyssCode05 冥世的天蓋
+	3750: HardDungeon(3750, [1,2,3,5,10], ["F1","A1","PT","H2","HT1","F2","PT","AT1","AAB2","R3"]),
 };
 
 series = {
@@ -524,6 +528,7 @@ series = {
 	'八百萬諸神祕聞': [4091,4095,4099,4103],
 	"Dragon's Blader ZERO": [4021],
 	'Tempest Blader': [3719],
+	'AbyssCode05 冥世的天蓋': [3750],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -540,6 +545,7 @@ seriesAlias = {
 	'AbyssCode02 盲目的調和':['AbyssCode2','AbCd2','AbCd02'],
 	'AbyssCode03 生而墮於虛無':['AbyssCode3','AbCd3','AbCd03'],
 	'AbyssCode04 燃燒殆盡的陽光':['AbyssCode4','AbCd4','AbCd04'],
+	'AbyssCode05 冥世的天蓋':['AbyssCode5','AbCd5','AbCd05'],
 };
 
 evolTooltip = {
@@ -582,6 +588,7 @@ hardDungeonTooltip = [
 	data[series['AbyssCode04 燃燒殆盡的陽光'][0]].id,
 	data[series["Dragon's Blader ZERO"][0]].id,
 	data[series['Tempest Blader'][0]].id,
+	data[series['AbyssCode05 冥世的天蓋'][0]].id,
 ]
 
 hardDungeonTooltip.forEach(function(idlist){
@@ -601,6 +608,9 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
+	'AbyssCode05 冥世的天蓋',
+	'歌頌永恆的克羅諾斯',
+	'歌頌永恆的克羅諾斯Ⅱ',
 	'Tempest Blader',
 	'八百萬諸神祕聞',
 	'---',
@@ -627,8 +637,6 @@ menuOrder = [
 	'巧克力森林',
 	'黃昏的四神書',
 	'新生珍妮佛的冒險',
-	'歌頌永恆的克羅諾斯Ⅱ',
-	'歌頌永恆的克羅諾斯',
 	'桃娘傳',
 	'異界神的祝福試煉',
 	'庫洛姆‧麥格納Ⅳ單戀☆狂想曲',
