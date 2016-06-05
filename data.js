@@ -482,6 +482,15 @@ data = {
 	3719: HardDungeon(3719, [2,3,5,7,10], ["H2","F1","R1","PF","HF1","PF","AF1","HGODR2","F2","AGODR2"]),
 	// AbyssCode05 冥世的天蓋
 	3750: HardDungeon(3750, [1,2,3,5,10], ["F1","A1","PT","H2","HT1","F2","PT","AT1","AAB2","R3"]),
+	// 夏日的南國冒險
+	800115: {
+		id: [800114, 800115],
+		maxPot: [5,8],
+		pots: ["A2","H2","AT1","AT1","F1","H2","A2","ADH2"],
+		evol: [[0,1]],
+		material: [800113],
+		special: [800113]
+	},
 };
 
 series = {
@@ -529,6 +538,7 @@ series = {
 	"Dragon's Blader ZERO": [4021],
 	'Tempest Blader': [3719],
 	'AbyssCode05 冥世的天蓋': [3750],
+	'夏日的南國冒險': [800115],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -608,16 +618,17 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
-	'Orlha Report 懷著怨念的亡君',
-	'Orlha Report 無罪的罪人',
-	'Orlha Report 茸毛頑偶熊',
+	'夏日的南國冒險',
 	'AbyssCode05 冥世的天蓋',
 	'歌頌永恆的克羅諾斯',
 	'歌頌永恆的克羅諾斯Ⅱ',
 	'八百萬諸神祕聞',
 	'---',
-	'Tempest Blader',
+	'Orlha Report 懷著怨念的亡君',
+	'Orlha Report 無罪的罪人',
+	'Orlha Report 茸毛頑偶熊',
 	'---',
+	'Tempest Blader',
 	"Dragon's Blader ZERO",
 	"Dragon's Blader",
 	"Demon's Blader",
