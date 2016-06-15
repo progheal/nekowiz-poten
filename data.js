@@ -482,6 +482,11 @@ data = {
 	3719: HardDungeon(3719, [2,3,5,7,10], ["H2","F1","R1","PF","HF1","PF","AF1","HGODR2","F2","AGODR2"]),
 	// AbyssCode05 冥世的天蓋
 	3750: HardDungeon(3750, [1,2,3,5,10], ["F1","A1","PT","H2","HT1","F2","PT","AT1","AAB2","R3"]),
+	// 幻魔特區朱雀Ⅱ
+	4259: SimpleSelf(4259, [3,4,5,7], ["C2","H1","F1","PT","F1","A2","HMA2"]),
+	4263: SimpleSelf(4263, [3,4,5,8], ["A2","C2","F1","H2","A2","DT1","R1","AMA2"]),
+	4267: SimpleSelf(4267, [3,6,7,9], ["F1","A1","PW","H2","F1","H2","AW1","PW","AWA2"]),
+	4271: SimpleSelf(4271, [3,6,8,10], ["A2","H2","PT","AT1","DW1","F2","PT","HDE2","ADE2","R1"]),
 };
 
 series = {
@@ -529,6 +534,7 @@ series = {
 	"Dragon's Blader ZERO": [4021],
 	'Tempest Blader': [3719],
 	'AbyssCode05 冥世的天蓋': [3750],
+	'幻魔特區 朱雀Ⅱ': [4259,4263,4267,4271],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -546,6 +552,8 @@ seriesAlias = {
 	'AbyssCode03 生而墮於虛無':['AbyssCode3','AbCd3','AbCd03'],
 	'AbyssCode04 燃燒殆盡的陽光':['AbyssCode4','AbCd4','AbCd04'],
 	'AbyssCode05 冥世的天蓋':['AbyssCode5','AbCd5','AbCd05'],
+	'幻魔特區 朱雀': ['幻魔Ⅰ','朱雀Ⅰ'],
+	'幻魔特區 朱雀Ⅱ': ['幻魔Ⅱ'],
 };
 
 evolTooltip = {
@@ -608,7 +616,9 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
+	'幻魔特區 朱雀Ⅱ',
 	'幻魔特區 朱雀',
+	'---',
 	'歌頌永恆的克羅諾斯',
 	'歌頌永恆的克羅諾斯Ⅱ',
 	'---',
@@ -617,7 +627,6 @@ menuOrder = [
 	'Orlha Report 懷著怨念的亡君',
 	'Orlha Report 無罪的罪人',
 	'Orlha Report 茸毛頑偶熊',
-	'---',
 	'Tempest Blader',
 	"Dragon's Blader ZERO",
 	"Dragon's Blader",
