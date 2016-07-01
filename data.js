@@ -623,6 +623,7 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
+	"Dragon's Blader ZERO",
 	'庫洛姆‧麥格納Ⅰ魔導學園',
 	'庫洛姆‧麥格納Ⅱ學園祭',
 	'庫洛姆‧麥格納Ⅲ臨海學校',
@@ -643,7 +644,6 @@ menuOrder = [
 	'Orlha Report 無罪的罪人',
 	'Orlha Report 茸毛頑偶熊',
 	'Tempest Blader',
-	"Dragon's Blader ZERO",
 	"Dragon's Blader",
 	"Demon's Blader",
 	'Divine Blader',
