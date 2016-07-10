@@ -145,7 +145,7 @@ function toHTML(info, result)
 					{
 						var leftlist = [];
 						var rightlist = [];
-						if(material.length >= 3)
+						if(material.length >= 4)
 						{
 							var leftThreshold = Math.floor(material.length / 2);
 							for(var k = 0; k < material.length; k++)

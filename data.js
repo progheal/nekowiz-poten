@@ -12,6 +12,9 @@ potData = {
 	PF:  {icon: "Senzai_Appear_F",   name: "問題類型屬性提昇·火"},
 	PW:  {icon: "Senzai_Appear_W",   name: "問題類型屬性提昇·水"},
 	PT:  {icon: "Senzai_Appear_T",   name: "問題類型屬性提昇·雷"},
+	PF2: {icon: "Senzai_Appear_F",   name: "問題類型屬性提昇Ⅱ·火"},
+	PW2: {icon: "Senzai_Appear_W",   name: "問題類型屬性提昇Ⅱ·水"},
+	PT2: {icon: "Senzai_Appear_T",   name: "問題類型屬性提昇Ⅱ·雷"},
 	E1:  {icon: "Senzai_EXP",        name: "微幅提升獲得的經驗值"},
 	G1:  {icon: "Senzai_Gold",       name: "微幅提升獲得的金幣"},
 	B1:  {icon: "Senzai_BattleEnd",  name: "戰鬥結束後回復全體隊友的HP"},
@@ -22,7 +25,7 @@ potData = {
 	var DualType = {FW:'火、水屬性', FT:'火、雷屬性', WT:'水、雷屬性'}
 	var Race = {WA:'戰士', SO:'術士', FA:'妖精', AN:'天使', DE:'魔族', DH:'亞人', DR:'龍族', GO:'神族', MA:'物質', AB:'AbCd '}
 	var DualRace = {GODR:'神族、龍族'}
-	var Roman = {'1':'Ⅰ', '2':'Ⅱ'}
+	var Roman = {'1':'Ⅰ', '2':'Ⅱ', '3':'Ⅲ'}
 	var Attribute = {
 		A:function(x){return x+'攻擊力上升';},
 		H:function(x){return x+'HP上升';},
@@ -41,11 +44,14 @@ potData = {
 		}
 	}
 
-	for(var dt in DualType)
+	for(var attr in Attribute)
 	{
-		for(var num in Roman)
+		for(var dt in DualType)
 		{
-			potData['D'+dt+num] = {icon: "Senzai_Shield_"+dt, name: Attribute.D(DualType[dt])+Roman[num]};
+			for(var num in Roman)
+			{
+				potData[attr+dt+num] = {icon: "Senzai_"+AttrIcon[attr]+"_"+dt, name: Attribute.D(DualType[dt])+Roman[num]};
+			}
 		}
 	}
 
@@ -494,6 +500,43 @@ data = {
 	4263: SimpleSelf(4263, [3,4,5,8], ["A2","C2","F1","H2","A2","DT1","R1","AMA2"]),
 	4267: SimpleSelf(4267, [3,6,7,9], ["F1","A1","PW","H2","F1","H2","AW1","PW","AWA2"]),
 	4271: SimpleSelf(4271, [3,6,8,10], ["A2","H2","PT","AT1","DW1","F2","PT","HDE2","ADE2","R1"]),
+	// 星耀學園‧遺願的繼承者
+	800203: {
+		id: [800202,800203],
+		maxPot: [8,10],
+		pots: ["E1","F1","HGO2","H2","F1","PF2","A2","HF1","HGO1","F1"],
+		evol: [[3]],
+		material: [[800202,800202,800202]]
+	},
+	800205: {
+		id: [800204,800205],
+		maxPot: [8,10],
+		pots: ["PT","C2","F1","C2","AT1","HT1","PT","A2","AGO2","HGO2"],
+		evol: [[3]],
+		material: [[800204,800204,800204]]
+	},
+	800207: {
+		id: [800206,800207],
+		maxPot: [8,10],
+		pots: ["PW","AW1","E1","R1","HGO2","PW","A2","HW1","AW1","B1"],
+		evol: [[3]],
+		material: [[800206,800206,800206]]
+	},
+	800209: {
+		id: [800208,800209],
+		maxPot: [8,10],
+		pots: ["PF","F2","A2","PF2","H2","HF1","AF1","F2","HGO2","AGO2"],
+		evol: [[3]],
+		material: [[800208,800208,800208]]
+	},
+	800211: {
+		id: [800210,800211],
+		maxPot: [6,10],
+		pots: ["PW","F1","AW1","A2","H2","F2","PW","R1","HFW2","AFW3"],
+		evol: [[0,1,1]],
+		material: [[800213,800214]],
+		special: [800213,800214]
+	},
 };
 
 series = {
@@ -542,6 +585,7 @@ series = {
 	'Tempest Blader': [3719],
 	'AbyssCode05 冥世的天蓋': [3750],
 	'幻魔特區 朱雀Ⅱ': [4259,4263,4267,4271],
+	'星耀學園‧遺願的繼承者': [800203,800205,800207,800209,800211],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -623,6 +667,7 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
+	'星耀學園‧遺願的繼承者',
 	'新生珍妮佛的冒險',
 	'庫洛姆‧麥格納Ⅰ魔導學園',
 	'庫洛姆‧麥格納Ⅱ學園祭',
