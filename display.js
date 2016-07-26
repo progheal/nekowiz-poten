@@ -32,13 +32,13 @@ function potImg(potName) {return img(potData[potName].icon, 30, potData[potName]
 
 function getPotList(info, level, potNum)
 {
-	if(typeof(info.pots2) == "undefined")
+	if(typeof(info.altpot) == "undefined")
 	{
 		return info.pots.slice(0, potNum);
 	}
 	else
 	{
-		if(info.maxPot[level] <= info.pots2.length)
+		if(level < info.altpot)
 			return info.pots2.slice(0, potNum);
 		else
 			return info.pots.slice(0, potNum);
@@ -365,9 +365,9 @@ function updateCurrent()
 	$('#controlIcon').children().filter('span').eq(g_cur.level).addClass('iconSel');
 	var lvMaxPot = g_info.maxPot[g_cur.level];
 	if(g_cur.pot > lvMaxPot) g_cur.pot = lvMaxPot;
-	if(typeof(g_info.pots2) != "undefined")
+	if(typeof(g_info.altpot) != "undefined")
 	{
-		if(lvMaxPot <= g_info.pots2.length)
+		if(g_cur.level < g_info.altpot)
 		{
 			$('#controlPot').children().slice(0,lvMaxPot+1).not(":first-child").each(
 				function(index)
