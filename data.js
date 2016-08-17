@@ -683,6 +683,7 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
+	'八百萬諸神祕聞',
 	'煉獄來訪者',
 	'異界神的祝福試煉',
 	'---',
@@ -691,11 +692,11 @@ menuOrder = [
 	'AbyssCode03 生而墮於虛無',
 	'AbyssCode04 燃燒殆盡的陽光',
 	'AbyssCode05 冥世的天蓋',
+	'---',
 	"Demon's Blader",
 	'Divine Blader',
 	'Heretic Blader',
 	'Tempest Blader',
-	'---',
 	'Orlha Report 懷著怨念的亡君',
 	'Orlha Report 無罪的罪人',
 	'Orlha Report 茸毛頑偶熊',
@@ -710,7 +711,6 @@ menuOrder = [
 	'幻魔特區 朱雀',
 	'歌頌永恆的克羅諾斯',
 	'歌頌永恆的克羅諾斯Ⅱ',
-	'八百萬諸神祕聞',
 	"Dragon's Blader",
 	'霸眼戰線',
 	'天界的雙子 訣別的年代記',
