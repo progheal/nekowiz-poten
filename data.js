@@ -553,6 +553,11 @@ data = {
 	// Tempest Blader
 	4651: HardDungeonWithId([3715,3716,3717,3718,3719,4651], [2,3,5,7,10,10],
 		  [5,["H2","F1","R1","PF2","HF1","AF1","HGODR2","F2","AGODR2","R1"],["H2","F1","R1","PF","HF1","PF","AF1","HGODR2","F2","AGODR2"]]),
+	// 八百萬諸神祕聞2
+	5086: SimpleSelf(5086, [4,5,6,10], ["F1","H1","A1","H1","F1","HW1","PW","HW1","PW","AW1"]),
+	5090: SimpleSelf(5090, [4,5,6,10], ["PF","F1","A1","H1","PF","HF1","AF1","F1","AF1","F1"]),
+	5094: SimpleSelf(5094, [4,6,8,10], ["PT","H2","F1","PT","HT1","R1","AT1","F1","HT1","AT1"]),
+	5097: SimpleSelf(5097, [4,7,10],   ["PW","F1","R1","H2","HW1","A2","AW1","PW2","AW1","F2"]),
 };
 
 series = {
@@ -602,6 +607,7 @@ series = {
 	'Divine Blader': [4649],
 	'Heretic Blader': [4650],
 	'Tempest Blader': [4651],
+	'八百萬諸神祕聞2': [5086,5090,5094,5097],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -621,6 +627,8 @@ seriesAlias = {
 	'AbyssCode05 冥世的天蓋':['AbyssCode5','AbCd5','AbCd05'],
 	'幻魔特區 朱雀': ['幻魔Ⅰ','朱雀Ⅰ'],
 	'幻魔特區 朱雀Ⅱ': ['幻魔Ⅱ'],
+	'八百萬諸神祕聞': ['八百萬諸神祕聞Ⅰ','八百萬Ⅰ'],
+	'八百萬諸神祕聞2': ['八百萬諸神祕聞Ⅱ','八百萬Ⅱ'],
 };
 
 evolTooltip = {
@@ -683,7 +691,13 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
+	'八百萬諸神祕聞2',
+	"Demon's Blader",
+	'Divine Blader',
+	'Heretic Blader',
+	'Tempest Blader',
 	'八百萬諸神祕聞',
+	'---',
 	'煉獄來訪者',
 	'異界神的祝福試煉',
 	'---',
@@ -692,11 +706,6 @@ menuOrder = [
 	'AbyssCode03 生而墮於虛無',
 	'AbyssCode04 燃燒殆盡的陽光',
 	'AbyssCode05 冥世的天蓋',
-	'---',
-	"Demon's Blader",
-	'Divine Blader',
-	'Heretic Blader',
-	'Tempest Blader',
 	'Orlha Report 懷著怨念的亡君',
 	'Orlha Report 無罪的罪人',
 	'Orlha Report 茸毛頑偶熊',
