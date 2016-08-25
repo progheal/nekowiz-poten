@@ -557,7 +557,6 @@ data = {
 	5086: SimpleSelf(5086, [4,5,6,10], ["F1","H1","A1","H1","F1","HW1","PW","HW1","PW","AW1"]),
 	5090: SimpleSelf(5090, [4,5,6,10], ["PF","F1","A1","H1","PF","HF1","AF1","F1","AF1","F1"]),
 	5094: SimpleSelf(5094, [4,6,8,10], ["PT","H2","F1","PT","HT1","R1","AT1","F1","HT1","AT1"]),
-	5097: SimpleSelf(5097, [4,7,10],   ["PW","F1","R1","H2","HW1","A2","AW1","PW2","AW1","F2"]),
 };
 
 series = {
@@ -607,7 +606,7 @@ series = {
 	'Divine Blader': [4649],
 	'Heretic Blader': [4650],
 	'Tempest Blader': [4651],
-	'八百萬諸神祕聞2': [5086,5090,5094,5097],
+	'八百萬諸神祕聞2': [5086,5090,5094],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
