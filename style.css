@@ -81,6 +81,10 @@ a:hover, a:active {
 	cursor: pointer;
 }
 
+.japanese {
+	font-family: MS Gothic, MS Mincho;
+}
+
 /*
  * Use CSS3 filter; non-support browser will use pre-rendered grayscale icon
  */

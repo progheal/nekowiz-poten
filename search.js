@@ -31,8 +31,8 @@ $(function(){
 					keywords.push(info.series);
 					if(seriesAlias[info.series]) Array.prototype.push.apply(keywords, seriesAlias[info.series]);
 					Array.prototype.push.apply(keywords,
-						info.id.map(function(id){return cardname[id];})
-						       .filter(function(s){return !s.match(/[\u3040-\u30ff]/);}) //Filter out Kanas since we don't want Japanese name match
+						info.id.map(function(id){return cardname[id].replace(/<.*>/,'');})
+						       .filter(function(s){return !hasKana(s);}) //Filter out Kanas since we don't want Japanese name match
 					);
 					if(info.alias) Array.prototype.push.apply(keywords, info.alias);
 					keywords = Array.prototype.concat.apply([],keywords.map(variations)).map(function(s){return s.toUpperCase();});

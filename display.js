@@ -3,10 +3,16 @@ function pad4(id)
 	return id < 1000 ? ("0000" + id).substr(-4) : (''+id);
 }
 
+function hasKana(s)
+{
+	return s.match(/[\u3040-\u30ff]/);
+}
+
 function img(name, size, alt, cl)
 {
 	if(typeof(alt) == "undefined") alt = "";
 	if(typeof(cl) == "undefined") cl = "";
+	alt = alt.replace(/<.*>/,'');
 	return '<img src="icon/' + name + '.png" width="' + size + '" align="absmiddle" title="' + alt + '" class="' + cl + '">';
 }
 
@@ -272,7 +278,9 @@ function characterSelect()
 	$('#controlIcon').empty();
 	$('#controlPot').empty();
 	var linelen = g_info.id.length;
-	$('#characterName').empty().append(cardname[g_info.id[linelen-1]]);
+	var cname = cardname[g_info.id[linelen-1]];
+	$('#characterName').empty().append(cname);
+	if(hasKana(cname)) $('#characterName').addClass('japanese'); else $('#characterName').removeClass('japanese');
 	if(linelen > 6)
 		linelen = Math.floor((linelen + 1) / 2);
 	if(g_info.id[0] == 1237)

@@ -557,6 +557,12 @@ data = {
 	5086: SimpleSelf(5086, [4,5,6,10], ["F1","H1","A1","H1","F1","HW1","PW","HW1","PW","AW1"]),
 	5090: SimpleSelf(5090, [4,5,6,10], ["PF","F1","A1","H1","PF","HF1","AF1","F1","AF1","F1"]),
 	5094: SimpleSelf(5094, [4,6,8,10], ["PT","H2","F1","PT","HT1","R1","AT1","F1","HT1","AT1"]),
+	// 空戰的德爾基馬斯
+	4824: SimpleSelf(4824, [3,5,7,9],  ["PT","F1","HT1","F1","A2","HWA1","PT","AWA1","AT1"]),
+	4828: SimpleSelf(4828, [3,5,7,10], ["A2","F1","H2","PF","C2","AF1","A2","R1","PF","AF1"]),
+	4832: SimpleSelf(4832, [3,6,8,9],  ["PW","F1","E1","H1","AW1","HW1","H1","PW","A2"]),
+	4836: SimpleSelf(4836, [3,6,8,10], ["PW","A2","F1","R1","AW1","PW","F1","HW1","F1","ADE2"], ["伊庫諾比利烏姆"]),
+	4839: SimpleSelf(4839, [4,7,10],   ["PW","H2","F1","AWT1","F1","HMA2","PW","HWT1","A2","AMA2"]),
 };
 
 series = {
@@ -607,6 +613,7 @@ series = {
 	'Heretic Blader': [4650],
 	'Tempest Blader': [4651],
 	'八百萬諸神祕聞2': [5086,5090,5094],
+	'空戰的德爾基馬斯': [4824,4828,4832,4836,4839],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -690,6 +697,7 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
+	'空戰的德爾基馬斯',
 	'八百萬諸神祕聞2',
 	"Demon's Blader",
 	'Divine Blader',
@@ -699,7 +707,6 @@ menuOrder = [
 	'---',
 	'煉獄來訪者',
 	'異界神的祝福試煉',
-	'---',
 	'AbyssCode01 黑殼之王',
 	'AbyssCode02 盲目的調和',
 	'AbyssCode03 生而墮於虛無',
