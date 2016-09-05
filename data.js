@@ -697,8 +697,10 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
+	'天界的雙子 訣別的年代記',
 	'空戰的德爾基馬斯',
 	'八百萬諸神祕聞2',
+	'---',
 	"Demon's Blader",
 	'Divine Blader',
 	'Heretic Blader',
@@ -728,7 +730,6 @@ menuOrder = [
 	'歌頌永恆的克羅諾斯Ⅱ',
 	"Dragon's Blader",
 	'霸眼戰線',
-	'天界的雙子 訣別的年代記',
 	'天上岬～永恆的公主～',
 	'菇菇方程式',
 	'古代森林的千年櫻花',
