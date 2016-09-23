@@ -563,6 +563,11 @@ data = {
 	4832: SimpleSelf(4832, [3,6,8,9],  ["PW","F1","E1","H1","AW1","HW1","H1","PW","A2"]),
 	4836: SimpleSelf(4836, [3,6,8,10], ["PW","A2","F1","R1","AW1","PW","F1","HW1","F1","ADE2"], ["伊庫諾比利烏姆"]),
 	4839: SimpleSelf(4839, [4,7,10],   ["PW","H2","F1","AWT1","F1","HMA2","PW","HWT1","A2","AMA2"]),
+	// 雙翼的失落伊甸
+	5147: SimpleSelf(5147, [4,5,6,10], ["F1","A1","PT","AT1","F1","HT1","H1","HT1","PT2","AT1"]),
+	5151: SimpleSelf(5151, [4,5,6,10], ["F1","A2","PW","AW1","F1","HW1","A1","HW1","PW","R1"]),
+	5155: SimpleSelf(5155, [4,5,6,10], ["F1","HF1","PF2","AF1","F1","HF2","F2","A2","ADE2","HDE2"]),
+	5159: SimpleSelf(5159, [4,7,8,10], ["PT","F1","R1","H2","AT1","PT2","HT1","A2","ADE2","F2"]),
 };
 
 series = {
@@ -614,6 +619,7 @@ series = {
 	'Tempest Blader': [4651],
 	'八百萬諸神祕聞2': [5086,5090,5094],
 	'空戰的德爾基馬斯': [4824,4828,4832,4836,4839],
+	'雙翼的失落伊甸': [5147,5151,5155,5159],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -697,18 +703,7 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
-	'天界的雙子 訣別的年代記',
-	'空戰的德爾基馬斯',
-	'八百萬諸神祕聞2',
-	'---',
-	"Demon's Blader",
-	'Divine Blader',
-	'Heretic Blader',
-	'Tempest Blader',
-	'八百萬諸神祕聞',
-	'---',
-	'煉獄來訪者',
-	'異界神的祝福試煉',
+	'雙翼的失落伊甸',
 	'AbyssCode01 黑殼之王',
 	'AbyssCode02 盲目的調和',
 	'AbyssCode03 生而墮於虛無',
@@ -717,6 +712,18 @@ menuOrder = [
 	'Orlha Report 懷著怨念的亡君',
 	'Orlha Report 無罪的罪人',
 	'Orlha Report 茸毛頑偶熊',
+	'空戰的德爾基馬斯',
+	'---',
+	'天界的雙子 訣別的年代記',
+	'八百萬諸神祕聞2',
+	'---',
+	"Demon's Blader",
+	'Divine Blader',
+	'Heretic Blader',
+	'Tempest Blader',
+	'八百萬諸神祕聞',
+	'煉獄來訪者',
+	'異界神的祝福試煉',
 	'星耀學園‧遺願的繼承者',
 	'庫洛姆‧麥格納Ⅰ魔導學園',
 	'庫洛姆‧麥格納Ⅱ學園祭',
