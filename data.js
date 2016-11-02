@@ -51,7 +51,7 @@ potData = {
 		{
 			for(var num in Roman)
 			{
-				potData[attr+dt+num] = {icon: "Senzai_"+AttrIcon[attr]+"_"+dt, name: Attribute.D(DualType[dt])+Roman[num]};
+				potData[attr+dt+num] = {icon: "Senzai_"+AttrIcon[attr]+"_"+dt, name: Attribute[attr](DualType[dt])+Roman[num]};
 			}
 		}
 	}
@@ -585,6 +585,11 @@ data = {
 	4707: SimpleSelf(4707, [2,4,8,10], ["C2","A2","PF","HF1","AF1","PF","H2","F2","ASO2","HSO2"]),
 	4711: SimpleSelf(4711, [2,4,7,10], ["F1","PW2","AW1","F2","H2","HW1","AW1","A2","HSO2","ASO2"]),
 	4715: SimpleSelf(4715, [2,5,8,10], ["PF","F2","A2","PF2","H2","HF1","AF1","F2","HSO2","ASO2"]),
+	// 天上岬的調香師
+	5507: SimpleSelf(5507, [4,5,6,10], ["F1","H1","A1","H1","F1","HW1","PW","AW1","PW","ADH2"]),
+	5511: SimpleSelf(5511, [4,5,6,10], ["F1","HT1","PT","AT1","H2","AT1","F1","A2","HFA3","AFA3"]),
+	5515: SimpleSelf(5515, [4,6,8,10], ["PF","HF1","H2","AF1","F1","PF2","HF1","R1","AF1","A2"]),
+	5518: SimpleSelf(5518, [4,7,10],   ["F1","PT","HFT1","H2","AFT1","PT2","AFT1","A2","F2","AFA3"]),
 };
 
 series = {
@@ -638,6 +643,7 @@ series = {
 	'空戰的德爾基馬斯': [4824,4828,4832,4836,4839],
 	'雙翼的失落伊甸': [5147,5151,5155,5159,5162],
 	'超魔導列傳': [4707,4711,4715],
+	'天上岬的調香師': [5507,5511,5515,5518],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -660,7 +666,8 @@ seriesAlias = {
 	'八百萬諸神祕聞': ['八百萬諸神祕聞Ⅰ','八百萬Ⅰ'],
 	'八百萬諸神祕聞2': ['八百萬諸神祕聞Ⅱ','八百萬Ⅱ'],
 	'超魔導列傳': ['超魔道列傳'],
-	'Halloween Night': ['新生Halloween Night','新生 Halloween Night']
+	'Halloween Night': ['新生Halloween Night','新生 Halloween Night'],
+	'天上岬的調香師': ['天上岬Ⅱ'],
 };
 
 evolTooltip = {
@@ -723,12 +730,17 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
-	'天上岬～永恆的公主～',
-	'超魔導列傳',
+	"Demon's Blader",
+	'Divine Blader',
+	'Heretic Blader',
+	'Tempest Blader',
+	'天上岬的調香師',
 	'空戰的德爾基馬斯',
 	'---',
-	'Halloween Night',
+	'超魔導列傳',
+	'天上岬～永恆的公主～',
 	'---',
+	'Halloween Night',
 	'雙翼的失落伊甸',
 	'AbyssCode01 黑殼之王',
 	'AbyssCode02 盲目的調和',
@@ -740,10 +752,6 @@ menuOrder = [
 	'Orlha Report 茸毛頑偶熊',
 	'天界的雙子 訣別的年代記',
 	'八百萬諸神祕聞2',
-	"Demon's Blader",
-	'Divine Blader',
-	'Heretic Blader',
-	'Tempest Blader',
 	'八百萬諸神祕聞',
 	'煉獄來訪者',
 	'異界神的祝福試煉',
