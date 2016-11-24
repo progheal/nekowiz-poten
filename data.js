@@ -3,9 +3,11 @@ potData = {
 	F2:  {icon: "Senzai_FastSkill",  name: "快速技能Ⅱ"},
 	C2:  {icon: "Senzai_CostDown",   name: "減少COSTⅡ"},
 	C4:  {icon: "Senzai_CostDown",   name: "減少COSTⅣ"},
+	C6:  {icon: "Senzai_CostDown",   name: "減少COSTⅥ"},
 	R1:  {icon: "Senzai_Konki",      name: "九死一生Ⅰ"},
 	R2:  {icon: "Senzai_Konki",      name: "九死一生Ⅱ"},
 	R3:  {icon: "Senzai_Konki",      name: "九死一生Ⅲ"},
+	RΞ:  {icon: "Senzai_Konki",      name: "九死一生Ξ"},
 	H1:  {icon: "Senzai_HP",         name: "HP上升Ⅰ"},
 	H2:  {icon: "Senzai_HP",         name: "HP上升Ⅱ"},
 	A1:  {icon: "Senzai_ATK",        name: "攻擊力上升Ⅰ"},
@@ -495,13 +497,24 @@ data = {
 	// Orlha Report 茸毛頑偶熊
 	3655: HardDungeon(3655, [2,3,4,6,10], ["A1","PT","H2","A2","F1","PT","H2","A2","F2","ADE2"]),
 	// AbyssCode01 黑殼之王
-	2529: HardDungeon(2529, [1,2,3,5,10], ["C2","F1","C2","F1","PF","HF1","C2","A2","F1","A2"], ['AbCd-X']),
+	5048: HardDungeonWithId([2525,2526,2527,2528,2529,5048], [1,2,3,5,10,10],
+		[5, ["C4","F1","R2","F1","PF2","HF1","C2","AF2","F2","AF2"], ["C2","F1","C2","F1","PF","HF1","C2","A2","F1","A2"]],
+		['AbCd-X']),
 	// AbyssCode02 盲目的調和
-	2864: HardDungeon(2864, [1,2,3,5,10], ["C2","DA1","C2","DA1","R1","DA1","C2","DA1","R1","DA1"], ['AbCd-y']),
+	5049: HardDungeonWithId([2860,2861,2862,2863,2864,5049], [1,2,3,5,10,10],
+		[5, ["C6","DA1","AT2","DA1","R1","DA1","HT2","DA1","R1","DA1"], ["C2","DA1","C2","DA1","R1","DA1","C2","DA1","R1","DA1"]],
+		['AbCd-y']),
 	// AbyssCode03 生而墮於虛無
-	3068: HardDungeon(3068, [1,2,3,5,10], ["C2","A2","F1","H2","C2","F2","DA1","PW","AW1","HW1"], ['AbCd-A']),
+	5050: HardDungeonWithId([3064,3065,3066,3067,3068,5050], [1,2,3,5,10,10],
+		[5, ["C4","A2","F1","H2","R1","F2","DA1","PW2","AW2","HW2"], ["C2","A2","F1","H2","C2","F2","DA1","PW","AW1","HW1"]],
+		['AbCd-A']),
 	// AbyssCode04 燃燒殆盡的陽光
-	3362: HardDungeon(3362, [2,3,5,7,10], ["C2","F1","DW1","PF","C2","R1","AF1","F1","HAB2","AAB2"], ['AbCd-O']),
+	5051: HardDungeonWithId([3358,3359,3360,3361,3362,5051], [2,3,5,7,10,10],
+		[5, ["C4","F1","DW1","PF","PF2","R1","AF1","F2","HF2","AF2"], ["C2","F1","DW1","PF","C2","R1","AF1","F1","HAB2","AAB2"]],
+		['AbCd-O']),
+	// AbyssCode05 冥世的天蓋
+	5052: HardDungeonWithId([3746,3747,3748,3749,3750,5052], [1,2,3,5,10,10],
+		[5, ["F1","A1","PT2","H2","HT1","F2","PT2","AT1","AT2","RΞ"], ["F1","A1","PT","H2","HT1","F2","PT","AT1","AAB2","R3"]]),
 	// 八百萬諸神祕聞
 	4091: SimpleSelf(4091, [2,3,4,6], ["H1","A1","PT","F1","A2","AGO2"]),
 	4095: SimpleSelf(4095, [3,5,6,8], ["PF","F1","H2","A2","AF1","C2","AGO2","AGO2"]),
@@ -509,8 +522,6 @@ data = {
 	4103: SimpleSelf(4103, [3,6,7,9], ["F1","HW1","PW","F1","AW1","H2","HW1","PW","AGO2"]),
 	// Dragon's Blader ZERO
 	4021: HardDungeon(4021, [1,2,3,5,10], ["PF","HF1","F1","HDR2","PF","ADR1","AF1","F2","HDR2","ADR2"]),
-	// AbyssCode05 冥世的天蓋
-	3750: HardDungeon(3750, [1,2,3,5,10], ["F1","A1","PT","H2","HT1","F2","PT","AT1","AAB2","R3"]),
 	// 幻魔特區朱雀Ⅱ
 	4259: SimpleSelf(4259, [3,4,5,7], ["C2","H1","F1","PT","F1","A2","HMA2"]),
 	4263: SimpleSelf(4263, [3,4,5,8], ["A2","C2","F1","H2","A2","DT1","R1","AMA2"]),
@@ -634,13 +645,13 @@ series = {
 	'Orlha Report 無罪的罪人': [3090],
 	'菇菇方程式': [800065,800069,800082],
 	'Orlha Report 茸毛頑偶熊': [3655],
-	'AbyssCode01 黑殼之王': [2529],
-	'AbyssCode02 盲目的調和': [2864],
-	'AbyssCode03 生而墮於虛無': [3068],
-	'AbyssCode04 燃燒殆盡的陽光': [3362],
+	'AbyssCode01 黑殼之王': [5048],
+	'AbyssCode02 盲目的調和': [5049],
+	'AbyssCode03 生而墮於虛無': [5050],
+	'AbyssCode04 燃燒殆盡的陽光': [5051],
 	'八百萬諸神祕聞': [4091,4095,4099,4103],
 	"Dragon's Blader ZERO": [4021],
-	'AbyssCode05 冥世的天蓋': [3750],
+	'AbyssCode05 冥世的天蓋': [5052],
 	'幻魔特區 朱雀Ⅱ': [4259,4263,4267,4271],
 	'星耀學園‧遺願的繼承者': [800203,800205,800207,800209,800211],
 	"Demon's Blader": [4648],
