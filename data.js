@@ -10,8 +10,12 @@ potData = {
 	RΞ:  {icon: "Senzai_Konki",      name: "九死一生Ξ"},
 	H1:  {icon: "Senzai_HP",         name: "HP上升Ⅰ"},
 	H2:  {icon: "Senzai_HP",         name: "HP上升Ⅱ"},
+	H3:  {icon: "Senzai_HP",         name: "HP上升Ⅲ"},
+	H4:  {icon: "Senzai_HP",         name: "HP上升Ⅳ"},
 	A1:  {icon: "Senzai_ATK",        name: "攻擊力上升Ⅰ"},
 	A2:  {icon: "Senzai_ATK",        name: "攻擊力上升Ⅱ"},
+	A3:  {icon: "Senzai_ATK",        name: "攻擊力上升Ⅲ"},
+	A4:  {icon: "Senzai_ATK",        name: "攻擊力上升Ⅳ"},
 	PF:  {icon: "Senzai_Appear_F",   name: "問題類型屬性提昇·火"},
 	PW:  {icon: "Senzai_Appear_W",   name: "問題類型屬性提昇·水"},
 	PT:  {icon: "Senzai_Appear_T",   name: "問題類型屬性提昇·雷"},
@@ -28,7 +32,7 @@ potData = {
 	var DualType = {FW:'火、水屬性', FT:'火、雷屬性', WT:'水、雷屬性'}
 	var Race = {WA:'戰士', SO:'術士', FA:'妖精', AN:'天使', DE:'魔族', DH:'亞人', DR:'龍族', GO:'神族', MA:'物質', AB:'AbCd '}
 	var DualRace = {GODR:'神族、龍族', ANDE:'天使、魔族'}
-	var Roman = {'1':'Ⅰ', '2':'Ⅱ', '3':'Ⅲ'}
+	var Roman = {'1':'Ⅰ', '2':'Ⅱ', '3':'Ⅲ', '4':'Ⅳ', '5':'Ⅴ'}
 	var Attribute = {
 		A:function(x){return x+'攻擊力上升';},
 		H:function(x){return x+'HP上升';},
@@ -410,11 +414,11 @@ data = {
 	1176: SimpleSelf(1176, [2,3,4,6], ["H2","PW","A2","C2","C2","F1"]),
 	1180: SimpleSelf(1180, [1,2,3,6], ["A2","F1","H2","A1","H1","C2"]),
 	// 霸眼戰線
-	3278: SimpleSelf(3278, [2,3,4,7],  ["PW","H1","F1","H2","A2","HW1","PW"]),
-	3282: SimpleSelf(3282, [2,3,4,7],  ["F1","A1","F1","H2","F1","A2","PF"]),
-	3286: SimpleSelf(3286, [2,4,6,8],  ["A2","PT","H2","F1","A2","F1","H2","AT1"]),
-	3290: SimpleSelf(3290, [2,4,6,9],  ["A1","PW","A1","F1","A2","DW1","A2","DF1","AW1"]),
-	3294: SimpleSelf(3294, [2,4,7,10], ["A2","F1","A2","H2","A2","H2","PT","F2","AT1","AWA2"]),
+	6036: SimpleSelfWithId([3275,3276,3277,3278,6036], [2,3,4,7,10],  [4,["PW","H1","F1","H2","A2","HW1","PW2","F1","AW1","F2"],    ["PW","H1","F1","H2","A2","HW1","PW"]]),
+	6037: SimpleSelfWithId([3279,3280,3281,3282,6037], [2,3,4,7,10],  [4,["F1","A1","F1","H2","F2","A2","PF","PF2","ADH5","HDH5"],  ["F1","A1","F1","H2","F1","A2","PF"]]),
+	6038: SimpleSelfWithId([3283,3284,3285,3286,6038], [2,4,6,8,10],  [4,["A2","PT2","H2","F1","A2","H2","H2","AT1","F2","AT1"],    ["A2","PT","H2","F1","A2","F1","H2","AT1"]]),
+	6039: SimpleSelfWithId([3287,3288,3289,3290,6039], [2,4,6,9,10],  [4,["A2","PW2","A2","F1","A2","DW1","A2","DF1","AW1","F2"],   ["A1","PW","A1","F1","A2","DW1","A2","DF1","AW1"]]),
+	6040: SimpleSelfWithId([3291,3292,3293,3294,6040], [2,4,7,10,10], [4,["A2","F1","A4","H4","HWT1","PT","PT2","F2","AWT1","AWA2"],["A2","F1","A2","H2","A2","H2","PT","F2","AT1","AWA2"]]),
 	// 煉獄來訪者
 	1353: SimpleSelf(1353, [2,4,6,8],  ["A2","A2","H2","H2","A2","A2","H2","H2"]),
 	1357: SimpleSelf(1357, [2,3,5,8],  ["H2","A2","A2","A2","H2","A2","H2","H2"]),
@@ -631,7 +635,7 @@ series = {
 	'黑白貓 Gate Defender 跨越異界的友情羈絆': [3097,3100,3104],
 	'聖誕老人的禮物': [1180,1176],
 	"Dragon's Blader": [4016],
-	'霸眼戰線': [3278,3282,3286,3290,3294],
+	'霸眼戰線': [6036,6037,6038,6039,6040],
 	'煉獄來訪者': [1353,1357],
 	'庫洛姆‧麥格納Ⅰ魔導學園': [2277,614],
 	'庫洛姆‧麥格納Ⅱ學園祭': [815,819],
@@ -752,11 +756,14 @@ grayiconlist = [
 menuOrder = [
 	'御三家',
 	'蕊颯',
+	'霸眼戰線',
+	'聖誕老人的禮物',
 	'AbyssCode01 黑殼之王',
 	'AbyssCode02 盲目的調和',
 	'AbyssCode03 生而墮於虛無',
 	'AbyssCode04 燃燒殆盡的陽光',
 	'AbyssCode05 冥世的天蓋',
+	'---',
 	'菇菇方程式',
 	'---',
 	'天上岬的調香師',
@@ -765,7 +772,6 @@ menuOrder = [
 	'Divine Blader',
 	'Heretic Blader',
 	'Tempest Blader',
-	'---',
 	'超魔導列傳',
 	'天上岬～永恆的公主～',
 	'Halloween Night',
@@ -790,7 +796,6 @@ menuOrder = [
 	'歌頌永恆的克羅諾斯',
 	'歌頌永恆的克羅諾斯Ⅱ',
 	"Dragon's Blader",
-	'霸眼戰線',
 	'古代森林的千年櫻花',
 	'妖精花園',
 	'巧克力森林',
@@ -798,7 +803,6 @@ menuOrder = [
 	'桃娘傳',
 	'神龍降臨Ⅱ',
 	'神龍降臨Ⅰ',
-	'聖誕老人的禮物',
 	'惡作劇女神與兔子的故事',
 	'黑白貓 Gate Defender 跨越異界的友情羈絆',
 	'異空間棒球 黑貓維茲PRIDE',
