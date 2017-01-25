@@ -1,9 +1,11 @@
 potData = {
 	F1:  {icon: "Senzai_FastSkill",  name: "快速技能Ⅰ"},
 	F2:  {icon: "Senzai_FastSkill",  name: "快速技能Ⅱ"},
+	F3:  {icon: "Senzai_FastSkill",  name: "快速技能Ⅲ"},
 	C2:  {icon: "Senzai_CostDown",   name: "減少COSTⅡ"},
 	C4:  {icon: "Senzai_CostDown",   name: "減少COSTⅣ"},
 	C6:  {icon: "Senzai_CostDown",   name: "減少COSTⅥ"},
+	C8:  {icon: "Senzai_CostDown",   name: "減少COSTⅧ"},
 	R1:  {icon: "Senzai_Konki",      name: "九死一生Ⅰ"},
 	R2:  {icon: "Senzai_Konki",      name: "九死一生Ⅱ"},
 	R3:  {icon: "Senzai_Konki",      name: "九死一生Ⅲ"},
@@ -22,9 +24,14 @@ potData = {
 	PF2: {icon: "Senzai_Appear_F",   name: "問題類型屬性提昇Ⅱ·火"},
 	PW2: {icon: "Senzai_Appear_W",   name: "問題類型屬性提昇Ⅱ·水"},
 	PT2: {icon: "Senzai_Appear_T",   name: "問題類型屬性提昇Ⅱ·雷"},
-	E1:  {icon: "Senzai_EXP",        name: "微幅提升獲得的經驗值"},
-	G1:  {icon: "Senzai_Gold",       name: "微幅提升獲得的金幣"},
+	E1:  {icon: "Senzai_EXP",        name: "獲得EXP量上升Ⅰ"},
+	E2:  {icon: "Senzai_EXP",        name: "獲得EXP量上升Ⅱ"},
+	E3:  {icon: "Senzai_EXP",        name: "獲得EXP量上升Ⅲ"},
+	G1:  {icon: "Senzai_Gold",       name: "獲得金幣量上升Ⅰ"},
+	G2:  {icon: "Senzai_Gold",       name: "獲得金幣量上升Ⅱ"},
+	G3:  {icon: "Senzai_Gold",       name: "獲得金幣量上升Ⅲ"},
 	B1:  {icon: "Senzai_BattleEnd",  name: "戰鬥結束後回復全體隊友的HP"},
+	AWL2:{icon: "Senzai_ATK_WL",     name: "水屬性隊友的攻擊力上升200點，複屬性為光屬性時又再上升200點"},
 }
 
 {
@@ -326,28 +333,32 @@ data = {
 	2151: SimpleSelf(2151, [1,2,4,6], ["A1","C2","H1","F1","PF","H2"]),
 	2155: SimpleSelf(2155, [1,3,4,7], ["A1","F1","C2","PT","C2","F1","A2"]),
 	// 異界神的祝福試煉
-	800016: {
-		id: [80002,80003,80004,800016],
-		maxPot: [1,2,3,5],
-		pots: ["H2","C2","PW","F1","E1"],
-		evol: [[1],[1],[3]],
-		material: [80002,80002,80004]
-	},
-	800017: {
-		id: [80005,80006,80007,800017],
-		maxPot: [1,2,3,6],
-		pots: ["H1","F1","AF2","PF","C2","B1"],
-		evol: [[1],[1],[3]],
-		material: [80005,80005,80007]
-	},
-	800018: {
-		id: [80008,80009,80010,80011,800018],
-		maxPot: [1,2,3,5,8],
-		pots: ["G1","A2","H2","F2","PT","C2","R1","DF1"],
-		pots2: ["C2","A2","H2","F2","PT"],
+	800678: {
+		id: [80002,80003,80004,800016,800678],
+		maxPot: [1,2,3,5,10],
+		pots: ["C2","F1","PW","HW2","R1","DA1","AW2","H2","PW2","AWL2"],
+		pots2: ["H2","C2","PW","F1","E1"],
 		altpot: 4,
-		evol: [[1],[1],[1],[4]],
-		material: [80008,80008,80008,80011]
+		evol: [[1],[1],[3],[]],
+		material: [80002,80002,80004,0]
+	},
+	800676: {
+		id: [80005,80006,80007,800017,800676],
+		maxPot: [1,2,3,6,10],
+		pots: ["E1","AGO1","F3","A2","PF2","AFT2","HGO3","AGO3","E2","C8"],
+		pots2: ["H1","F1","AF2","PF","C2","B1"],
+		altpot: 4,
+		evol: [[1],[1],[3],[]],
+		material: [80005,80005,80007,0]
+	},
+	800677: {
+		id: [80008,80009,80010,80011,800018,800677],
+		maxPot: [1,2,3,5,8,10],
+		pots: ["G1","HGO1","F3","A2","PT2","AFT2","HGO3","AGO3","G3","C8"],
+		pots2: ["G1","A2","H2","F2","PT","C2","R1","DF1"],
+		altpot: 5,
+		evol: [[1],[1],[1],[4],[]],
+		material: [80008,80008,80008,80011,0]
 	},
 	// Halloween Night
 	908:  SimpleSelf(908,  [2,3,4,5],   ["H2","PT","A2","H2","PT"]),
@@ -630,7 +641,7 @@ series = {
 	'來者何貘：黑與白的激戰': [800003,800006,800010,800013],
 	'神龍降臨Ⅰ': [1244,1248],
 	'神龍降臨Ⅱ': [2144,2147,2151,2155],
-	'異界神的祝福試煉': [800016,800017,800018],
+	'異界神的祝福試煉': [800678,800676,800677],
 	'Halloween Night': [2789,908,4858,4859],
 	'桃娘傳': [3425,3427],
 	'Halloween魔導盃': [2798,2802,2806,2810],
