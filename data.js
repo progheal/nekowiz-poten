@@ -627,7 +627,6 @@ data = {
 	5850: SimpleSelf(5850, [2,5,8,10], ["H2","DT1","PT2","F1","R1","F1","PT2","B1","AT2","HT2"]),
 	5854: SimpleSelf(5854, [3,6,8,10], ["A2","PF2","HF1","AF1","F1","PF2","R1","HF2","F2","AF2"]),
 	5858: SimpleSelf(5858, [4,6,8,10], ["A2","PW","F1","HW1","AW1","PW2","HW2","R1","F1","AW2"]),
-	5861: SimpleSelf(5861, [3,6,10], ["A2","F1","PT2","HT1","AT1","F1","PT2","AT1","R1","HT1"]),
 };
 
 series = {
@@ -683,7 +682,7 @@ series = {
 	'雙翼的失落伊甸': [5147,5151,5155,5159,5162],
 	'超魔導列傳': [4707,4711,4715],
 	'天上岬的調香師': [5507,5511,5515],
-	'黃昏無夢者': [5850,5854,5858,5861],
+	'黃昏無夢者': [5850,5854,5858],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -708,6 +707,7 @@ seriesAlias = {
 	'超魔導列傳': ['超魔道列傳'],
 	'Halloween Night': ['新生Halloween Night','新生 Halloween Night'],
 	'天上岬的調香師': ['天上岬Ⅱ'],
+	'異界神的祝福試煉': ['異界神的二度試煉'],
 };
 
 evolTooltip = {
@@ -775,13 +775,13 @@ menuOrder = [
 	'蕊颯',
 	'黃昏無夢者',
 	'異界神的祝福試煉',
+	'---',
 	"Demon's Blader",
 	'Divine Blader',
 	'Heretic Blader',
 	'Tempest Blader',
 	'---',
 	'神龍降臨Ⅰ',
-	'---',
 	'霸眼戰線',
 	'聖誕老人的禮物',
 	'AbyssCode01 黑殼之王',
