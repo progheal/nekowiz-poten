@@ -538,7 +538,11 @@ function asyncgo()
 
 $(function(){
 	$.each(menu, function(key, value){
-		if(value == 0)
+		if(typeof(value) == "string")
+		{
+			$('#characterList').append($('<div class="strike"><span>' + value + '</span></div>'));
+		}
+		else if(value == 0)
 		{
 			$('#characterList').append($('<br><hr>'));
 		}

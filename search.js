@@ -4,7 +4,8 @@ $(function(){
 	{
 		var ts = s.replace(/[\s‧]/g,'');
 		var ret = [ts];
-		var k = {'Ⅰ':['1','１'], 'Ⅱ':['2','２'], 'Ⅲ':['3','３'], 'Ⅳ':['4','４'], 'Ⅴ':['5','５']};
+		var k = {'Ⅰ':['1','１','I','Ｉ'], 'Ⅱ':['2','２','II','ＩＩ'],
+			     'Ⅲ':['3','３','III','ＩＩＩ'], 'Ⅳ':['4','４','IV','ＩＶ'], 'Ⅴ':['5','５','V','Ｖ']};
 		for(var t in k) if(ts.match(t)) k[t].forEach(function(r){ret.push(ts.replace(t,r))});
 		return ret;
 	}

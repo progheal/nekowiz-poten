@@ -781,16 +781,17 @@ menuOrder = [
 	'蕊颯',
 	'霸眼戰線2',
 	'巧克力森林',
-	'---',
+	'===魔導士之家',
+	'霸眼戰線',
+	//'===近期結束副本',
+	'===過去副本',
 	'黃昏無夢者',
 	'異界神的祝福試煉',
-	'---',
 	"Demon's Blader",
 	'Divine Blader',
 	'Heretic Blader',
 	'Tempest Blader',
 	'神龍降臨Ⅰ',
-	'霸眼戰線',
 	'聖誕老人的禮物',
 	'AbyssCode01 黑殼之王',
 	'AbyssCode02 盲目的調和',
@@ -839,6 +840,8 @@ menu = [];
 menuOrder.forEach(function(s){
 	if(s == '---')
 		menu.push(0);
+	else if(s.substr(0,3) == '===')
+		menu.push(s.slice(3));
 	else
 		Array.prototype.push.apply(menu, series[s]);
 	}

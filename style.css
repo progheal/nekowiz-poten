@@ -21,7 +21,7 @@ a:hover, a:active {
 
 #characterList {
 	width: 750px;
-	height: 280px;
+	height: 370px;
 	margin: auto;
 	overflow-y: scroll;
 	text-align: left;
@@ -83,6 +83,39 @@ a:hover, a:active {
 
 .japanese {
 	font-family: MS Gothic, MS Mincho;
+}
+
+/* hr with text from http://stackoverflow.com/questions/2812770/ */
+.strike {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.strike > span {
+    position: relative;
+    display: inline-block;
+}
+
+.strike > span:before,
+.strike > span:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 400px;
+    height: 1px;
+    background: #9A9A9A;
+}
+
+.strike > span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.strike > span:after {
+    left: 100%;
+    margin-left: 15px;
 }
 
 /*
