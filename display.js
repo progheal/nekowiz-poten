@@ -38,17 +38,19 @@ function potImg(potName) {return img(potData[potName].icon, 30, potData[potName]
 
 function getPotList(info, level, potNum)
 {
-	if(typeof(info.altpot) == "undefined")
+	var thispot;
+	var idx = 0;
+	while(typeof(info.pots[idx]) == "number")
 	{
-		return info.pots.slice(0, potNum);
+		if(level >= info.pots[idx])
+		{
+			thispot = info.pots[idx+1];
+			break;
+		}
+		idx += 2;
 	}
-	else
-	{
-		if(level < info.altpot)
-			return info.pots2.slice(0, potNum);
-		else
-			return info.pots.slice(0, potNum);
-	}
+	if(!thispot) thispot = info.pots[idx];
+	return thispot.slice(0, potNum);
 }
 
 function iconAndPotImg(info, level, maxPot)
@@ -310,12 +312,13 @@ function characterSelect()
 				updateCurrent();
 			})
 	);
-	for(var i = 0; i < g_info.pots.length; i++)
+	var thispot = getPotList(g_info, g_cur.level);
+	for(var i = 0; i < thispot.length; i++)
 	{
 		$('#controlPot').append(
 			$('<span></span>')
 				.addClass("pot clickable")
-				.append(potImg(g_info.pots[i]))
+				.append(potImg(thispot[i]))
 				.bind("click", (function(i){
 					if(typeof(g_info.maxPossible) != "undefined" && i > g_info.maxPossible)
 						return function(){
@@ -373,27 +376,13 @@ function updateCurrent()
 	$('#controlIcon').children().filter('span').eq(g_cur.level).addClass('iconSel');
 	var lvMaxPot = g_info.maxPot[g_cur.level];
 	if(g_cur.pot > lvMaxPot) g_cur.pot = lvMaxPot;
-	if(typeof(g_info.altpot) != "undefined")
-	{
-		if(g_cur.level < g_info.altpot)
+	var thispot = getPotList(g_info, g_cur.level);
+	$('#controlPot').children().slice(0,lvMaxPot+1).not(":first-child").each(
+		function(index)
 		{
-			$('#controlPot').children().slice(0,lvMaxPot+1).not(":first-child").each(
-				function(index)
-				{
-					$(this).children().replaceWith(potImg(g_info.pots2[index]));
-				}
-			);
+			$(this).children().replaceWith(potImg(thispot[index]));
 		}
-		else
-		{
-			$('#controlPot').children().slice(0,lvMaxPot+1).not(":first-child").each(
-				function(index)
-				{
-					$(this).children().replaceWith(potImg(g_info.pots[index]));
-				}
-			);
-		}
-	}
+	);
 	$('#controlPot').children().show().slice(lvMaxPot+1).hide();
 	$('#controlPot').children().slice(0,g_cur.pot+1).addClass('iconSel');
 }

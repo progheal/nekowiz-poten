@@ -88,27 +88,16 @@ function GenerateIdList(last, size)
 	return $.map(Array(size), function(v,i){return last-size+1+i;})
 }
 
-function MakePots(pots)
-{
-	if(typeof(pots[0]) == "number")
-	{
-		return {altpot: pots[0], pots: pots[1], pots2: pots[2]};
-	}
-	else
-	{
-		return {pots: pots};
-	}
-}
-
 function SimpleEvol(idlist, maxPot, pots, evolone, evolmat, alias)
 {
-	return $.extend(MakePots(pots), {
+	return {
 		alias: alias,
 		id: idlist,
 		maxPot: maxPot,
+		pots: pots,
 		evol: $.map(Array(idlist.length-1), function(){return [evolone];}),
 		material: $.map(Array(idlist.length-1), function(){return evolmat;})
-	});
+	};
 }
 
 // For cards that simply eats the lowest itself to evolve
@@ -156,27 +145,29 @@ function LastSpecialWithId(idlist, special, maxPot, pots, alias)
 		specialCount.unshift(0);
 		evolarray.push(specialCount);
 		matarray.push(special);
-		return $.extend(MakePots(pots), {
+		return {
 			alias: alias,
 			id: idlist,
 			maxPot: maxPot,
+			pots: pots,
 			evol: evolarray,
 			material: matarray,
 			special: specialUnique
-		});
+		};
 	}
 	else
 	{
 		evolarray.push([0,1]);
 		matarray.push(special);
-		return $.extend(MakePots(pots), {
+		return {
 			alias: alias,
 			id: idlist,
 			maxPot: maxPot,
+			pots: pots,
 			evol: evolarray,
 			material: matarray,
 			special: [special]
-		});
+		};
 	}
 }
 
@@ -195,13 +186,14 @@ function LastSpecial2(lastid, special, maxPot, pots, alias)
 // for hard dungeon cards that requires same level itself to evolve
 function HardDungeonWithId(idlist, maxPot, pots, alias)
 {
-	return $.extend(MakePots(pots), {
+	return {
 		alias: alias,
 		id: idlist,
 		maxPot: maxPot,
+		pots: pots,
 		evol: $.map(Array(idlist.length-1), function(v,i){return [[1<<i]];}),
 		material: idlist.slice(0, idlist.length-1)
-	});
+	};
 }
 
 function HardDungeon(lastid, maxPot, pots, alias)
@@ -336,27 +328,21 @@ data = {
 	800678: {
 		id: [80002,80003,80004,800016,800678],
 		maxPot: [1,2,3,5,10],
-		pots: ["C2","F1","PW","HW2","R1","DA1","AW2","H2","PW2","AWL2"],
-		pots2: ["H2","C2","PW","F1","E1"],
-		altpot: 4,
+		pots: [4, ["C2","F1","PW","HW2","R1","DA1","AW2","H2","PW2","AWL2"], ["H2","C2","PW","F1","E1"]],
 		evol: [[1],[1],[3],[]],
 		material: [80002,80002,80004,0]
 	},
 	800676: {
 		id: [80005,80006,80007,800017,800676],
 		maxPot: [1,2,3,6,10],
-		pots: ["E1","AGO1","F3","A2","PF2","AFT2","HGO3","AGO3","E2","C8"],
-		pots2: ["H1","F1","AF2","PF","C2","B1"],
-		altpot: 4,
+		pots: [4, ["E1","AGO1","F3","A2","PF2","AFT2","HGO3","AGO3","E2","C8"], ["H1","F1","AF2","PF","C2","B1"]],
 		evol: [[1],[1],[3],[]],
 		material: [80005,80005,80007,0]
 	},
 	800677: {
 		id: [80008,80009,80010,80011,800018,800677],
 		maxPot: [1,2,3,5,8,10],
-		pots: ["G1","HGO1","F3","A2","PT2","AFT2","HGO3","AGO3","G3","C8"],
-		pots2: ["G1","A2","H2","F2","PT","C2","R1","DF1"],
-		altpot: 5,
+		pots: [5, ["G1","HGO1","F3","A2","PT2","AFT2","HGO3","AGO3","G3","C8"], ["G1","A2","H2","F2","PT","C2","R1","DF1"]],
 		evol: [[1],[1],[1],[4],[]],
 		material: [80008,80008,80008,80011,0]
 	},
@@ -455,9 +441,7 @@ data = {
 		alias: ['過去','過去妙舞','白妙舞'],
 		id: [1297,1298,1299,1301,3817],
 		maxPot: [1,2,4,5,9],
-		pots: ["H2","A2","C2","C2","AF1","PF","F2","AF1","ASO2"],
-		pots2: ["A2","C2","C2","A2"],
-		altpot: 3,
+		pots: [3, ["H2","A2","C2","C2","AF1","PF","F2","AF1","ASO2"], ["A2","C2","C2","A2"]],
 		evol: [[1],[1],[0,1],[0,0,1]],
 		material: [1297,1297,-29,-127],
 		special: [-29,-127]
@@ -502,9 +486,7 @@ data = {
 	800082: {
 		id: [800076,800082],
 		maxPot: [3,9],
-		pots: ["PF","A2","F1","AF1","PF","HF1","R1","DW1","F2"],
-		pots2: ["PT","A2","F1"],
-		altpot: 1,
+		pots: [1, ["PF","A2","F1","AF1","PF","HF1","R1","DW1","F2"], ["PT","A2","F1"]],
 		evol: [[0,3,3,3,1,1,1]],
 		material: [[-139,-140,-141,800064,800080,800081]],
 		special: [-139,-140,-141,800062,800080,800081]
@@ -580,17 +562,21 @@ data = {
 		special: [800213,800214]
 	},
 	// Demon's Blader
-	4648: HardDungeonWithId([1729,1730,1731,1732,1733,4648], [1,2,3,5,10,10],
-		  [5,["A2","C4","H2","HF1","PF","A1","A1","F2","ADE2","HDE2"],["A1","C2","H1","HF1","C2","PF","H1","AF1","A1","AF1"]]),
+	6459: HardDungeonWithId([1729,1730,1731,1732,1733,4648,6459], [1,2,3,5,10,10,10],
+		  [6,["A2","C4","H2","HF2","PF2","AF2","PF2","F2","ADE2","HDE2"],
+		   5,["A2","C4","H2","HF1","PF","A1","A1","F2","ADE2","HDE2"],["A1","C2","H1","HF1","C2","PF","H1","AF1","A1","AF1"]]),
 	// Divine Blader
-	4649: HardDungeonWithId([2133,2134,2135,2136,2137,4649], [1,2,3,5,10,10],
-		  [5,["C4","A2","H2","PT2","AT1","H2","A2","HT1","AAN2","HAN2"],["C2","A1","H1","C2","PT","AT1","H1","PT","A1","HT1"]]),
+	6460: HardDungeonWithId([2133,2134,2135,2136,2137,4649,6460], [1,2,3,5,10,10,10],
+		  [6,["H4","F2","H2","PT2","AT2","H2","A4","HT2","AAN2","HAN2"],
+		   5,["C4","A2","H2","PT2","AT1","H2","A2","HT1","AAN2","HAN2"],["C2","A1","H1","C2","PT","AT1","H1","PT","A1","HT1"]]),
 	// Heretic Blader
-	4650: HardDungeonWithId([2298,2299,2300,2301,2302,4650], [1,2,3,5,10,10],
-		  [5,["C2","F2","H2","HW1","C4","A2","PW","AW1","AGO2","HGO2"],["C2","F1","H1","HW1","C2","C2","A2","PW","AW1","F1"]]),
+	6461: HardDungeonWithId([2298,2299,2300,2301,2302,4650,6461], [1,2,3,5,10,10,10],
+		  [6,["C2","F2","H2","HW2","C4","A2","PW2","AW2","AGO2","HGO2"],
+		   5,["C2","F2","H2","HW1","C4","A2","PW","AW1","AGO2","HGO2"],["C2","F1","H1","HW1","C2","C2","A2","PW","AW1","F1"]]),
 	// Tempest Blader
-	4651: HardDungeonWithId([3715,3716,3717,3718,3719,4651], [2,3,5,7,10,10],
-		  [5,["H2","F1","R1","PF2","HF1","AF1","HGODR2","F2","AGODR2","R1"],["H2","F1","R1","PF","HF1","PF","AF1","HGODR2","F2","AGODR2"]]),
+	6462: HardDungeonWithId([3715,3716,3717,3718,3719,4651,6462], [2,3,5,7,10,10,10],
+		  [6,["H2","F1","R1","PF2","HF2","AF2","HGODR2","F2","AGODR2","R1"],
+		   5,["H2","F1","R1","PF2","HF1","AF1","HGODR2","F2","AGODR2","R1"],["H2","F1","R1","PF","HF1","PF","AF1","HGODR2","F2","AGODR2"]]),
 	// 八百萬諸神祕聞2
 	5086: SimpleSelf(5086, [4,5,6,10], ["F1","H1","A1","H1","F1","HW1","PW","HW1","PW","AW1"]),
 	5090: SimpleSelf(5090, [4,5,6,10], ["PF","F1","A1","H1","PF","HF1","AF1","F1","AF1","F1"]),
@@ -687,10 +673,10 @@ series = {
 	'AbyssCode05 冥世的天蓋': [5052],
 	'幻魔特區 朱雀Ⅱ': [4259,4263,4267,4271],
 	'星耀學園‧遺願的繼承者': [800203,800205,800207,800209,800211],
-	"Demon's Blader": [4648],
-	'Divine Blader': [4649],
-	'Heretic Blader': [4650],
-	'Tempest Blader': [4651],
+	"Demon's Blader": [6459],
+	'Divine Blader': [6460],
+	'Heretic Blader': [6461],
+	'Tempest Blader': [6462],
 	'八百萬諸神祕聞2': [5086,5090,5094],
 	'空戰的德爾基馬斯': [4824,4828,4832,4836,4839],
 	'雙翼的失落伊甸': [5147,5151,5155,5159,5162],
@@ -792,11 +778,15 @@ menuOrder = [
 	'御三家',
 	'聖惡魔女子學院',
 	'===魔導士之家',
+	"Demon's Blader",
+	'Divine Blader',
+	'Heretic Blader',
+	'Tempest Blader',
+	'===近期結束副本',
 	'歌頌永恆的克羅諾斯', // 4/27
 	'歌頌永恆的克羅諾斯Ⅱ', // 4/27
-	'===近期結束副本',
-	'幻魔特區 朱雀Ⅲ',
 	'===過去副本',
+	'幻魔特區 朱雀Ⅲ',
 	'霸眼戰線',
 	'幻魔特區 朱雀',
 	'幻魔特區 朱雀Ⅱ',
@@ -808,10 +798,6 @@ menuOrder = [
 	'巧克力森林',
 	'黃昏無夢者',
 	'異界神的祝福試煉',
-	"Demon's Blader",
-	'Divine Blader',
-	'Heretic Blader',
-	'Tempest Blader',
 	'神龍降臨Ⅰ',
 	'聖誕老人的禮物',
 	'AbyssCode01 黑殼之王',
