@@ -39,17 +39,22 @@ function potImg(potName) {return img(potData[potName].icon, 30, potData[potName]
 function getPotList(info, level, potNum)
 {
 	var thispot;
-	var idx = 0;
-	while(typeof(info.pots[idx]) == "number")
+	if(typeof(info.pots[0]) != "number")
+		thispot = info.pots;
+	else
 	{
-		if(level >= info.pots[idx])
+		var idx = 0;
+		while(typeof(info.pots[idx]) == "number")
 		{
-			thispot = info.pots[idx+1];
-			break;
+			if(level >= info.pots[idx])
+			{
+				thispot = info.pots[idx+1];
+				break;
+			}
+			idx += 2;
 		}
-		idx += 2;
+		if(!thispot) thispot = info.pots[idx];
 	}
-	if(!thispot) thispot = info.pots[idx];
 	return thispot.slice(0, potNum);
 }
 
