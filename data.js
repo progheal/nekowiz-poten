@@ -37,7 +37,7 @@ potData = {
 {
 	var Type = {F:'火屬性', W:'水屬性', T:'雷屬性', A:'全屬性'}
 	var DualType = {FW:'火、水屬性', FT:'火、雷屬性', WT:'水、雷屬性'}
-	var Race = {WA:'戰士', SO:'術士', FA:'妖精', AN:'天使', DE:'魔族', DH:'亞人', DR:'龍族', GO:'神族', MA:'物質', AB:'AbCd '}
+	var Race = {WA:'戰士', SO:'術士', FA:'妖精', AN:'天使', DE:'魔族', DH:'亞人', DR:'龍族', GO:'神族', MA:'物質', MC:'魔法生物', AB:'AbCd '}
 	var DualRace = {GODR:'神族、龍族', ANDE:'天使、魔族'}
 	var Roman = {'1':'Ⅰ', '2':'Ⅱ', '3':'Ⅲ', '4':'Ⅳ', '5':'Ⅴ'}
 	var Attribute = {
@@ -72,12 +72,11 @@ potData = {
 	var r = $.extend({},Race,DualRace);
 	for(var attr in Attribute)
 	{
-		if(attr == 'D') continue;
 		for(var token in r)
 		{
 			for(var num in Roman)
 			{
-				potData[attr+token+num] = {icon: "Senzai_"+AttrIcon[attr]+"_Race", name: Attribute[attr](r[token])+Roman[num]};
+				potData[attr+token+num] = {icon: "Senzai_"+AttrIcon[attr]+"_Breed", name: Attribute[attr](r[token])+Roman[num]};
 			}
 		}
 	}
@@ -627,6 +626,27 @@ data = {
 	6214: SimpleSelf(6214, [3,5,7,10], ["A2","PT","A2","F1","PT2","AT1","HT1","F2","ADE2","HDE2"]),
 	6218: SimpleSelf(6218, [3,5,7,10], ["A2","F1","A2","H2","PF","PF2","F2","AF2","HAN3","AAN3"]),
 	6222: SimpleSelf(6222, [3,5,7,10], ["A2","H2","PW","A2","F1","PW2","AW1","F2","AW1","HW2"]),
+	// 初夏的魔法使慶典
+	800730: {
+		id: [800729,800730],
+		maxPot: [8,10],
+		pots: ["A1","H2","A2","C2","F2","PT","R1","AT2","DA1","AT2"],
+		evol: [[4,1,1,1,1]],
+		material: [[800730,800730,800730,800730,800750,800760,800756,800766]],
+		special: [800750,800760,800756,800766]
+	},
+	800742: {
+		id: [800741,800742],
+		maxPot: [8,10],
+		pots: ["A1","DMA1","H2","C2","F2","DWT2","C4","PT2","AMC3","HMC3"],
+		evol: [[1,1,1,1,1,1,1]],
+		material: [[800741,800752,800754,800758,800760,800764,800766]],
+		special: [800752,800754,800758,800760,800764,800766]
+	},
+	// 續・超魔導列傳
+	6566: SimpleSelf(6566, [3,5,8,10], ["R1","PW","F1","HW1","A3","AW1","PW2","HSO2","F2","ASO2"]),
+	6570: SimpleSelf(6570, [4,6,8,10], ["PT","A2","F1","H2","AT1","F2","A2","HT2","AT2","PT2"]),
+	6574: SimpleSelf(6574, [4,6,8,10], ["H2","A2","PF2","F1","R1","F1","PF2","HF2","AF2","B1"]),
 };
 
 series = {
@@ -686,6 +706,8 @@ series = {
 	'霸眼戰線2': [6068,6072,6076,6080],
 	'幻魔特區 朱雀Ⅲ': [6361,6365,6369,6373],
 	'聖惡魔女子學院': [6214,6218,6222],
+	'初夏的魔法使慶典': [800730,800742],
+	'續・超魔導列傳': [6566,6570,6574],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -776,16 +798,19 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
-	'聖惡魔女子學院',
+	'初夏的魔法使慶典',
+	'續・超魔導列傳',
 	'===魔導士之家',
 	"Demon's Blader",
 	'Divine Blader',
 	'Heretic Blader',
 	'Tempest Blader',
+	'超魔導列傳', // 5/31
 	'===近期結束副本',
-	'歌頌永恆的克羅諾斯', // 4/27
-	'歌頌永恆的克羅諾斯Ⅱ', // 4/27
+	'聖惡魔女子學院',
 	'===過去副本',
+	'歌頌永恆的克羅諾斯',
+	'歌頌永恆的克羅諾斯Ⅱ',
 	'幻魔特區 朱雀Ⅲ',
 	'霸眼戰線',
 	'幻魔特區 朱雀',
@@ -808,7 +833,6 @@ menuOrder = [
 	'菇菇方程式',
 	'天上岬的調香師',
 	'空戰的德爾基馬斯',
-	'超魔導列傳',
 	'天上岬～永恆的公主～',
 	'Halloween Night',
 	'雙翼的失落伊甸',
