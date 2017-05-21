@@ -31,6 +31,7 @@ potData = {
 	G2:  {icon: "Senzai_Gold",       name: "獲得金幣量上升Ⅱ"},
 	G3:  {icon: "Senzai_Gold",       name: "獲得金幣量上升Ⅲ"},
 	B1:  {icon: "Senzai_BattleEnd",  name: "戰鬥結束後回復全體隊友的HP"},
+	CG1: {icon: "Senzai_Chain_guard",name: "於一次任務中，僅限一次保護連鎖數"},
 	AWL2:{icon: "Senzai_ATK_WL",     name: "水屬性隊友的攻擊力上升200點，複屬性為光屬性時又再上升200點"},
 }
 
@@ -647,6 +648,10 @@ data = {
 	6566: SimpleSelf(6566, [3,5,8,10], ["R1","PW","F1","HW1","A3","AW1","PW2","HSO2","F2","ASO2"]),
 	6570: SimpleSelf(6570, [4,6,8,10], ["PT","A2","F1","H2","AT1","F2","A2","HT2","AT2","PT2"]),
 	6574: SimpleSelf(6574, [4,6,8,10], ["H2","A2","PF2","F1","R1","F1","PF2","HF2","AF2","B1"]),
+	// YAOYORO Z
+	6857: SimpleSelf(6857, [4,6,8,10], ["PT","H2","A2","F1","AT1","PT2","HT1","F2","AT1","R1"]),
+	6861: SimpleSelf(6861, [4,6,8,10], ["F2","PW","AW1","HW1","PW","H2","AW1","A2","PW2","HW1"]),
+	6865: SimpleSelf(6865, [4,6,8,10], ["F1","A2","H2","PF2","F2","A2","PF2","HFT2","AFT2","CG1"]),
 };
 
 series = {
@@ -708,6 +713,7 @@ series = {
 	'聖惡魔女子學院': [6214,6218,6222],
 	'初夏的魔法使慶典': [800730,800742],
 	'續・超魔導列傳': [6566,6570,6574],
+	'YAOYORO Z': [6857,6861,6865],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -734,6 +740,7 @@ seriesAlias = {
 	'Halloween Night': ['新生Halloween Night','新生 Halloween Night'],
 	'天上岬的調香師': ['天上岬Ⅱ'],
 	'異界神的祝福試煉': ['異界神的二度試煉'],
+	'YAOYORO Z': ['八百萬諸神祕聞Ｚ','八百萬Ｚ','八百萬諸神祕聞Z','八百萬Z'],
 };
 
 evolTooltip = {
@@ -798,8 +805,8 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
-	'初夏的魔法使慶典',
 	'續・超魔導列傳',
+	'YAOYORO Z',
 	'===魔導士之家',
 	"Demon's Blader",
 	'Divine Blader',
@@ -807,8 +814,9 @@ menuOrder = [
 	'Tempest Blader',
 	'超魔導列傳', // 5/31
 	'===近期結束副本',
-	'聖惡魔女子學院',
+	'初夏的魔法使慶典',
 	'===過去副本',
+	'聖惡魔女子學院',
 	'歌頌永恆的克羅諾斯',
 	'歌頌永恆的克羅諾斯Ⅱ',
 	'幻魔特區 朱雀Ⅲ',
