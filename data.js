@@ -652,11 +652,14 @@ data = {
 	6857: SimpleSelf(6857, [4,6,8,10], ["PT","H2","A2","F1","AT1","PT2","HT1","F2","AT1","R1"]),
 	6861: SimpleSelf(6861, [4,6,8,10], ["F2","PW","AW1","HW1","PW","H2","AW1","A2","PW2","HW1"]),
 	6865: SimpleSelf(6865, [4,6,8,10], ["F1","A2","H2","PF2","F2","A2","PF2","HFT2","AFT2","CG1"]),
+	// 德蕾姬亞
+	6159: HardDungeon(6159, [2,3,6,10], ["E1","F1","HW1","PW","R1","F1","H2","A2","HW2","PW2"]),
 };
 
 series = {
 	'御三家': [3626,3627,3628],
 	'蕊颯': [5672],
+	'德蕾姬亞': [6159],
 	'惡作劇女神與兔子的故事': [1756,1760,1764,1768],
 	'黃昏的四神書': [1595,1599,1591,1592,1586,1587],
 	'妖精花園': [1399,1403,1517,1407],
@@ -786,6 +789,7 @@ hardDungeonTooltip = [
 	data[series["Dragon's Blader ZERO"][0]].id,
 	data[series['Tempest Blader'][0]].id,
 	data[series['AbyssCode05 冥世的天蓋'][0]].id,
+	data[series['德蕾姬亞'][0]].id,
 ]
 
 hardDungeonTooltip.forEach(function(idlist){
@@ -805,6 +809,7 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
+	'德蕾姬亞',
 	'續・超魔導列傳',
 	'YAOYORO Z',
 	'===魔導士之家',
