@@ -2,6 +2,7 @@ potData = {
 	F1:  {icon: "Senzai_FastSkill",  name: "快速技能Ⅰ"},
 	F2:  {icon: "Senzai_FastSkill",  name: "快速技能Ⅱ"},
 	F3:  {icon: "Senzai_FastSkill",  name: "快速技能Ⅲ"},
+	N1:  {icon: "Senzai_Chain_boost",name: "提升連鎖Ⅰ"},
 	C2:  {icon: "Senzai_CostDown",   name: "減少COSTⅡ"},
 	C4:  {icon: "Senzai_CostDown",   name: "減少COSTⅣ"},
 	C6:  {icon: "Senzai_CostDown",   name: "減少COSTⅥ"},
@@ -32,12 +33,11 @@ potData = {
 	G3:  {icon: "Senzai_Gold",       name: "獲得金幣量上升Ⅲ"},
 	B1:  {icon: "Senzai_BattleEnd",  name: "戰鬥結束後回復全體隊友的HP"},
 	CG1: {icon: "Senzai_Chain_guard",name: "於一次任務中，僅限一次保護連鎖數"},
-	AWL2:{icon: "Senzai_ATK_WL",     name: "水屬性隊友的攻擊力上升200點，複屬性為光屬性時又再上升200點"},
 }
 
 {
-	var Type = {F:'火屬性', W:'水屬性', T:'雷屬性', A:'全屬性'}
-	var DualType = {FW:'火、水屬性', FT:'火、雷屬性', WT:'水、雷屬性'}
+	var TypeName = {F:'火', W:'水', T:'雷'}
+	var SubTypeName = {L:'光', D:'闇'}
 	var Race = {WA:'戰士', SO:'術士', FA:'妖精', AN:'天使', DE:'魔族', DH:'亞人', DR:'龍族', GO:'神族', MA:'物質', MC:'魔法生物', AB:'AbCd '}
 	var DualRace = {GODR:'神族、龍族', ANDE:'天使、魔族'}
 	var Roman = {'1':'Ⅰ', '2':'Ⅱ', '3':'Ⅲ', '4':'Ⅳ', '5':'Ⅴ'}
@@ -50,22 +50,39 @@ potData = {
 
 	for(var attr in Attribute)
 	{
-		for(var t in Type)
+		for(var t in TypeName)
 		{
 			for(var num in Roman)
 			{
-				potData[attr+t+num] = {icon: "Senzai_"+AttrIcon[attr]+"_"+t, name: Attribute[attr](Type[t])+Roman[num]};
+				potData[attr+t+num] = {
+					icon: "Senzai_"+AttrIcon[attr]+"_"+t,
+					name: Attribute[attr](TypeName[t]+'屬性')+Roman[num]
+				};
 			}
 		}
 	}
 
 	for(var attr in Attribute)
 	{
-		for(var dt in DualType)
+		for(var num in Roman)
+		{
+			potData[attr+'A'+num] = {
+				icon: "Senzai_"+AttrIcon[attr]+"_A",
+				name: Attribute[attr]('全屬性')+Roman[num]
+			};
+		}
+	}
+
+	for(var attr in Attribute)
+	{
+		for(var dt of ['FW', 'FT', 'WT'])
 		{
 			for(var num in Roman)
 			{
-				potData[attr+dt+num] = {icon: "Senzai_"+AttrIcon[attr]+"_"+dt, name: Attribute[attr](DualType[dt])+Roman[num]};
+				potData[attr+dt+num] = {
+					icon: "Senzai_"+AttrIcon[attr]+"_"+dt,
+					name: Attribute[attr](TypeName[dt[0]]+'、'+TypeName[dt[1]]+'屬性')+Roman[num]
+				};
 			}
 		}
 	}
@@ -78,6 +95,26 @@ potData = {
 			for(var num in Roman)
 			{
 				potData[attr+token+num] = {icon: "Senzai_"+AttrIcon[attr]+"_Breed", name: Attribute[attr](r[token])+Roman[num]};
+			}
+		}
+	}
+
+	for(var attr of ['A'])
+	{
+		for(var type1 in TypeName)
+		{
+			for(var num1 of [1,2])
+			{
+				for(var type2 in SubTypeName)
+				{
+					for(var num2 of [1,2])
+					{
+						potData[attr+type1+num1+type2+num2] = {
+							icon: "Senzai_"+AttrIcon[attr]+"_"+type1+type2,
+							name: Attribute[attr]('複屬性')+'＜'+TypeName[type1]+Roman[num1]+'・'+SubTypeName[type2]+Roman[num2]+'＞'
+						};
+					}
+				}
 			}
 		}
 	}
@@ -328,7 +365,7 @@ data = {
 	800678: {
 		id: [80002,80003,80004,800016,800678],
 		maxPot: [1,2,3,5,10],
-		pots: [4, ["C2","F1","PW","HW2","R1","DA1","AW2","H2","PW2","AWL2"], ["H2","C2","PW","F1","E1"]],
+		pots: [4, ["C2","F1","PW","HW2","R1","DA1","AW2","H2","PW2","AW2L2"], ["H2","C2","PW","F1","E1"]],
 		evol: [[1],[1],[3],[]],
 		material: [80002,80002,80004,0]
 	},
@@ -654,6 +691,10 @@ data = {
 	6865: SimpleSelf(6865, [4,6,8,10], ["F1","A2","H2","PF2","F2","A2","PF2","HFT2","AFT2","CG1"]),
 	// 德蕾姬亞
 	6159: HardDungeon(6159, [2,3,6,10], ["E1","F1","HW1","PW","R1","F1","H2","A2","HW2","PW2"]),
+	// 雙翼的失落伊甸Ⅱ WWMF
+	7170: SimpleSelf(7170, [3,5,7,10], ["F1","PF","AF1","HF1","R1","HF1","PF2","AF1","F2","N1"]),
+	7174: SimpleSelf(7174, [3,5,7,10], ["A2","R1","H2","PT","HMA2","PT2","F2","HT2","AT2","AMA2"]),
+	7178: SimpleSelf(7178, [3,5,7,10], ["F1","A2","PW","HW1","H2","F2","PW2","AW1","R1","AW2D1"]),
 };
 
 series = {
@@ -717,6 +758,7 @@ series = {
 	'初夏的魔法使慶典': [800730,800742],
 	'續・超魔導列傳': [6566,6570,6574],
 	'YAOYORO Z': [6857,6861,6865],
+	'雙翼的失落伊甸Ⅱ WWMF': [7170,7174,7178],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -744,6 +786,7 @@ seriesAlias = {
 	'天上岬的調香師': ['天上岬Ⅱ'],
 	'異界神的祝福試煉': ['異界神的二度試煉'],
 	'YAOYORO Z': ['八百萬諸神祕聞Ｚ','八百萬Ｚ','八百萬諸神祕聞Z','八百萬Z','800wz','800z'],
+	'雙翼的失落伊甸Ⅱ WWMF': ['雙翼Ⅱ'],
 };
 
 evolTooltip = {
@@ -810,6 +853,7 @@ grayiconlist = [
 menuOrder = [
 	'御三家',
 	'YAOYORO Z',
+	'雙翼的失落伊甸Ⅱ WWMF',
 	'===魔導士之家',
 	"Demon's Blader",
 	'Divine Blader',
