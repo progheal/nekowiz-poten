@@ -33,6 +33,7 @@ potData = {
 	G3:  {icon: "Senzai_Gold",       name: "獲得金幣量上升Ⅲ"},
 	B1:  {icon: "Senzai_BattleEnd",  name: "戰鬥結束後回復全體隊友的HP"},
 	CG1: {icon: "Senzai_Chain_guard",name: "於一次任務中，僅限一次保護連鎖數"},
+	INV: {icon: "Senzai_Invalidate", name: "使敵方技能的特殊技能封印失效"}
 }
 
 {
@@ -549,6 +550,8 @@ data = {
 	// AbyssCode05 冥世的天蓋
 	5052: HardDungeonWithId([3746,3747,3748,3749,3750,5052], [1,2,3,5,10,10],
 		[5, ["F1","A1","PT2","H2","HT1","F2","PT2","AT1","AT2","RΞ"], ["F1","A1","PT","H2","HT1","F2","PT","AT1","AAB2","R3"]]),
+	// AbyssCode06 劫末之獸
+	6277: HardDungeon(6277, [1,2,3,7,10], ["PW","F1","A2","PW2","HW2","F2","R2","INV","AW2","HW2"]),
 	// 八百萬諸神祕聞
 	4091: SimpleSelf(4091, [2,3,4,6], ["H1","A1","PT","F1","A2","AGO2"]),
 	4095: SimpleSelf(4095, [3,5,6,8], ["PF","F1","H2","A2","AF1","C2","AGO2","AGO2"]),
@@ -754,6 +757,7 @@ series = {
 	'黃昏無夢者': [5850,5854,5858],
 	'霸眼戰線2': [6068,6072,6076,6080],
 	'幻魔特區 朱雀Ⅲ': [6361,6365,6369,6373],
+	'AbyssCode06 劫末之獸': [6277],
 	'聖惡魔女子學院': [6214,6218,6222],
 	'初夏的魔法使慶典': [800730,800742],
 	'續・超魔導列傳': [6566,6570,6574],
@@ -776,6 +780,7 @@ seriesAlias = {
 	'AbyssCode03 生而墮於虛無':['AbyssCode3','AbCd3','AbCd03'],
 	'AbyssCode04 燃燒殆盡的陽光':['AbyssCode4','AbCd4','AbCd04'],
 	'AbyssCode05 冥世的天蓋':['AbyssCode5','AbCd5','AbCd05'],
+	'AbyssCode06 劫末之獸':['AbyssCode6','AbCd6','AbCd06'],
 	'幻魔特區 朱雀': ['幻魔Ⅰ','朱雀Ⅰ'],
 	'幻魔特區 朱雀Ⅱ': ['幻魔Ⅱ'],
 	'幻魔特區 朱雀Ⅲ': ['幻魔Ⅲ'],
@@ -829,6 +834,8 @@ hardDungeonTooltip = [
 	data[series['AbyssCode02 盲目的調和'][0]].id,
 	data[series['AbyssCode03 生而墮於虛無'][0]].id,
 	data[series['AbyssCode04 燃燒殆盡的陽光'][0]].id,
+	data[series['AbyssCode05 冥世的天蓋'][0]].id,
+	data[series['AbyssCode06 劫末之獸'][0]].id,
 	data[series["Dragon's Blader ZERO"][0]].id,
 	data[series['Tempest Blader'][0]].id,
 	data[series['AbyssCode05 冥世的天蓋'][0]].id,
@@ -852,20 +859,26 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
-	'YAOYORO Z',
 	'雙翼的失落伊甸Ⅱ WWMF',
 	'===魔導士之家',
 	"Demon's Blader",
 	'Divine Blader',
 	'Heretic Blader',
 	'Tempest Blader',
+	'AbyssCode01 黑殼之王',
+	'AbyssCode02 盲目的調和',
+	'AbyssCode03 生而墮於虛無',
+	'AbyssCode04 燃燒殆盡的陽光',
+	'AbyssCode05 冥世的天蓋',
+	'AbyssCode06 劫末之獸',
 	'八百萬諸神祕聞', // 6/30
 	'八百萬諸神祕聞2', // 6/30
 	'===近期結束副本',
+	'YAOYORO Z',
+	'===過去副本',
 	'德蕾姬亞',
 	'續・超魔導列傳',
 	'超魔導列傳',
-	'===過去副本',
 	'初夏的魔法使慶典',
 	'聖惡魔女子學院',
 	'歌頌永恆的克羅諾斯',
@@ -884,11 +897,6 @@ menuOrder = [
 	'異界神的祝福試煉',
 	'神龍降臨Ⅰ',
 	'聖誕老人的禮物',
-	'AbyssCode01 黑殼之王',
-	'AbyssCode02 盲目的調和',
-	'AbyssCode03 生而墮於虛無',
-	'AbyssCode04 燃燒殆盡的陽光',
-	'AbyssCode05 冥世的天蓋',
 	'菇菇方程式',
 	'天上岬的調香師',
 	'空戰的德爾基馬斯',
