@@ -64,6 +64,10 @@ a:hover, a:active {
 	background-color: #ffffff;
 }
 
+.multiplicity {
+	font-size: 150%;
+}
+
 .pot {
 	display: inline-block;
 	width: 30px;

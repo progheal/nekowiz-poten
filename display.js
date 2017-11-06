@@ -158,22 +158,29 @@ function toHTML(info, result)
 					{
 						var leftlist = [];
 						var rightlist = [];
+						function materialIconStr(item)
+						{
+							if(typeof(item) == 'object')
+								return iconImg(item[0], true) + '<span class="multiplicity">&times;' + item[1] + '</span>';
+							else
+								return iconImg(item, true);
+						}
 						if(material.length >= 4)
 						{
 							var leftThreshold = Math.floor(material.length / 2);
 							for(var k = 0; k < material.length; k++)
 							{
 								if(k < leftThreshold)
-									leftlist.push(iconImg(material[k], true));
+									leftlist.push(materialIconStr(material[k]));
 								else
-									rightlist.push(iconImg(material[k], true));
+									rightlist.push(materialIconStr(material[k]));
 							}
 						}
 						else
 						{
 							for(var k in material)
 							{
-								rightlist.push(iconImg(material[k], true));
+								rightlist.push(materialIconStr(material[k]));
 							}
 						}
 						while(leftlist.length < rightlist.length)
@@ -218,7 +225,7 @@ function toHTML(info, result)
 	}
 	var lastline = '<td colspan="' + width + '"><hr>';
 	var needlist = [];
-	if(result.cost.length > 1 && result.cost[1] > 0) needlist.push(iconImg(info.id[0]) + "x" + result.cost[1]);
+	if(result.cost.length > 1 && result.cost[1] > 0) needlist.push(iconImg(info.id[0]) + '&times;' + result.cost[1]);
 	for(var k = 2; k < result.cost.length; k++)
 	{
 		var item = info.special[k-2];
@@ -229,19 +236,19 @@ function toHTML(info, result)
 			var complex = [];
 			for(var u = 1; u < item.length; u+=2)
 			{
-				complex.push(iconImg(item[u]) + 'x' + (item[u+1] * count));
+				complex.push(iconImg(item[u]) + '&times;' + (item[u+1] * count));
 			}
 			needlist.push(
-				iconImg(item[0]) + "x" + count + '（＝' + complex.join('、') + '）'
+				iconImg(item[0]) + '&times;' + count + '（＝' + complex.join('、') + '）'
 			);
 		}
 		else
 		{
-			needlist.push(iconImg(item) + "x" + count);
+			needlist.push(iconImg(item) + '&times;' + count);
 		}
 	}
 	if(needlist.length > 0)
-		lastline += '總計還需要：' + needlist.join('、');
+		lastline += '總計還需要：<span class="multiplicity">' + needlist.join('、') + '</span>';
 	else
 		lastline += '現有卡已足夠！';
 	lastline += '</td>';
@@ -483,9 +490,9 @@ function bindEvolTooltip()
 		for(var u in evolTooltip[k])
 		{
 			if(u > 0)
-				tt.push(img(pad4(u),30) + 'x' + evolTooltip[k][u]);
+				tt.push(img(pad4(u),30) + '&times;' + evolTooltip[k][u]);
 			else
-				tt.push(img(u,30) + 'x' + evolTooltip[k][u]);
+				tt.push(img(u,30) + '&times;' + evolTooltip[k][u]);
 		}
 		bindTooltipOn(elem, '#evolTooltip', '<span>'+tt.join('、')+'</span>', 70, 0);
 	}
@@ -518,7 +525,20 @@ function asyncgo()
 	}
 	else
 	{
-		var materialLevel = g_info.material.map(function(v){return g_info.id.indexOf(v);});
+		var materialLevel = [];
+		for(var v of g_info.material)
+		{
+			if(typeof(v) == 'object')
+			{
+				var mlv = g_info.id.indexOf(v[0]);
+				for(var j = 0; j < v[1]; j++)
+					materialLevel.push(mlv);
+			}
+			else if(typeof(v) == 'number')
+			{
+				materialLevel.push(g_info.id.indexOf(v));
+			}
+		}
 		result = core(g_info.maxPot, g_info.evol, materialLevel, curr, special, g_target.level, g_target.pot, overflow);
 		html = toHTML(g_info, result);
 	}
