@@ -102,6 +102,20 @@ potData = {
 			}
 		}
 	}
+	
+	for(var attr of ['D'])
+	{
+		for(var type2 in SubTypeName)
+		{
+			for(var num2 of [1,2])
+			{
+				potData[attr+type2+num2] = {
+					icon: "Senzai_"+AttrIcon[attr]+"_DL",
+					name: Attribute[attr](SubTypeName[type2]+'屬性')+Roman[num2]
+				};
+			}
+		}
+	}
 
 	for(var attr of ['A','H'])
 	{
@@ -769,6 +783,7 @@ data = {
 		special: [-381,-383,-384]
 	},
 	// 魔法GLICOⅠ
+	2826: SimpleSelf(2826, [1,2,3,5], ["C2","H1","A1","PW","DF1"]),
 	2830: SimpleSelf(2830, [2,3,4,6], ["A1","F1","A1","F1","C2","F1"]),
 	2834: SimpleSelf(2834, [2,3,4,6], ["F1","C2","A1","PF","F1","AF1"]),
 	5570: SimpleSelfWithId([2835,2836,2837,2838,4332,5570], [2,4,6,9,10,10],
@@ -789,6 +804,11 @@ data = {
 	7772: SimpleSelf(7772, [3,5,7,10], ["A2","PT","C2","HT2","F1","H2","PT2","R1","AT2","F2"]),
 	// 淡薄的藍色光芒 第二章 虛幻聖域
 	7648: SimpleSelf(7648, [2,5,7,10], ["A2","H2","F1","AW1","HW1","PW","AWA2","HWA2","PW2","F2"]),
+	// 神聖天空之星
+	7523: SimpleSelf(7523, [3,6,8,10], ["PW","A1","H1","PW2","AW1","HW1","F1","HW1","F2","AW1"]),
+	7527: SimpleSelf(7527, [3,6,8,10], ["F1","PT","A2","H2","AT1","DT1","R1","HT1","PT2","F2"]),
+	7531: SimpleSelf(7531, [3,6,8,10], ["F1","A1","PW","H1","PW2","A2","F2","H2","AGO2","HGO1"]),
+	7535: SimpleSelf(7535, [3,6,8,10], ["A2","DD1","PF","F1","R1","PF2","F2","HGO2","AGO2","AF1L1"]),
 };
 
 series = {
@@ -863,9 +883,10 @@ series = {
 	'黃昏無夢者Ⅱ 殘響dearless': [7343,7347,7351,7355],
 	'《幻世之約》—沉月與洛恩斯的交匯': [801002],
 	'魔轟三鐵傑 對 地獄三十六歌仙': [7760,7764,7768,7772],
-	'魔法GLICOⅠ': [2830,2834,5570,5571],
+	'魔法GLICOⅠ': [2826,2830,2834,5570,5571],
 	'魔法GLICOⅡ': [4313,4317,4321,4325],
 	'淡薄的藍色光芒 第二章 虛幻聖域': [7648],
+	'神聖天空之星': [7523,7527,7531,7535],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -970,11 +991,12 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
+	'神聖天空之星',
 	'淡薄的藍色光芒 第二章 虛幻聖域',
 	'魔法GLICOⅠ',
 	'魔法GLICOⅡ',
+	'===近期結束副本',
 	'魔轟三鐵傑 對 地獄三十六歌仙',
-	//'===近期結束副本',
 	'===魔導士之家',
 	"Demon's Blader",
 	'Divine Blader',
