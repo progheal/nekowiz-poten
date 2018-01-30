@@ -829,6 +829,10 @@ data = {
 	7867: SimpleSelf(7867, [3,5,7,10], ["F2","A1","H1","ASO2","PF","F2","PF2","A2","HSO2","AF2"]),
 	7871: SimpleSelf(7871, [3,5,7,10], ["F1","H2","PF","HF2","R1","F2","A2","PF2","AF2","R1"]),
 	7875: SimpleSelf(7875, [3,5,7,10], ["A1","PT","F2","HT2","C2","F2","H2","PT2","A2","AT2"]),
+	// 響命 Cross Derive
+	8066: SimpleSelf(8066, [3,5,7,10], ["H2","A2","PT","R1","F1","PT2","AWA2","AT2","HT2","F2"]),
+	8070: SimpleSelf(8070, [3,5,7,10], ["H2","F1","PF","AF1","F2","PF2","AWA2","HF2","AF1T2","HF1T2"]),
+	8074: SimpleSelf(8074, [3,5,7,10], ["PW","F1","H2","PW2","F2","C5","A3","R1","HW2","AW2"]),
 };
 
 series = {
@@ -908,6 +912,7 @@ series = {
 	'淡薄的藍色光芒 第二章 虛幻聖域': [7648],
 	'神聖天空之星': [7523,7527,7531,7535],
 	'新說 桃娘傳 妖爺合戰誓助劍': [7867,7871,7875],
+	'響命 Cross Derive': [8066,8070,8074],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -947,6 +952,7 @@ seriesAlias = {
 	'魔法GLICOⅡ': ['固力果Ⅱ'],
 	'桃娘傳': ['桃娘傳Ⅰ'],
 	'新說 桃娘傳 妖爺合戰誓助劍': ['新說桃娘傳','桃娘傳Ⅱ'],
+	'響命 Cross Derive':['響命CrossDerive'],
 };
 
 evolTooltip = {
@@ -1014,9 +1020,9 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
-	'新說 桃娘傳 妖爺合戰誓助劍',
+	'響命 Cross Derive',
 	'===近期結束副本',
-	'神聖天空之星',
+	'新說 桃娘傳 妖爺合戰誓助劍',
 	'===魔導士之家：Blader &amp; AbCd',
 	"Demon's Blader",
 	'Divine Blader',
@@ -1046,6 +1052,7 @@ menuOrder = [
 	'超魔導列傳',
 	'續・超魔導列傳',
 	'===過去副本',
+	'神聖天空之星',
 	'淡薄的藍色光芒 第二章 虛幻聖域',
 	'魔法GLICOⅠ',
 	'魔法GLICOⅡ',
