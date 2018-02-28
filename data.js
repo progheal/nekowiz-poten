@@ -91,6 +91,17 @@ potData = {
 		}
 	}
 
+	for(var attr in Attribute)
+	{
+		for(var num in Roman)
+		{
+			potData[attr+'LD'+num] = {
+				icon: "Senzai_"+AttrIcon[attr]+"_DL",
+				name: Attribute[attr](SubTypeName.L+'、'+SubTypeName.D+'屬性')+Roman[num]
+			};
+		}
+	}
+
 	var r = $.extend({},Race,DualRace);
 	for(var attr in Attribute)
 	{
@@ -833,6 +844,11 @@ data = {
 	8066: SimpleSelf(8066, [3,5,7,10], ["H2","A2","PT","R1","F1","PT2","AWA2","AT2","HT2","F2"]),
 	8070: SimpleSelf(8070, [3,5,7,10], ["H2","F1","PF","AF1","F2","PF2","AWA2","HF2","AF1T2","HF1T2"]),
 	8074: SimpleSelf(8074, [3,5,7,10], ["PW","F1","H2","PW2","F2","C5","A3","R1","HW2","AW2"]),
+	// VOID ZONE 絕天鎧裝
+	8311: HardDungeon(8311, [2,4,6,8,10],
+		[4,["PT2","F1","PT2","F2","R1","DA1","DLD1","AT3","HT3","INV"],
+		 3,["PT2","F1","AFT2","F2","R1","DA1","DLD1","AT3"],
+		   ["PT2","F1","PT2","F2","R1","DA1"]]),
 };
 
 series = {
@@ -913,6 +929,7 @@ series = {
 	'神聖天空之星': [7523,7527,7531,7535],
 	'新說 桃娘傳 妖爺合戰誓助劍': [7867,7871,7875],
 	'響命 Cross Derive': [8066,8070,8074],
+	'VOID ZONE 絕天鎧裝': [8311],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -953,6 +970,7 @@ seriesAlias = {
 	'桃娘傳': ['桃娘傳Ⅰ'],
 	'新說 桃娘傳 妖爺合戰誓助劍': ['新說桃娘傳','桃娘傳Ⅱ'],
 	'響命 Cross Derive':['響命CrossDerive'],
+	'VOID ZONE 絕天鎧裝': ['VOIDZONE'],
 };
 
 evolTooltip = {
@@ -1001,6 +1019,7 @@ hardDungeonTooltip = [
 	data[series['Tempest Blader'][0]].id,
 	data[series['AbyssCode05 冥世的天蓋'][0]].id,
 	data[series['德蕾姬亞'][0]].id,
+	data[series['VOID ZONE 絕天鎧裝'][0]].id,
 ]
 
 hardDungeonTooltip.forEach(function(idlist){
@@ -1021,6 +1040,7 @@ grayiconlist = [
 menuOrder = [
 	'御三家',
 	'響命 Cross Derive',
+	'VOID ZONE 絕天鎧裝',
 	'===近期結束副本',
 	'新說 桃娘傳 妖爺合戰誓助劍',
 	'===魔導士之家：Blader &amp; AbCd',
