@@ -1,42 +1,64 @@
 potData = {
-	F1:  {icon: "Senzai_FastSkill",  name: "快速技能Ⅰ"},
-	F2:  {icon: "Senzai_FastSkill",  name: "快速技能Ⅱ"},
-	F3:  {icon: "Senzai_FastSkill",  name: "快速技能Ⅲ"},
 	N1:  {icon: "Senzai_Chain_boost",name: "提升連鎖Ⅰ"},
-	C2:  {icon: "Senzai_CostDown",   name: "減少COSTⅡ"},
-	C4:  {icon: "Senzai_CostDown",   name: "減少COSTⅣ"},
-	C6:  {icon: "Senzai_CostDown",   name: "減少COSTⅥ"},
-	C8:  {icon: "Senzai_CostDown",   name: "減少COSTⅧ"},
-	C10: {icon: "Senzai_CostDown",   name: "減少COSTⅩ"},
-	R1:  {icon: "Senzai_Konki",      name: "九死一生Ⅰ"},
-	R2:  {icon: "Senzai_Konki",      name: "九死一生Ⅱ"},
-	R3:  {icon: "Senzai_Konki",      name: "九死一生Ⅲ"},
 	RΞ:  {icon: "Senzai_Konki",      name: "九死一生Ξ"},
-	H1:  {icon: "Senzai_HP",         name: "HP上升Ⅰ"},
-	H2:  {icon: "Senzai_HP",         name: "HP上升Ⅱ"},
-	H3:  {icon: "Senzai_HP",         name: "HP上升Ⅲ"},
-	H4:  {icon: "Senzai_HP",         name: "HP上升Ⅳ"},
-	A1:  {icon: "Senzai_ATK",        name: "攻擊力上升Ⅰ"},
-	A2:  {icon: "Senzai_ATK",        name: "攻擊力上升Ⅱ"},
-	A3:  {icon: "Senzai_ATK",        name: "攻擊力上升Ⅲ"},
-	A4:  {icon: "Senzai_ATK",        name: "攻擊力上升Ⅳ"},
 	PF:  {icon: "Senzai_Appear_F",   name: "問題類型屬性提昇·火"},
 	PW:  {icon: "Senzai_Appear_W",   name: "問題類型屬性提昇·水"},
 	PT:  {icon: "Senzai_Appear_T",   name: "問題類型屬性提昇·雷"},
 	PF2: {icon: "Senzai_Appear_F",   name: "問題類型屬性提昇Ⅱ·火"},
 	PW2: {icon: "Senzai_Appear_W",   name: "問題類型屬性提昇Ⅱ·水"},
 	PT2: {icon: "Senzai_Appear_T",   name: "問題類型屬性提昇Ⅱ·雷"},
-	E1:  {icon: "Senzai_EXP",        name: "獲得EXP量上升Ⅰ"},
-	E2:  {icon: "Senzai_EXP",        name: "獲得EXP量上升Ⅱ"},
-	E3:  {icon: "Senzai_EXP",        name: "獲得EXP量上升Ⅲ"},
-	G1:  {icon: "Senzai_Gold",       name: "獲得金幣量上升Ⅰ"},
-	G2:  {icon: "Senzai_Gold",       name: "獲得金幣量上升Ⅱ"},
-	G3:  {icon: "Senzai_Gold",       name: "獲得金幣量上升Ⅲ"},
 	B1:  {icon: "Senzai_BattleEnd",  name: "戰鬥結束後回復全體隊友的HP"},
 	CG1: {icon: "Senzai_Chain_guard",name: "於一次任務中，僅限一次保護連鎖數"},
 	INV: {icon: "Senzai_Invalidate", name: "使敵方技能的特殊技能封印失效"},
 	INVP:{icon: "Senzai_Invalidate", name: "使敵方技能的毒攻擊失效"},
 	SHIN:{icon: "Senzai_Shingan",    name: "心眼：看穿肉眼無從得見的真實"},
+}
+
+// 1 to 10 only
+function toRoman(num)
+{
+	if(num < 1 || num > 10) throw new Error("toRoman argument error: " + num);
+	return String.fromCharCode(0x2160-1+num);
+}
+
+for(var num = 1; num <= 3; num++)
+{
+	potData['F'+num] = {
+		icon: "Senzai_FastSkill",
+		name: "快速技能"+toRoman(num)
+	};
+	potData['R'+num] = {
+		icon: "Senzai_Konki",
+		name: "九死一生"+toRoman(num)
+	};
+	potData['E'+num] = {
+		icon: "Senzai_EXP",
+		name: "獲得EXP量上升"+toRoman(num)
+	};
+	potData['G'+num] = {
+		icon: "Senzai_Gold",
+		name: "獲得金幣量上升"+toRoman(num)
+	};
+}
+
+for(var num = 1; num <= 4; num++)
+{
+	potData['H'+num] = {
+		icon: "Senzai_HP",
+		name: "HP上升"+toRoman(num)
+	};
+	potData['A'+num] = {
+		icon: "Senzai_ATK",
+		name: "攻擊力上升"+toRoman(num)
+	};
+}
+
+for(var num = 1; num <= 10; num++)
+{
+	potData['C'+num] = {
+		icon: "Senzai_CostDown",
+		name: "減少COST"+toRoman(num)
+	};
 }
 
 {
@@ -56,11 +78,11 @@ potData = {
 	{
 		for(var t in TypeName)
 		{
-			for(var num in Roman)
+			for(var num = 1; num <= 5; num++)
 			{
 				potData[attr+t+num] = {
 					icon: "Senzai_"+AttrIcon[attr]+"_"+t,
-					name: Attribute[attr](TypeName[t]+'屬性')+Roman[num]
+					name: Attribute[attr](TypeName[t]+'屬性')+toRoman(num)
 				};
 			}
 		}
@@ -68,11 +90,11 @@ potData = {
 
 	for(var attr in Attribute)
 	{
-		for(var num in Roman)
+		for(var num = 1; num <= 5; num++)
 		{
 			potData[attr+'A'+num] = {
 				icon: "Senzai_"+AttrIcon[attr]+"_A",
-				name: Attribute[attr]('全屬性')+Roman[num]
+				name: Attribute[attr]('全屬性')+toRoman(num)
 			};
 		}
 	}
@@ -81,11 +103,11 @@ potData = {
 	{
 		for(var dt of ['FW', 'FT', 'WT'])
 		{
-			for(var num in Roman)
+			for(var num = 1; num <= 5; num++)
 			{
 				potData[attr+dt+num] = {
 					icon: "Senzai_"+AttrIcon[attr]+"_"+dt,
-					name: Attribute[attr](TypeName[dt[0]]+'、'+TypeName[dt[1]]+'屬性')+Roman[num]
+					name: Attribute[attr](TypeName[dt[0]]+'、'+TypeName[dt[1]]+'屬性')+toRoman(num)
 				};
 			}
 		}
@@ -93,11 +115,11 @@ potData = {
 
 	for(var attr in Attribute)
 	{
-		for(var num in Roman)
+		for(var num = 1; num <= 5; num++)
 		{
 			potData[attr+'LD'+num] = {
 				icon: "Senzai_"+AttrIcon[attr]+"_DL",
-				name: Attribute[attr](SubTypeName.L+'、'+SubTypeName.D+'屬性')+Roman[num]
+				name: Attribute[attr](SubTypeName.L+'、'+SubTypeName.D+'屬性')+toRoman(num)
 			};
 		}
 	}
@@ -107,9 +129,9 @@ potData = {
 	{
 		for(var token in r)
 		{
-			for(var num in Roman)
+			for(var num = 1; num <= 5; num++)
 			{
-				potData[attr+token+num] = {icon: "Senzai_"+AttrIcon[attr]+"_Breed", name: Attribute[attr](r[token])+Roman[num]};
+				potData[attr+token+num] = {icon: "Senzai_"+AttrIcon[attr]+"_Breed", name: Attribute[attr](r[token])+toRoman(num)};
 			}
 		}
 	}
@@ -122,7 +144,7 @@ potData = {
 			{
 				potData[attr+type2+num2] = {
 					icon: "Senzai_"+AttrIcon[attr]+"_DL",
-					name: Attribute[attr](SubTypeName[type2]+'屬性')+Roman[num2]
+					name: Attribute[attr](SubTypeName[type2]+'屬性')+toRoman(num2)
 				};
 			}
 		}
@@ -134,13 +156,27 @@ potData = {
 		{
 			for(var num1 of [1,2])
 			{
+				potData['U'+attr+type1+num1] = {
+					icon: "Senzai_"+AttrIcon[attr]+"_"+type1,
+					name: Attribute[attr]('純屬性')+toRoman(num1)+'・'+TypeName[type1]
+				};
+				for(var type2 in TypeName)
+				{
+					for(var num2 of [1,2])
+					{
+						potData[attr+type1+num1+type2+num2] = {
+							icon: "Senzai_"+AttrIcon[attr]+"_"+type1+type2,
+							name: Attribute[attr]('複屬性')+'＜'+TypeName[type1]+toRoman(num1)+'・'+TypeName[type2]+toRoman(num2)+'＞'
+						};
+					}
+				}
 				for(var type2 in SubTypeName)
 				{
 					for(var num2 of [1,2])
 					{
 						potData[attr+type1+num1+type2+num2] = {
 							icon: "Senzai_"+AttrIcon[attr]+"_"+type1+type2,
-							name: Attribute[attr]('複屬性')+'＜'+TypeName[type1]+Roman[num1]+'・'+SubTypeName[type2]+Roman[num2]+'＞'
+							name: Attribute[attr]('複屬性')+'＜'+TypeName[type1]+toRoman(num1)+'・'+SubTypeName[type2]+toRoman(num2)+'＞'
 						};
 					}
 				}
@@ -327,43 +363,45 @@ data = {
 		material: [419,419,419,[]]
 	},
 	// 巧克力森林
-	1424: SimpleSelf(1424, [1,2,3],   ["H1","F1","F1"]),
-	1428: SimpleSelf(1428, [1,2,3,5], ["A1","H2","C2","DT1","R1"]),
-	2493: {
-		alias: ['黑帕查'],
-		id: [1429,1430,1431,1432,2493],
-		maxPot: [1,2,3,4,7],
-		pots: ["H2","A2","F1","C2","PT","R1","F1"],
-		evol: [[1],[1],[0,1],[3,0,1]],
-		material: [1429,1429,-15,1433],
-		special: [-15,-16]
-	},
-	2494: {
+	7917: SimpleSelfWithId([1422,1423,1424,7917], [1,2,3,10],
+		[3, ["H3","F1","A3","C5","G1","PF","C10","F2","PF2","R1"], ["H1","F1","F1"]]),
+	7918: SimpleSelfWithId([1425,1426,1427,1428,7918], [1,2,3,5,10],
+		[4, ["A2","H2","C10","DT1","R1","F2","AW1","HW1","PW2","INV"], ["A1","H2","C2","DT1","R1"]]),
+	7919: {
 		alias: ['白帕查'],
-		id: [1429,1430,1431,1433,2494],
-		maxPot: [1,2,3,4,7],
-		pots: ["H2","A2","F1","DF1","R1","PT","A2"],
-		evol: [[1],[1],[0,1],[3,0,1]],
-		material: [1429,1429,-16,1432],
+		id: [1429,1430,1431,1433,2494,7919],
+		maxPot: [1,2,3,4,7,10],
+		pots: [5, ["H3","A3","F2","DF1","R1","C10","A2","PT2","AT1F2","HT1F2"], ["H2","A2","F1","DF1","R1","PT","A2"]],
+		evol: [[1],[1],[0,1],[3,0,1],[6,1,1]],
+		material: [1429,1429,-16,1432,2494],
 		special: [-16,-15]
 	},
-	2495: {
-		alias: ['紅慕瑪','紅木馬'],
-		id: [1434,1435,1436,1437,2495],
-		maxPot: [1,2,3,4,7],
-		pots: ["H2","A1","C2","C2","A2","F1","AF1"],
-		evol: [[1],[1],[0,1],[3,0,1]],
-		material: [1434,1434,-17,1438],
-		special: [-17,-18]
+	7920: {
+		alias: ['黑帕查'],
+		id: [1429,1430,1431,1432,2493,7920],
+		maxPot: [1,2,3,4,7,10],
+		pots: [5, ["H3","A2","F1","C10","PT2","R1","F2","AT1W2","HT1W2","B1"], ["H2","A2","F1","C2","PT","R1","F1"]],
+		evol: [[1],[1],[0,1],[3,0,1],[6,1,1]],
+		material: [1429,1429,-15,1433,2493],
+		special: [-15,-16]
 	},
-	2496: {
+	7921: {
 		alias: ['青慕瑪','青木馬'],
-		id: [1434,1435,1436,1438,2496],
-		maxPot: [1,2,3,5,8],
-		pots: ["H2","A1","C2","F1","DF1","DW1","PF","HF1"],
-		evol: [[1],[1],[0,1],[3,0,1]],
-		material: [1434,1434,-18,1437],
+		id: [1434,1435,1436,1438,2496,7921],
+		maxPot: [1,2,3,5,8,10],
+		pots: [5, ["H3","A3","C10","F3","DA1","HF1W2","PF","AF1T1","B1","INV"], ["H2","A1","C2","F1","DF1","DW1","PF","HF1"]],
+		evol: [[1],[1],[0,1],[3,0,1],[6,1,1]],
+		material: [1434,1434,-18,1437,2495],
 		special: [-18,-17]
+	},
+	7922: {
+		alias: ['紅慕瑪','紅木馬'],
+		id: [1434,1435,1436,1437,2495,7922],
+		maxPot: [1,2,3,4,7,10],
+		pots: [5, ["H3","A3","C10","F1","PF2","F2","AF1T2","HF1T2","R1","INV"], ["H2","A1","C2","C2","A2","F1","AF1"]],
+		evol: [[1],[1],[0,1],[3,0,1]],
+		material: [1434,1434,-17,1438,2496],
+		special: [-17,-18]
 	},
 	// 古代森林的千年櫻花
 	7110: SimpleSelfWithId([1654,1655,1656,1657,7110], [1,2,3,5,10],
@@ -407,10 +445,13 @@ data = {
 		special: [1231,1232,1233,1234,1235,1236,1240]
 	},
 	// 神龍降臨Ⅱ
-	2144: SimpleSelf(2144, [2,4,6],   ["A1","H1","PW","DW1","PW","A2"]),
-	2147: SimpleSelf(2147, [2,4,5],   ["A1","H1","DT1","DW1","A1"]),
-	2151: SimpleSelf(2151, [1,2,4,6], ["A1","C2","H1","F1","PF","H2"]),
-	2155: SimpleSelf(2155, [1,3,4,7], ["A1","F1","C2","PT","C2","F1","A2"]),
+	7450: SimpleSelfWithId([2142,2143,2144,7450],      [2,4,6,10],
+		[3, ["A1","H1","PW","DW1","PW2","A2","F1","HW1","F2","AW1"], ["A1","H1","PW","DW1","PW","A2"]]),
+	7451: SimpleSelfWithId([2145,2146,2147,7451],      [2,4,5,10],
+		[3, ["A2","H1","DA1","PT","F1","PT2","A2","HT1","F2","AT1"], ["A1","H1","DT1","DW1","A1"]]),
+	7452: SimpleSelfWithId([2148,2149,2150,2151,7452], [1,2,4,6,10], ["A1","C2","H1","F1","PF","H2","F2","PF2","AF2","HF2"]),
+	7453: SimpleSelfWithId([2152,2153,2154,2155,7453], [1,3,4,7,10],
+		[4, ["A1","F1","C4","PT","PT2","F2","A2","HT2","R1","AT2"], ["A1","F1","C2","PT","C2","F1","A2"]]),
 	// 異界神的祝福試煉
 	800678: {
 		id: [80002,80003,80004,800016,800678],
@@ -555,11 +596,16 @@ data = {
 	3840: SimpleSelf(3840, [2,4,6,9],  ["A1","F1","PF","A2","F1","H2","DT1","HF1","ADE2"]),
 	3844: SimpleSelf(3844, [2,4,7,10], ["A2","PT","F1","H2","AT1","A2","F1","PT","AMA2","HMA2"]),
 	// 天界的雙子 訣別的年代記
-	3215: SimpleSelf(3215, [1,3,5,7],  ["A1","C2","H1","A1","F1","H2","AW1"]),
-	3219: SimpleSelf(3219, [1,3,5,7],  ["F1","C2","F1","H1","F1","A2","PT"]),
-	3223: SimpleSelf(3223, [1,3,5,8],  ["A1","F1","H2","PW","A2","R1","F1","AW1"]),
-	3227: SimpleSelf(3227, [2,4,6,9],  ["A2","F1","H2","C2","DF1","F1","DF1","A2","AF1"]),
-	3231: SimpleSelf(3231, [2,4,7,10], ["A2","F1","H2","A2","F1","H2","AT1","F1","PT","ADE2"]),
+	7308: SimpleSelfWithId([3212,3213,3214,3215,7308], [1,3,5,7,10],
+		[4, ["A1","C2","H1","A2","F1","H2","AW1","PW2","HW1","F2"], ["A1","C2","H1","A1","F1","H2","AW1"]]),
+	7309: SimpleSelfWithId([3216,3217,3218,3219,7309], [1,3,5,7,10],
+		[4, ["F1","C2","F2","H1","PT","A2","PT2","R1","AT1","HT1"], ["F1","C2","F1","H1","F1","A2","PT"]]),
+	7310: SimpleSelfWithId([3220,3221,3222,3223,7310], [1,3,5,8,10],
+		[4, ["A1","F1","H2","PW","A2","R1","F2","AW1","PW2","HW1"], ["A1","F1","H2","PW","A2","R1","F1","AW1"]]),
+	7311: SimpleSelfWithId([3224,3225,3226,3227,7311], [2,4,6,9,10],
+		[4, ["A2","F1","H2","C2","DF2","F2","PF2","A2","AF1","R1"], ["A2","F1","H2","C2","DF1","F1","DF1","A2","AF1"]]),
+	7312: SimpleSelfWithId([3228,3229,3230,3231,7312], [2,4,7,10,10],
+		[4, ["A4","F1","H2","PT2","F2","AT1","HT1","F1","PT2","ADE2"], ["A2","F1","H2","A2","F1","H2","AT1","F1","PT","ADE2"]]),
 	// 幻魔特區 朱雀
 	3681: SimpleSelf(3681, [1,2,4,7],  ["H1","A1","C2","A2","PW","F1","HW1"]),
 	3685: SimpleSelf(3685, [1,3,5,8],  ["A2","F1","PF","A2","F1","PF","AF1","HMA2"]),
@@ -849,6 +895,13 @@ data = {
 		[4,["PT2","F1","PT2","F2","R1","DA1","DLD1","AT3","HT3","INV"],
 		 3,["PT2","F1","AFT2","F2","R1","DA1","DLD1","AT3"],
 		   ["PT2","F1","PT2","F2","R1","DA1"]]),
+	// 霸眼戰線3 聖劍與霸眼
+	8195: SimpleSelf(8195, [3,5,7,10], ["H2","A2","PW","R1","F1","PW2","F2","DA1","AW2","HW2"]),
+	8199: SimpleSelf(8199, [3,5,7,10], ["H2","F1","PF","A2","F2","PF2","AF1","HF1","AF1D1","HF1D1"]),
+	8203: SimpleSelf(8203, [3,5,7,10], ["PT","F3","H2","PT2","A2","DLD1","AT1","HT1","AT1D1","HT1D1"]),
+	8207: SimpleSelf(8207, [3,5,7,10], ["A2","PW","F1","H2","PW2","AW1","DA1","HW1D2","AW1D2","INV"]),
+	// Heretic Blader Howl at the moon
+	8469: HardDungeon(8469, [3,4,6,8,10], ["PW2","UAW2","UHW2","PW2","R1","DT2","F3","AW3","HW3","INV"]),
 };
 
 series = {
@@ -858,11 +911,11 @@ series = {
 	'惡作劇女神與兔子的故事': [7566,7567,7568,7569],
 	'黃昏的四神書': [1595,1599,1591,1592,1586,1587],
 	'妖精花園': [1399,1403,1517,1407],
-	'巧克力森林': [1424,1428,2493,2494,2495,2496],
+	'巧克力森林': [7917,7918,7919,7920,7921,7922],
 	'古代森林的千年櫻花': [7110,7111,7112,7113,7114],
 	'來者何貘：黑與白的激戰': [800003,800006,800010,800013],
 	'神龍降臨Ⅰ': [1244,1248],
-	'神龍降臨Ⅱ': [2144,2147,2151,2155],
+	'神龍降臨Ⅱ': [7450,7451,7452,7453],
 	'異界神的祝福試煉': [800678,800676,800677],
 	'Halloween Night': [2789,908,4858,4859],
 	'桃娘傳': [7839,7840],
@@ -881,7 +934,7 @@ series = {
 	'庫洛姆‧麥格納Ⅳ單戀☆狂想曲': [3396,3400,3404,3408,3412],
 	'歌頌永恆的克羅諾斯': [3814,3815,3816,3817],
 	'歌頌永恆的克羅諾斯Ⅱ': [3832,3836,3840,3844],
-	'天界的雙子 訣別的年代記': [3215,3219,3223,3227,3231],
+	'天界的雙子 訣別的年代記': [7308,7309,7310,7311,7312],
 	'幻魔特區 朱雀': [3681,3685,3689,3693],
 	'Orlha Report 懷著怨念的亡君': [5752],
 	'Orlha Report 無罪的罪人': [5753],
@@ -930,6 +983,8 @@ series = {
 	'新說 桃娘傳 妖爺合戰誓助劍': [7867,7871,7875],
 	'響命 Cross Derive': [8066,8070,8074],
 	'VOID ZONE 絕天鎧裝': [8311],
+	'霸眼戰線3 聖劍與霸眼': [8195,8199,8203,8207],
+	'Heretic Blader Howl at the moon': [8469],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -971,6 +1026,9 @@ seriesAlias = {
 	'新說 桃娘傳 妖爺合戰誓助劍': ['新說桃娘傳','桃娘傳Ⅱ'],
 	'響命 Cross Derive':['響命CrossDerive'],
 	'VOID ZONE 絕天鎧裝': ['VOIDZONE'],
+	'霸眼戰線': ['霸眼戰線Ⅰ', '霸眼Ⅰ'],
+	'霸眼戰線2': ['霸眼Ⅱ'],
+	'霸眼戰線3 聖劍與霸眼': ['霸眼Ⅲ'],
 };
 
 evolTooltip = {
@@ -1039,10 +1097,15 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
+	'霸眼戰線3 聖劍與霸眼',
+	'===霸眼戰線復刻',
+	'霸眼戰線',
+	'霸眼戰線2',
+	'===協力：Heretic Blader Howl at the moon',
+	'Heretic Blader Howl at the moon',
+	'===近期結束副本',
 	'響命 Cross Derive',
 	'VOID ZONE 絕天鎧裝',
-	'===近期結束副本',
-	'新說 桃娘傳 妖爺合戰誓助劍',
 	'===魔導士之家：Blader &amp; AbCd',
 	"Demon's Blader",
 	'Divine Blader',
@@ -1054,10 +1117,16 @@ menuOrder = [
 	'AbyssCode04 燃燒殆盡的陽光',
 	'AbyssCode05 冥世的天蓋',
 	'AbyssCode06 劫末之獸',
-	'===魔導士之家：霸眼戰線',
-	'霸眼戰線',
-	'霸眼戰線2',
-	'===魔導士之家：雙翼的失落伊甸',
+	'===魔導士之家：巧克力森林',
+	'巧克力森林',
+	'===魔導士之家：千年櫻＆惡作劇女神',
+	'古代森林的千年櫻花',
+	'惡作劇女神與兔子的故事',
+	'===魔導士之家：神龍降臨',
+	'神龍降臨Ⅰ',
+	'神龍降臨Ⅱ',
+	'===魔導士之家：天界雙子＆失落伊甸',
+	'天界的雙子 訣別的年代記',
 	'雙翼的失落伊甸',
 	'雙翼的失落伊甸Ⅱ WWMF',
 	'===魔導士之家：幻魔特區朱雀',
@@ -1084,22 +1153,19 @@ menuOrder = [
 	'===魔導士之家：聖惡魔女子學院',
 	'聖惡魔女子學院',
 	'===過去副本',
+	'新說 桃娘傳 妖爺合戰誓助劍',
 	'神聖天空之星',
 	'淡薄的藍色光芒 第二章 虛幻聖域',
 	'魔法GLICOⅠ',
 	'魔法GLICOⅡ',
 	'魔轟三鐵傑 對 地獄三十六歌仙',
-	'惡作劇女神與兔子的故事',
 	'空戰的德爾基馬斯',
 	'《幻世之約》—沉月與洛恩斯的交匯',
 	'武鬥之巔‧寒冰嶺上的召集',
 	'心龍天翔 Rising Dragon',
-	'神龍降臨Ⅰ',
-	'神龍降臨Ⅱ',
 	'追憶的閃耀光輝',
 	'空戰的德爾基馬斯Ⅱ 昏暗英雄',
 	'白貓×黑貓×glico 快樂甜點嘉年華',
-	'古代森林的千年櫻花',
 	'庫洛姆‧麥格納Ⅰ魔導學園',
 	'庫洛姆‧麥格納Ⅱ學園祭',
 	'庫洛姆‧麥格納Ⅲ臨海學校',
@@ -1111,12 +1177,10 @@ menuOrder = [
 	'Orlha Report 無罪的罪人',
 	'Orlha Report 茸毛頑偶熊',
 	'蕊颯',
-	'巧克力森林',
 	'異界神的祝福試煉',
 	'聖誕老人的禮物',
 	'菇菇方程式',
 	'Halloween Night',
-	'天界的雙子 訣別的年代記',
 	'煉獄來訪者',
 	'星耀學園‧遺願的繼承者',
 	'新生珍妮佛的冒險',
