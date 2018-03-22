@@ -9,7 +9,9 @@ potData = {
 	PT2: {icon: "Senzai_Appear_T",   name: "問題類型屬性提昇Ⅱ·雷"},
 	B1:  {icon: "Senzai_BattleEnd",  name: "戰鬥結束後回復全體隊友的HP"},
 	CG1: {icon: "Senzai_Chain_guard",name: "於一次任務中，僅限一次保護連鎖數"},
-	INV: {icon: "Senzai_Invalidate", name: "使敵方技能的特殊技能封印失效"},
+	INV: {icon: "Senzai_Invalidate", name: "使敵方技能的封印失效"},
+	INVA:{icon: "Senzai_Invalidate", name: "使敵方技能的答題技能封印失效"},
+	INVS:{icon: "Senzai_Invalidate", name: "使敵方技能的特殊技能封印失效"},
 	INVP:{icon: "Senzai_Invalidate", name: "使敵方技能的毒攻擊失效"},
 	SHIN:{icon: "Senzai_Shingan",    name: "心眼：看穿肉眼無從得見的真實"},
 }
@@ -314,7 +316,7 @@ data = {
 	7567: SimpleSelfWithId([1757,1758,1759,1760,7567], [1,2,3,5,10],
 		[4, ["F1","PF","H2","R1","A2","PF2","F2","AF1","HF1","AGO3"], ["F1","PF","H1","R1","A2"]]),
 	7568: SimpleSelfWithId([1761,1762,1763,1764,7568], [2,3,4,6,10],
-		[4, ["A1","F1","C2","A2","PW2","AW2","HW2","DWT1","INV","AGO3"], ["A1","F1","C2","A2","PW","A2"]]),
+		[4, ["A1","F1","C2","A2","PW2","AW2","HW2","DWT1","INVS","AGO3"], ["A1","F1","C2","A2","PW","A2"]]),
 	7569: SimpleSelfWithId([1765,1766,1767,1768,7569], [1,2,3,5,10],
 		[4, ["A2","C2","PT2","AGO2","F1","H2","R1","HT2","AT2","F2"], ["A1","C2","PT","A2","F1"]]),
 	// 庫洛姆‧麥格納Ⅰ魔導學園
@@ -366,7 +368,7 @@ data = {
 	7917: SimpleSelfWithId([1422,1423,1424,7917], [1,2,3,10],
 		[3, ["H3","F1","A3","C5","G1","PF","C10","F2","PF2","R1"], ["H1","F1","F1"]]),
 	7918: SimpleSelfWithId([1425,1426,1427,1428,7918], [1,2,3,5,10],
-		[4, ["A2","H2","C10","DT1","R1","F2","AW1","HW1","PW2","INV"], ["A1","H2","C2","DT1","R1"]]),
+		[4, ["A2","H2","C10","DT1","R1","F2","AW1","HW1","PW2","INVA"], ["A1","H2","C2","DT1","R1"]]),
 	7919: {
 		alias: ['白帕查'],
 		id: [1429,1430,1431,1433,2494,7919],
@@ -389,7 +391,7 @@ data = {
 		alias: ['青慕瑪','青木馬'],
 		id: [1434,1435,1436,1438,2496,7921],
 		maxPot: [1,2,3,5,8,10],
-		pots: [5, ["H3","A3","C10","F3","DA1","HF1W2","PF","AF1T1","B1","INV"], ["H2","A1","C2","F1","DF1","DW1","PF","HF1"]],
+		pots: [5, ["H3","A3","C10","F3","DA1","HF1W2","PF","AF1T1","B1","INVS"], ["H2","A1","C2","F1","DF1","DW1","PF","HF1"]],
 		evol: [[1],[1],[0,1],[3,0,1],[6,1,1]],
 		material: [1434,1434,-18,1437,2495],
 		special: [-18,-17]
@@ -398,7 +400,7 @@ data = {
 		alias: ['紅慕瑪','紅木馬'],
 		id: [1434,1435,1436,1437,2495,7922],
 		maxPot: [1,2,3,4,7,10],
-		pots: [5, ["H3","A3","C10","F1","PF2","F2","AF1T2","HF1T2","R1","INV"], ["H2","A1","C2","C2","A2","F1","AF1"]],
+		pots: [5, ["H3","A3","C10","F1","PF2","F2","AF1T2","HF1T2","R1","INVS"], ["H2","A1","C2","C2","A2","F1","AF1"]],
 		evol: [[1],[1],[0,1],[3,0,1]],
 		material: [1434,1434,-17,1438,2496],
 		special: [-17,-18]
@@ -504,7 +506,7 @@ data = {
 	7840: {
 		id: [983,984,985,986,3427,7840],
 		maxPot: [2,4,6,7,10,10],
-		pots: [5, ["DF2","PT2","H4","HT1D1","C4","HDE2","AT1D1","INV","F2","ADE2"], ["DF1","DF1","H2","H2","C2","C2","A2","PT","F2","ADE2"]],
+		pots: [5, ["DF2","PT2","H4","HT1D1","C4","HDE2","AT1D1","INVS","F2","ADE2"], ["DF1","DF1","H2","H2","C2","C2","A2","PT","F2","ADE2"]],
 		evol: [[1],[1],[1],[0,1],[0,0,1]],
 		material: [983,983,983,3428,-428],
 		special: [3428,-428],
@@ -662,7 +664,7 @@ data = {
 	5052: HardDungeonWithId([3746,3747,3748,3749,3750,5052], [1,2,3,5,10,10],
 		[5, ["F1","A1","PT2","H2","HT1","F2","PT2","AT1","AT2","RΞ"], ["F1","A1","PT","H2","HT1","F2","PT","AT1","AAB2","R3"]]),
 	// AbyssCode06 劫末之獸
-	6277: HardDungeon(6277, [1,2,3,7,10], ["PW","F1","A2","PW2","HW2","F2","R2","INV","AW2","HW2"]),
+	6277: HardDungeon(6277, [1,2,3,7,10], ["PW","F1","A2","PW2","HW2","F2","R2","INVS","AW2","HW2"]),
 	// 八百萬諸神祕聞
 	4091: SimpleSelf(4091, [2,3,4,6], ["H1","A1","PT","F1","A2","AGO2"]),
 	4095: SimpleSelf(4095, [3,5,6,8], ["PF","F1","H2","A2","AF1","C2","AGO2","AGO2"]),
@@ -815,7 +817,7 @@ data = {
 	6955: SimpleSelf(6955, [3,5,8,10], ["A2","R1","HW1","H2","PW","PW2","F2","AW1","HW1D1","AW1D1"]),
 	6959: SimpleSelf(6959, [4,6,8,10], ["R1","A2","H2","PF","F2","AF1","PF2","HF1","HDE2","ADE2"]),
 	// 白貓×黑貓×glico 快樂甜點嘉年華
-	5613: SimpleSelf(5613, [4,5,6,10], ["HF1","PF2","H2","AF1","HF1","PF2","F2","HFA3","AFA3","INV"]),
+	5613: SimpleSelf(5613, [4,5,6,10], ["HF1","PF2","H2","AF1","HF1","PF2","F2","HFA3","AFA3","INVS"]),
 	5617: SimpleSelf(5617, [4,5,6,10], ["F2","HT1","PT2","A2","HT1","PT2","AT1","HFA3","AFA3","R3"]),
 	5621: SimpleSelf(5621, [4,5,6,10], ["E1","HW1","PW2","H2","AW1","A2","F2","HFA3","AFA3","SHIN"]),
 	5623: SimpleSelf(5623, [4,10],     ["PF2","HF1","PF2","AF1","H2","AF1","F2","A2","HFA3","AFA3"]),
@@ -899,9 +901,14 @@ data = {
 	8195: SimpleSelf(8195, [3,5,7,10], ["H2","A2","PW","R1","F1","PW2","F2","DA1","AW2","HW2"]),
 	8199: SimpleSelf(8199, [3,5,7,10], ["H2","F1","PF","A2","F2","PF2","AF1","HF1","AF1D1","HF1D1"]),
 	8203: SimpleSelf(8203, [3,5,7,10], ["PT","F3","H2","PT2","A2","DLD1","AT1","HT1","AT1D1","HT1D1"]),
-	8207: SimpleSelf(8207, [3,5,7,10], ["A2","PW","F1","H2","PW2","AW1","DA1","HW1D2","AW1D2","INV"]),
+	8207: SimpleSelf(8207, [3,5,7,10], ["A2","PW","F1","H2","PW2","AW1","DA1","HW1D2","AW1D2","INVS"]),
 	// Heretic Blader Howl at the moon
-	8469: HardDungeon(8469, [3,4,6,8,10], ["PW2","UAW2","UHW2","PW2","R1","DT2","F3","AW3","HW3","INV"]),
+	8469: HardDungeon(8469, [3,4,6,8,10], ["PW2","UAW2","UHW2","PW2","R1","DT2","F3","AW3","HW3","INVS"]),
+	// 喰牙 RIZE
+	8345: SimpleSelf(8345, [3,5,7,10], ["A2","PW","AW1","HW1","F1","R1","PW2","F1","HW1","AW1"]),
+	8349: SimpleSelf(8349, [3,5,7,10], ["C5","PF","F1","H2","A2","AF2","F2","PF2","HF2","DW1"]),
+	8353: SimpleSelf(8353, [3,5,7,10], ["C10","A3","PT","F1","H3","PT2","PT2","F2","HT2","INVA"]),
+	8362: SimpleSelf(8362, [4,7,10],   ["C10","A2","F1","PF","H2","PF2","F1","AF1L2","HF1L2","INVS"]),
 };
 
 series = {
@@ -985,6 +992,7 @@ series = {
 	'VOID ZONE 絕天鎧裝': [8311],
 	'霸眼戰線3 聖劍與霸眼': [8195,8199,8203,8207],
 	'Heretic Blader Howl at the moon': [8469],
+	'喰牙 RIZE': [8345,8349,8353,8362],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -1097,15 +1105,13 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
+	'喰牙 RIZE',
 	'霸眼戰線3 聖劍與霸眼',
 	'===霸眼戰線復刻',
 	'霸眼戰線',
 	'霸眼戰線2',
-	'===協力：Heretic Blader Howl at the moon',
-	'Heretic Blader Howl at the moon',
 	'===近期結束副本',
-	'響命 Cross Derive',
-	'VOID ZONE 絕天鎧裝',
+	'Heretic Blader Howl at the moon',
 	'===魔導士之家：Blader &amp; AbCd',
 	"Demon's Blader",
 	'Divine Blader',
@@ -1153,6 +1159,8 @@ menuOrder = [
 	'===魔導士之家：聖惡魔女子學院',
 	'聖惡魔女子學院',
 	'===過去副本',
+	'響命 Cross Derive',
+	'VOID ZONE 絕天鎧裝',
 	'新說 桃娘傳 妖爺合戰誓助劍',
 	'神聖天空之星',
 	'淡薄的藍色光芒 第二章 虛幻聖域',
