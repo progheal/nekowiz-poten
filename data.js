@@ -13,7 +13,9 @@ potData = {
 	INVA:{icon: "Senzai_Invalidate", name: "使敵方技能的答題技能封印失效"},
 	INVS:{icon: "Senzai_Invalidate", name: "使敵方技能的特殊技能封印失效"},
 	INVP:{icon: "Senzai_Invalidate", name: "使敵方技能的毒攻擊失效"},
+	INVD:{icon: "Senzai_Invalidate", name: "使敵方技能的死亡秒針失效"},
 	SHIN:{icon: "Senzai_Shingan",    name: "心眼：看穿肉眼無從得見的真實"},
+	X15: {icon: "Senzai_DMG_up_HP_down", name: "提升傷害Ⅰ＆HP下降Ⅴ"},
 }
 
 // 1 to 10 only
@@ -913,6 +915,11 @@ data = {
 	7213: HardDungeon(7213, [2,5,7,10], ["PF","DL1","F1","A2","PF2","R1","F2","HF2","AF2D1","INVA"]),
 	7217: HardDungeon(7217, [2,5,7,10], ["PW","DL1","H2","A2","PW2","R1","F2","AW2","HW2D1","INVS"]),
 	7221: HardDungeon(7221, [2,5,7,10], ["PT","DD1","F1","A2","PT2","R1","F2","HT2","AT2L1","INVS"]),
+	// 八百萬諸神祕聞4 沉眠京城的悠久之歌
+	8491: SimpleSelf(8491, [2,4,6,10], ["C10","PT","PT2","F3","A2","H2","R1","G2","AFT2","HFT2"]),
+	8495: SimpleSelf(8495, [2,4,6,10], ["C10","PF","PF2","F3","A2","H2","DA1","INVD","AFW2","HFW2"]),
+	8499: SimpleSelf(8499, [2,4,6,10], ["C10","PW","H3","A3","PW2","R1","F3","HW2","AW2","B1"]),
+	8503: SimpleSelf(8503, [2,4,6,10], ["PF","A3","H3","PF2","R1","DT1","F3","AF2","HF2","X15"]),
 };
 
 series = {
@@ -998,6 +1005,7 @@ series = {
 	'Heretic Blader Howl at the moon': [8469],
 	'喰牙 RIZE': [8345,8349,8353,8362],
 	'Soul of Kings': [7213,7217,7221],
+	'八百萬諸神祕聞4 沉眠京城的悠久之歌': [8491,8495,8499,8503],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -1025,7 +1033,7 @@ seriesAlias = {
 	'Halloween Night': ['新生Halloween Night','新生 Halloween Night'],
 	'天上岬的調香師': ['天上岬Ⅱ'],
 	'異界神的祝福試煉': ['異界神的二度試煉'],
-	'YAOYORO Z': ['八百萬諸神祕聞Ｚ','八百萬Ｚ','八百萬諸神祕聞Z','八百萬Z','800wz','800z'],
+	'YAOYORO Z': ['八百萬諸神祕聞Ｚ','八百萬Ｚ','八百萬諸神祕聞Z','八百萬Z','800wz','800z','八百萬諸神祕聞Ⅲ','八百萬Ⅲ','800w3','8003','2400w'],
 	'雙翼的失落伊甸Ⅱ WWMF': ['雙翼Ⅱ'],
 	'庫洛姆‧麥格納 零':['學園零','學園0'],
 	'白貓×黑貓×glico 快樂甜點嘉年華':['固力果Ⅲ'],
@@ -1043,6 +1051,7 @@ seriesAlias = {
 	'霸眼戰線2': ['霸眼Ⅱ'],
 	'霸眼戰線3 聖劍與霸眼': ['霸眼Ⅲ'],
 	'Soul of Kings': ['SOK'],
+	'八百萬諸神祕聞4 沉眠京城的悠久之歌': ['八百萬諸神祕聞Ⅳ','八百萬Ⅳ','800w4','8004','3200w'],
 };
 
 evolTooltip = {
@@ -1119,10 +1128,7 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
-	'霸眼戰線3 聖劍與霸眼',
-	'===霸眼戰線復刻',
-	'霸眼戰線',
-	'霸眼戰線2',
+	'八百萬諸神祕聞4 沉眠京城的悠久之歌',
 	'===八百萬系列復刻',
 	'八百萬諸神祕聞',
 	'八百萬諸神祕聞2',
@@ -1130,7 +1136,7 @@ menuOrder = [
 	'===協力：Soul of Kings',
 	'Soul of Kings',
 	'===近期結束副本',
-	'喰牙 RIZE',
+	'霸眼戰線3 聖劍與霸眼',
 	'===魔導士之家：Blader &amp; AbCd',
 	"Demon's Blader",
 	'Divine Blader',
@@ -1159,6 +1165,9 @@ menuOrder = [
 	'===魔導士之家：神龍降臨',
 	'神龍降臨Ⅰ',
 	'神龍降臨Ⅱ',
+	'===魔導士之家：霸眼戰線',
+	'霸眼戰線',
+	'霸眼戰線2',
 	'===魔導士之家：天界雙子＆失落伊甸',
 	'天界的雙子 訣別的年代記',
 	'雙翼的失落伊甸',
@@ -1183,6 +1192,7 @@ menuOrder = [
 	'===魔導士之家：聖惡魔女子學院',
 	'聖惡魔女子學院',
 	'===過去副本',
+	'喰牙 RIZE',
 	'Heretic Blader Howl at the moon',
 	'響命 Cross Derive',
 	'VOID ZONE 絕天鎧裝',
