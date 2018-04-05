@@ -909,6 +909,10 @@ data = {
 	8349: SimpleSelf(8349, [3,5,7,10], ["C5","PF","F1","H2","A2","AF2","F2","PF2","HF2","DW1"]),
 	8353: SimpleSelf(8353, [3,5,7,10], ["C10","A3","PT","F1","H3","PT2","PT2","F2","HT2","INVA"]),
 	8362: SimpleSelf(8362, [4,7,10],   ["C10","A2","F1","PF","H2","PF2","F1","AF1L2","HF1L2","INVS"]),
+	// Soul of Kings
+	7213: HardDungeon(7213, [2,5,7,10], ["PF","DL1","F1","A2","PF2","R1","F2","HF2","AF2D1","INVA"]),
+	7217: HardDungeon(7217, [2,5,7,10], ["PW","DL1","H2","A2","PW2","R1","F2","AW2","HW2D1","INVS"]),
+	7221: HardDungeon(7221, [2,5,7,10], ["PT","DD1","F1","A2","PT2","R1","F2","HT2","AT2L1","INVS"]),
 };
 
 series = {
@@ -993,6 +997,7 @@ series = {
 	'霸眼戰線3 聖劍與霸眼': [8195,8199,8203,8207],
 	'Heretic Blader Howl at the moon': [8469],
 	'喰牙 RIZE': [8345,8349,8353,8362],
+	'Soul of Kings': [7213,7217,7221],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -1037,6 +1042,7 @@ seriesAlias = {
 	'霸眼戰線': ['霸眼戰線Ⅰ', '霸眼Ⅰ'],
 	'霸眼戰線2': ['霸眼Ⅱ'],
 	'霸眼戰線3 聖劍與霸眼': ['霸眼Ⅲ'],
+	'Soul of Kings': ['SOK'],
 };
 
 evolTooltip = {
@@ -1086,6 +1092,10 @@ hardDungeonTooltip = [
 	data[series['AbyssCode05 冥世的天蓋'][0]].id,
 	data[series['德蕾姬亞'][0]].id,
 	data[series['VOID ZONE 絕天鎧裝'][0]].id,
+	data[series['Heretic Blader Howl at the moon'][0]].id,
+	data[series['Soul of Kings'][0]].id,
+	data[series['Soul of Kings'][1]].id,
+	data[series['Soul of Kings'][2]].id,
 ]
 
 hardDungeonTooltip.forEach(function(idlist){
@@ -1105,13 +1115,18 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
-	'喰牙 RIZE',
 	'霸眼戰線3 聖劍與霸眼',
 	'===霸眼戰線復刻',
 	'霸眼戰線',
 	'霸眼戰線2',
+	'===八百萬系列復刻',
+	'八百萬諸神祕聞',
+	'八百萬諸神祕聞2',
+	'YAOYORO Z',
+	'===協力：Soul of Kings',
+	'Soul of Kings',
 	'===近期結束副本',
-	'Heretic Blader Howl at the moon',
+	'喰牙 RIZE',
 	'===魔導士之家：Blader &amp; AbCd',
 	"Demon's Blader",
 	'Divine Blader',
@@ -1123,6 +1138,15 @@ menuOrder = [
 	'AbyssCode04 燃燒殆盡的陽光',
 	'AbyssCode05 冥世的天蓋',
 	'AbyssCode06 劫末之獸',
+	'===魔導士之家：庫洛姆‧麥格納',
+	'庫洛姆‧麥格納Ⅰ魔導學園',
+	'庫洛姆‧麥格納Ⅱ學園祭',
+	'庫洛姆‧麥格納Ⅲ臨海學校',
+	'庫洛姆‧麥格納Ⅳ單戀☆狂想曲',
+	'庫洛姆‧麥格納 零',
+	'===魔導士之家：空戰的德爾基馬斯',
+	'空戰的德爾基馬斯',
+	'空戰的德爾基馬斯Ⅱ 昏暗英雄',
 	'===魔導士之家：巧克力森林',
 	'巧克力森林',
 	'===魔導士之家：千年櫻＆惡作劇女神',
@@ -1146,10 +1170,6 @@ menuOrder = [
 	'===魔導士之家：超魔導列傳',
 	'超魔導列傳',
 	'續・超魔導列傳',
-	'===魔導士之家：八百萬',
-	'八百萬諸神祕聞',
-	'八百萬諸神祕聞2',
-	'YAOYORO Z',
 	'===魔導士之家：黃昏無夢者',
 	'黃昏無夢者',
 	'黃昏無夢者Ⅱ 殘響dearless',
@@ -1159,6 +1179,7 @@ menuOrder = [
 	'===魔導士之家：聖惡魔女子學院',
 	'聖惡魔女子學院',
 	'===過去副本',
+	'Heretic Blader Howl at the moon',
 	'響命 Cross Derive',
 	'VOID ZONE 絕天鎧裝',
 	'新說 桃娘傳 妖爺合戰誓助劍',
@@ -1167,18 +1188,11 @@ menuOrder = [
 	'魔法GLICOⅠ',
 	'魔法GLICOⅡ',
 	'魔轟三鐵傑 對 地獄三十六歌仙',
-	'空戰的德爾基馬斯',
 	'《幻世之約》—沉月與洛恩斯的交匯',
 	'武鬥之巔‧寒冰嶺上的召集',
 	'心龍天翔 Rising Dragon',
 	'追憶的閃耀光輝',
-	'空戰的德爾基馬斯Ⅱ 昏暗英雄',
 	'白貓×黑貓×glico 快樂甜點嘉年華',
-	'庫洛姆‧麥格納Ⅰ魔導學園',
-	'庫洛姆‧麥格納Ⅱ學園祭',
-	'庫洛姆‧麥格納Ⅲ臨海學校',
-	'庫洛姆‧麥格納Ⅳ單戀☆狂想曲',
-	'庫洛姆‧麥格納 零',
 	'德蕾姬亞',
 	'初夏的魔法使慶典',
 	'Orlha Report 懷著怨念的亡君',
