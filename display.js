@@ -551,31 +551,6 @@ function asyncgo()
 }
 
 $(function(){
-	$.each(menu, function(key, value){
-		if(typeof(value) == "string")
-		{
-			$('#characterList').append($('<div class="strike"><span>' + value + '</span></div>'));
-		}
-		else if(value == 0)
-		{
-			$('#characterList').append($('<br><hr>'));
-		}
-		else
-		{
-			$('#characterList').append(
-				$('<span></span>')
-					.addClass("icon clickable")
-					.data('searchid', value)
-					.append($(iconImg(value)))
-					.bind("click", function(){
-						$('#characterList .iconSel').removeClass("iconSel");
-						$(this).addClass("iconSel");
-						g_info = data[value];
-						characterSelect();
-					})
-			);
-		}
-	});
 	var overflowhelptext = "調整溢出計算參數，數字表示考慮溢出多少格數。\n一般狀況使用 0 即可，非零值可能會大幅增加計算時間。";
 	$('#overflowhelp').attr('title',overflowhelptext).bind('click', function(){alert(overflowhelptext);});
 	$('#panelSet').bind('click', function(){
@@ -618,6 +593,32 @@ $(function(){
 				ur.show();
 				ut.text("▼更新紀錄點此收合▼")
 			}
+		}
+	});
+	$('#characterList').empty();
+	$.each(menu, function(key, value){
+		if(typeof(value) == "string")
+		{
+			$('#characterList').append($('<div class="strike"><span>' + value + '</span></div>'));
+		}
+		else if(value == 0)
+		{
+			$('#characterList').append($('<br><hr>'));
+		}
+		else
+		{
+			$('#characterList').append(
+				$('<span></span>')
+					.addClass("icon clickable")
+					.data('searchid', value)
+					.append($(iconImg(value)))
+					.bind("click", function(){
+						$('#characterList .iconSel').removeClass("iconSel");
+						$(this).addClass("iconSel");
+						g_info = data[value];
+						characterSelect();
+					})
+			);
 		}
 	});
 	clear();

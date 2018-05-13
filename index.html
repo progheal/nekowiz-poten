@@ -4,21 +4,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>問答 RPG 魔法使與黑貓維茲　潛能計算器　v0.8</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
-<script language="javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script language="javascript" src="modernizr-custom.js"></script>
-<script language="javascript" src="cardname.js"></script>
-<script language="javascript" src="data.js"></script>
-<script language="javascript" src="poten.js"></script>
-<script language="javascript" src="display.js"></script>
-<script language="javascript" src="bahamut.js"></script>
-<script language="javascript" src="search.js"></script>
+<script language="javascript" src="https://code.jquery.com/jquery-2.1.4.min.js" defer></script>
+<script language="javascript" src="modernizr-custom.js" defer></script>
+<script language="javascript" src="cardname.js" defer></script>
+<script language="javascript" src="data.js" defer></script>
+<script language="javascript" src="poten.js" defer></script>
+<script language="javascript" src="display.js" defer></script>
+<script language="javascript" src="bahamut.js" defer></script>
+<script language="javascript" src="search.js" defer></script>
 </head>
 <body>
 <h2>問答 RPG 魔法使與黑貓維茲　潛能計算器　v0.8</h2>
 <fieldset style="width: 800px; text-align: center">
 <p>搜尋／選擇角色：<input type="text" id="searchField"></p>
-<div id="characterList"></div>
-<div id="panel">
+<div id="characterList"><div style="text-align:center; margin-top: 2em">載入資料中……</div></div>
+<div id="panel" style="display:none">
 <p><span id="characterName"></span></p>
 <p id="control"><span id="controlIcon"></span><span id="controlPot"></span></p>
 <p><input id="panelSet" type="button" value="設為目標">
@@ -30,7 +30,7 @@
 <p>溢出參數：<select id="overflow"><option>0</option><option>1</option><option>2</option><option value="10">≧3</option></select>&nbsp;&nbsp;<img src="help.png" id="overflowhelp" align="absmiddle"></p>
 <p><input id="go" type="button" value="開始計算"></p>
 </div>
-<div id="result"><div id="resultTable"></div><div id="evolTooltip"></div><br>
+<div id="result" style="display:none"><div id="resultTable"></div><div id="evolTooltip"></div><br>
 <input id="clearButton" type="button" value="清除重來"></div>
 </fieldset>
 <hr width="900" />
@@ -50,6 +50,8 @@
 <div style="width: 800px; text-align: left; margin: auto">
 <p>近期更新紀錄：</p>
 <div>
+[2018/5/13]<ul><li>新增《聖惡魔女子學院2》的〈拉蘭娜〉、〈傑拉爾〉、〈基文〉。</li>
+<li>《聖惡魔女子學院1》復刻，由魔導士之家前移。</li></ul>
 [2018/5/7]<ul><li>新增《偶像ω喵！》的〈死亡之虎〉、〈騙子貓維茲〉、〈貝歐路坦〉。</li></ul>
 </div>
 <p><a href="javascript:void(0)" id="updateToggler" class="clickable">▲點此展開更早的更新紀錄▲</a></p>
