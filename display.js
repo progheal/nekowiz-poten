@@ -34,7 +34,18 @@ function iconImg(id, tag)
 	}
 }
 
-function potImg(potName) {return img(potData[potName].icon, 30, potData[potName].name);}
+function potImg(potName)
+{
+	try
+	{
+		return img(potData[potName].icon, 30, potData[potName].name);
+	}
+	catch (e)
+	{
+		console.log("POT " + potName + " not found.");
+		throw e;
+	}
+}
 
 function getPotList(info, level, potNum)
 {
