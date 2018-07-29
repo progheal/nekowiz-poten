@@ -913,7 +913,7 @@ data = {
 	8207: SimpleSelf(8207, [3,5,7,10], ["A2","PW","F1","H2","PW2","AW1","DA1","HW1D2","AW1D2","INVS"]),
 	// Heretic Blader Howl at the moon
 	8469: HardDungeon(8469, [3,4,6,8,10], ["PW2","UAW2","UHW2","PW2","R1","DT2","F3","AW3","HW3","INVS"]),
-	// 喰牙 RIZE
+	// 喰牙RIZE
 	8345: SimpleSelf(8345, [3,5,7,10], ["A2","PW","AW1","HW1","F1","R1","PW2","F1","HW1","AW1"]),
 	8349: SimpleSelf(8349, [3,5,7,10], ["C5","PF","F1","H2","A2","AF2","F2","PF2","HF2","DW1"]),
 	8353: SimpleSelf(8353, [3,5,7,10], ["C10","A3","PT","F1","H3","PT2","PT2","F2","HT2","INVA"]),
@@ -947,6 +947,11 @@ data = {
 	8764: SimpleSelf(8764, [3,5,7,10], ["A2","PF","AF1","HF1","F1","R1","PF2","F1","AF1W2","HF1W2"]),
 	8768: SimpleSelf(8768, [3,5,7,10], ["PW","UAW3","UHW3","F1","C5","PW2","F2","AW2","HW2","R1"]),
 	8772: SimpleSelf(8772, [3,5,7,10], ["F1","H1","PT","INVD","PT2","A2","F2","R1","AWA2","HWA2"]),
+	// 喰牙RIZE2 -Tearing Eyes-
+	9002: SimpleSelf(9002, [3,5,7,10], ["F1","PT2","H2","A2","R1","DW1","F2","AT1W1","HT1W1","INVP"]),
+	9006: SimpleSelf(9006, [3,5,7,10], ["A2","H2","F1","C10","PF","F2","PF2","DW1","UAF3","UHF3"], ['火史塔德']),
+	9010: SimpleSelf(9010, [3,5,7,10], ["C10","PF","F1","AF2","HF2","PF2","F2","AF1W2","HF1W2","INVA"]),
+	9014: SimpleSelf(9014, [3,5,7,10], ["A2","H2","PW","F1","PW2","F2","R1","UAW3","UHW3","INVP"], ['水史塔德']),
 };
 
 series = {
@@ -1030,7 +1035,7 @@ series = {
 	'VOID ZONE 絕天鎧裝': [8311],
 	'霸眼戰線3 聖劍與霸眼': [8195,8199,8203,8207],
 	'Heretic Blader Howl at the moon': [8469],
-	'喰牙 RIZE': [8345,8349,8353,8362],
+	'喰牙RIZE': [8345,8349,8353,8362],
 	'Soul of Kings': [7213,7217,7221],
 	'八百萬諸神祕聞4 沉眠京城的悠久之歌': [8491,8495,8499,8503],
 	'偶像ω喵！': [8434,8438,8442],
@@ -1038,6 +1043,7 @@ series = {
 	'黃昏無夢者Ⅲ 絡園loreless': [8593,8597,8601],
 	'歌頌永恆的克羅諾斯Ⅲ': [8669,8673,8677],
 	'響命CrossDerive ACT2': [8764,8768,8772],
+	'喰牙RIZE2 -Tearing Eyes-': [9002,9006,9010,9014],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -1088,6 +1094,8 @@ seriesAlias = {
 	'聖惡魔女子學院2': ['聖惡魔Ⅱ'],
 	'黃昏無夢者Ⅲ 絡園loreless': ['黃昏Ⅲ'],
 	'響命CrossDerive ACT2': ['響命Ⅱ'],
+	'喰牙RIZE': ['喰牙Ⅰ','喰牙RIZEⅠ'],
+	'喰牙RIZE2 -Tearing Eyes-': ['喰牙Ⅱ'],
 };
 
 evolTooltip = {
@@ -1164,15 +1172,13 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
-	'歌頌永恆的克羅諾斯Ⅲ',
+	'喰牙RIZE2 -Tearing Eyes-',
 	'響命CrossDerive ACT2',
-	'===克羅諾斯＆響命復刻',
-	'歌頌永恆的克羅諾斯',
-	'歌頌永恆的克羅諾斯Ⅱ',
+	'===響命＆喰牙RIZE復刻',
+	'喰牙RIZE',
 	'響命CrossDerive',
 	'===近期結束副本',
-	'黃昏無夢者Ⅲ 絡園loreless',
-	'偶像ω喵！',
+	'歌頌永恆的克羅諾斯Ⅲ',
 	'===魔導士之家：Blader &amp; AbCd',
 	"Demon's Blader",
 	'Divine Blader',
@@ -1226,14 +1232,18 @@ menuOrder = [
 	'===魔導士之家：黃昏無夢者',
 	'黃昏無夢者',
 	'黃昏無夢者Ⅱ 殘響dearless',
+	'===魔導士之家：克羅諾斯',
+	'歌頌永恆的克羅諾斯',
+	'歌頌永恆的克羅諾斯Ⅱ',
 	'===魔導士之家：聖惡魔女子學院',
 	'聖惡魔女子學院',
 	'===過去副本',
+	'黃昏無夢者Ⅲ 絡園loreless',
+	'偶像ω喵！',
 	'聖惡魔女子學院2',
 	'八百萬諸神祕聞4 沉眠京城的悠久之歌',
 	'Soul of Kings', // 協力
 	'霸眼戰線3 聖劍與霸眼',
-	'喰牙 RIZE',
 	'Heretic Blader Howl at the moon',
 	'VOID ZONE 絕天鎧裝',
 	'新說 桃娘傳 妖爺合戰誓助劍',
