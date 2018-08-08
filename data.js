@@ -952,6 +952,10 @@ data = {
 	9006: SimpleSelf(9006, [3,5,7,10], ["A2","H2","F1","C10","PF","F2","PF2","DW1","UAF3","UHF3"], ['火史塔德']),
 	9010: SimpleSelf(9010, [3,5,7,10], ["C10","PF","F1","AF2","HF2","PF2","F2","AF1W2","HF1W2","INVA"]),
 	9014: SimpleSelf(9014, [3,5,7,10], ["A2","H2","PW","F1","PW2","F2","R1","UAW3","UHW3","INVP"], ['水史塔德']),
+	// 幻魔特區RELOADED -GardeniA dist.-
+	9180: SimpleSelf(9180, [3,5,7,10], ["A2","F1","PT","H2","PT2","F2","HT1","AT1D2","HT1D2","R1"]),
+	9184: SimpleSelf(9184, [3,5,7,10], ["PF","UAF3","UHF3","F1","C5","PF2","F2","AF2","HF2","R1"]),
+	9188: SimpleSelf(9188, [3,5,7,10], ["A2","PW","F1","H2","PW2","AW1","F2","AW1D2","HW1D2","HDE2"]),
 };
 
 series = {
@@ -1044,6 +1048,7 @@ series = {
 	'歌頌永恆的克羅諾斯Ⅲ': [8669,8673,8677],
 	'響命CrossDerive ACT2': [8764,8768,8772],
 	'喰牙RIZE2 -Tearing Eyes-': [9002,9006,9010,9014],
+	'幻魔特區RELOADED -GardeniA dist.-': [9180,9184,9188],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -1096,6 +1101,7 @@ seriesAlias = {
 	'響命CrossDerive ACT2': ['響命Ⅱ'],
 	'喰牙RIZE': ['喰牙Ⅰ','喰牙RIZEⅠ'],
 	'喰牙RIZE2 -Tearing Eyes-': ['喰牙Ⅱ'],
+	'幻魔特區RELOADED -GardeniA dist.-': ['幻魔R']
 };
 
 evolTooltip = {
@@ -1172,13 +1178,14 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
+	'幻魔特區RELOADED -GardeniA dist.-',
+	'===幻魔特區朱雀復刻',
+	'幻魔特區 朱雀',
+	'幻魔特區 朱雀Ⅱ',
+	'幻魔特區 朱雀Ⅲ',
+	'===近期結束副本',
 	'喰牙RIZE2 -Tearing Eyes-',
 	'響命CrossDerive ACT2',
-	'===響命＆喰牙RIZE復刻',
-	'喰牙RIZE',
-	'響命CrossDerive',
-	'===近期結束副本',
-	'歌頌永恆的克羅諾斯Ⅲ',
 	'===魔導士之家：Blader &amp; AbCd',
 	"Demon's Blader",
 	'Divine Blader',
@@ -1214,10 +1221,6 @@ menuOrder = [
 	'天界的雙子 訣別的年代記',
 	'雙翼的失落伊甸',
 	'雙翼的失落伊甸Ⅱ WWMF',
-	'===魔導士之家：幻魔特區朱雀',
-	'幻魔特區 朱雀',
-	'幻魔特區 朱雀Ⅱ',
-	'幻魔特區 朱雀Ⅲ',
 	'===魔導士之家：桃娘傳＆天上岬',
 	'桃娘傳',
 	'天上岬～永恆的公主～',
@@ -1237,7 +1240,11 @@ menuOrder = [
 	'歌頌永恆的克羅諾斯Ⅱ',
 	'===魔導士之家：聖惡魔女子學院',
 	'聖惡魔女子學院',
+	'===魔導士之家：響命CrossDerive',
+	'響命CrossDerive',
 	'===過去副本',
+	'喰牙RIZE',
+	'歌頌永恆的克羅諾斯Ⅲ',
 	'黃昏無夢者Ⅲ 絡園loreless',
 	'偶像ω喵！',
 	'聖惡魔女子學院2',
