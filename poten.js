@@ -42,6 +42,8 @@ function costCompare(cost1, cost2)
  special: 目前所持特殊進化素材，[0] 對應 evol 在 [1] 的素材，依此類推
  targetLv: 目標等級
  targetPot: 目標潛能值
+ leafLv: 葉素材的階級, 多用於吃自己進化的卡片
+ overflow: 溢出潛能格的格數
 
  前兩參數對相同卡片是固定的，例如:
  帕查 maxPot = [1, 2, 3, 4, 7] 
@@ -56,7 +58,7 @@ function costCompare(cost1, cost2)
          長度 1 = 進化, [0] 為進化源，格式同此
          長度 >=2 = 強化, 各元素表示強化來源卡，格式同此
 */
-function core(maxPot, evol, materialLevel, curr, special, targetLv, targetPot, overflow)
+function core(maxPot, evol, materialLevel, curr, special, targetLv, targetPot, leafLv, overflow)
 {
 	//二維複製
 	function TwoDClone(arr){return arr.map(function(v){return v.slice(0);})}
@@ -81,9 +83,9 @@ function core(maxPot, evol, materialLevel, curr, special, targetLv, targetPot, o
 			},e);
 		},true);
 		//最低階
-		if(targetLv == 0 && targetPot == 0)
+		if(targetLv == leafLv && targetPot == 0)
 		{
-			return {level:0, pot:0, cost:[0,1], source:[], left:curr};
+			return {level:leafLv, pot:0, cost:[0,1], source:[], left:curr};
 		}
 		//已有的卡直接用
 		if(curr[targetLv][targetPot] > 0)

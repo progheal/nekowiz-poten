@@ -236,7 +236,7 @@ function toHTML(info, result)
 	}
 	var lastline = '<td colspan="' + width + '"><hr>';
 	var needlist = [];
-	if(result.cost.length > 1 && result.cost[1] > 0) needlist.push(iconImg(info.id[0]) + '&times;' + result.cost[1]);
+	if(result.cost.length > 1 && result.cost[1] > 0) needlist.push(iconImg(info.id[g_cur.leafLv]) + '&times;' + result.cost[1]);
 	for(var k = 2; k < result.cost.length; k++)
 	{
 		var item = info.special[k-2];
@@ -296,6 +296,7 @@ function characterSelect()
 		g_target.pot = g_info.maxPossible;
 	g_cur.level = g_target.level;
 	g_cur.pot = 0;
+	g_cur.leafLv = 0;
 	g_availList = [];
 	g_materialList = [];
 	updateTarget();
@@ -325,6 +326,30 @@ function characterSelect()
 					};
 				})(i))
 		);
+	}
+	if(typeof(g_info.maxLeafLv) == "undefined" || g_info.maxLeafLv == 0)
+	{
+		$('#leafLv').hide();
+	}
+	else
+	{
+		$('#leafLv').show();
+		$('#leafIcon').empty();
+		for(var i = 0; i <= g_info.maxLeafLv; i++)
+		{
+			$('#leafIcon').append(
+				$('<span></span>')
+					.addClass("icon clickable" + (i == 0 ? " iconSel" : ""))
+					.append(iconImg(g_info.id[i]))
+					.bind("click", (function(i){
+						return function(){
+							g_cur.leafLv = i;
+							$('#leafIcon .iconSel').removeClass('iconSel');
+							$('#leafIcon').children().filter('span').eq(g_cur.leafLv).addClass('iconSel');
+						};
+					})(i))
+			);
+		}
 	}
 	$('#controlPot').append('　').append(
 		$('<span></span>')
@@ -550,13 +575,19 @@ function asyncgo()
 				materialLevel.push(g_info.id.indexOf(v));
 			}
 		}
-		result = core(g_info.maxPot, g_info.evol, materialLevel, curr, special, g_target.level, g_target.pot, overflow);
+		var evol = g_info.evol;
+		if(g_cur.leafLv != 0) evol = promoteEvol(evol, g_cur.leafLv);
+		result = core(g_info.maxPot, evol, materialLevel, curr, special, g_target.level, g_target.pot, g_cur.leafLv, overflow);
 		html = toHTML(g_info, result);
 	}
 	$('#resultTable').empty();
 	$('#resultTable').append($(html));
+	if(g_cur.leafLv != 0)
+		changeHardDungeonTooltip(g_info.id, g_cur.leafLv);
 	bindEvolTooltip();
 	bindEvx(g_info);
+	if(g_cur.leafLv != 0)
+		changeHardDungeonTooltip(g_info.id, 0);
 	$('#result').show();
 	$('#go').attr('value', '開始計算').prop('disabled', false);
 }

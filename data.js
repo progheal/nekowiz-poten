@@ -293,7 +293,7 @@ function LastSpecial2(lastid, special, maxPot, pots, alias)
 }
 
 // for hard dungeon cards that requires same level itself to evolve
-function HardDungeonWithId(idlist, maxPot, pots, alias)
+function HardDungeonWithId(idlist, maxPot, pots, maxLeafLv = 0, alias = undefined)
 {
 	return {
 		alias: alias,
@@ -301,13 +301,21 @@ function HardDungeonWithId(idlist, maxPot, pots, alias)
 		maxPot: maxPot,
 		pots: pots,
 		evol: $.map(Array(idlist.length-1), function(v,i){return [[1<<i]];}),
-		material: idlist.slice(0, idlist.length-1)
+		material: idlist.slice(0, idlist.length-1),
+		maxLeafLv: maxLeafLv
 	};
 }
 
-function HardDungeon(lastid, maxPot, pots, alias)
+function HardDungeon(lastid, maxPot, pots, maxLeafLv = 0, alias = undefined)
 {
-	return HardDungeonWithId(GenerateIdList(lastid, maxPot.length), maxPot, pots, alias);
+	return HardDungeonWithId(GenerateIdList(lastid, maxPot.length), maxPot, pots, maxLeafLv, alias);
+}
+
+function promoteEvol(evolArray, leafLv)
+{
+	// Assume this is a HardDungeon evol array
+	var base = evolArray[leafLv][0];
+	return evolArray.map((a,i)=>i < leafLv ? [] : [a[0]/base]);
 }
 
 data = {
@@ -654,24 +662,25 @@ data = {
 	// Orlha Report 茸毛頑偶熊
 	5754: HardDungeonWithId([3651,3652,3653,3654,3655,5754], [2,3,4,6,10,10], ["A1","PT","H2","A2","F1","PT","H2","A2","F2","ADE2"]),
 	// AbyssCode01 黑殼之王
-	5048: HardDungeonWithId([2525,2526,2527,2528,2529,5048], [1,2,3,5,10,10],
-		[5, ["C4","F1","R2","F1","PF2","HF1","C2","AF2","F2","AF2"], ["C2","F1","C2","F1","PF","HF1","C2","A2","F1","A2"]],
-		['AbCd-X']),
+	6810: HardDungeonWithId([2525,2526,2527,2528,2529,5048,6810], [1,2,3,5,10,10,10],
+		[6,["C6","F1","R2","F1","PF2","HF1","PF2","AF2","F2","AF2"],5,["C4","F1","R2","F1","PF2","HF1","C2","AF2","F2","AF2"],["C2","F1","C2","F1","PF","HF1","C2","A2","F1","A2"]],
+		1,['AbCd-X']),
 	// AbyssCode02 盲目的調和
-	5049: HardDungeonWithId([2860,2861,2862,2863,2864,5049], [1,2,3,5,10,10],
-		[5, ["C6","DA1","AT2","DA1","R1","DA1","HT2","DA1","R1","DA1"], ["C2","DA1","C2","DA1","R1","DA1","C2","DA1","R1","DA1"]],
-		['AbCd-y']),
+	6811: HardDungeonWithId([2860,2861,2862,2863,2864,5049,6811], [1,2,3,5,10,10,10],
+		[6,["C6","DA2","AT2","PT2","R1","DA1","HT2","DA2","R1","F2"],5,["C6","DA1","AT2","DA1","R1","DA1","HT2","DA1","R1","DA1"],["C2","DA1","C2","DA1","R1","DA1","C2","DA1","R1","DA1"]],
+		1,['AbCd-y']),
 	// AbyssCode03 生而墮於虛無
-	5050: HardDungeonWithId([3064,3065,3066,3067,3068,5050], [1,2,3,5,10,10],
-		[5, ["C4","A2","F1","H2","R1","F2","DA1","PW2","AW2","HW2"], ["C2","A2","F1","H2","C2","F2","DA1","PW","AW1","HW1"]],
-		['AbCd-A']),
+	6812: HardDungeonWithId([3064,3065,3066,3067,3068,5050,6812], [1,2,3,5,10,10,10],
+		[6,["C4","A2","F3","H2","R1","PW2","DA1","PW2","AW2","HW2"],5,["C4","A2","F1","H2","R1","F2","DA1","PW2","AW2","HW2"],["C2","A2","F1","H2","C2","F2","DA1","PW","AW1","HW1"]],
+		1,['AbCd-A']),
 	// AbyssCode04 燃燒殆盡的陽光
-	5051: HardDungeonWithId([3358,3359,3360,3361,3362,5051], [2,3,5,7,10,10],
-		[5, ["C4","F1","DW1","PF","PF2","R1","AF1","F2","HF2","AF2"], ["C2","F1","DW1","PF","C2","R1","AF1","F1","HAB2","AAB2"]],
-		['AbCd-O']),
+	6813: HardDungeonWithId([3358,3359,3360,3361,3362,5051,6813], [2,3,5,7,10,10,10],
+		[6,["C4","F1","DA1","PF2","PF2","R1","AF1","F2","HF2","AF2"],5,["C4","F1","DW1","PF","PF2","R1","AF1","F2","HF2","AF2"],["C2","F1","DW1","PF","C2","R1","AF1","F1","HAB2","AAB2"]],
+		1,['AbCd-O']),
 	// AbyssCode05 冥世的天蓋
-	5052: HardDungeonWithId([3746,3747,3748,3749,3750,5052], [1,2,3,5,10,10],
-		[5, ["F1","A1","PT2","H2","HT1","F2","PT2","AT1","AT2","RΞ"], ["F1","A1","PT","H2","HT1","F2","PT","AT1","AAB2","R3"]]),
+	6814: HardDungeonWithId([3746,3747,3748,3749,3750,5052,6814], [1,2,3,5,10,10,10],
+		[6,["F1","A1","PT2","H2","HT2","F2","PT2","AT1","AT2","RΞ"],5,["F1","A1","PT2","H2","HT1","F2","PT2","AT1","AT2","RΞ"],["F1","A1","PT","H2","HT1","F2","PT","AT1","AAB2","RΞ"]],
+		1),
 	// AbyssCode06 劫末之獸
 	6277: HardDungeon(6277, [1,2,3,7,10], ["PW","F1","A2","PW2","HW2","F2","R2","INVS","AW2","HW2"]),
 	// 八百萬諸神祕聞
@@ -680,7 +689,9 @@ data = {
 	4099: SimpleSelf(4099, [3,5,6,9], ["F1","H1","A1","H2","PT","HT1","F2","AT1","AGO2"]),
 	4103: SimpleSelf(4103, [3,6,7,9], ["F1","HW1","PW","F1","AW1","H2","HW1","PW","AGO2"]),
 	// Dragon's Blader ZERO
-	4021: HardDungeon(4021, [1,2,3,5,10], ["PF","HF1","F1","HDR2","PF","ADR1","AF1","F2","HDR2","ADR2"]),
+	7915: HardDungeonWithId([4017,4018,4019,4020,4021,7915], [1,2,3,5,10,10],
+		[5,["PF2","R1","F1","PF2","F2","HDR4","ADR4","HF3","AF3","INVS"],4,["PF","HF1","F1","HDR2","PF","ADR1","AF1","F2","HDR2","ADR2"],2,["PF","AF1","F1","HDR2","PF"],["PF","HF1"]],
+		2),
 	// 幻魔特區朱雀Ⅱ
 	4259: SimpleSelf(4259, [3,4,5,7], ["C2","H1","F1","PT","F1","A2","HMA2"]),
 	4263: SimpleSelf(4263, [3,4,5,8], ["A2","C2","F1","H2","A2","DT1","R1","AMA2"]),
@@ -726,19 +737,23 @@ data = {
 	// Demon's Blader
 	6459: HardDungeonWithId([1729,1730,1731,1732,1733,4648,6459], [1,2,3,5,10,10,10],
 		  [6,["A2","C4","H2","HF2","PF2","AF2","PF2","F2","ADE2","HDE2"],
-		   5,["A2","C4","H2","HF1","PF","A1","A1","F2","ADE2","HDE2"],["A1","C2","H1","HF1","C2","PF","H1","AF1","A1","AF1"]]),
+		   5,["A2","C4","H2","HF1","PF","A1","A1","F2","ADE2","HDE2"],["A1","C2","H1","HF1","C2","PF","H1","AF1","A1","AF1"]],
+		  1),
 	// Divine Blader
 	6460: HardDungeonWithId([2133,2134,2135,2136,2137,4649,6460], [1,2,3,5,10,10,10],
 		  [6,["H4","F2","H2","PT2","AT2","H2","A4","HT2","AAN2","HAN2"],
-		   5,["C4","A2","H2","PT2","AT1","H2","A2","HT1","AAN2","HAN2"],["C2","A1","H1","C2","PT","AT1","H1","PT","A1","HT1"]]),
+		   5,["C4","A2","H2","PT2","AT1","H2","A2","HT1","AAN2","HAN2"],["C2","A1","H1","C2","PT","AT1","H1","PT","A1","HT1"]],
+		  1),
 	// Heretic Blader
 	6461: HardDungeonWithId([2298,2299,2300,2301,2302,4650,6461], [1,2,3,5,10,10,10],
 		  [6,["C2","F2","H2","HW2","C4","A2","PW2","AW2","AGO2","HGO2"],
-		   5,["C2","F2","H2","HW1","C4","A2","PW","AW1","AGO2","HGO2"],["C2","F1","H1","HW1","C2","C2","A2","PW","AW1","F1"]]),
+		   5,["C2","F2","H2","HW1","C4","A2","PW","AW1","AGO2","HGO2"],["C2","F1","H1","HW1","C2","C2","A2","PW","AW1","F1"]],
+		  1),
 	// Tempest Blader
 	6462: HardDungeonWithId([3715,3716,3717,3718,3719,4651,6462], [2,3,5,7,10,10,10],
 		  [6,["H2","F1","R1","PF2","HF2","AF2","HGODR2","F2","AGODR2","R1"],
-		   5,["H2","F1","R1","PF2","HF1","AF1","HGODR2","F2","AGODR2","R1"],["H2","F1","R1","PF","HF1","PF","AF1","HGODR2","F2","AGODR2"]]),
+		   5,["H2","F1","R1","PF2","HF1","AF1","HGODR2","F2","AGODR2","R1"],["H2","F1","R1","PF","HF1","PF","AF1","HGODR2","F2","AGODR2"]],
+		  1),
 	// 八百萬諸神祕聞2
 	5086: SimpleSelf(5086, [4,5,6,10], ["F1","H1","A1","H1","F1","HW1","PW","HW1","PW","AW1"]),
 	5090: SimpleSelf(5090, [4,5,6,10], ["PF","F1","A1","H1","PF","HF1","AF1","F1","AF1","F1"]),
@@ -994,13 +1009,13 @@ series = {
 	'Orlha Report 無罪的罪人': [5753],
 	'菇菇方程式': [800065,800069,800082],
 	'Orlha Report 茸毛頑偶熊': [5754],
-	'AbyssCode01 黑殼之王': [5048],
-	'AbyssCode02 盲目的調和': [5049],
-	'AbyssCode03 生而墮於虛無': [5050],
-	'AbyssCode04 燃燒殆盡的陽光': [5051],
+	'AbyssCode01 黑殼之王': [6810],
+	'AbyssCode02 盲目的調和': [6811],
+	'AbyssCode03 生而墮於虛無': [6812],
+	'AbyssCode04 燃燒殆盡的陽光': [6813],
 	'八百萬諸神祕聞': [4091,4095,4099,4103],
-	"Dragon's Blader ZERO": [4021],
-	'AbyssCode05 冥世的天蓋': [5052],
+	"Dragon's Blader ZERO": [7915],
+	'AbyssCode05 冥世的天蓋': [6814],
 	'幻魔特區 朱雀Ⅱ': [4259,4263,4267,4271],
 	'星耀學園‧遺願的繼承者': [800203,800205,800207,800209,800211],
 	"Demon's Blader": [6459],
@@ -1171,6 +1186,18 @@ hardDungeonTooltip.forEach(function(idlist){
 	}
 })
 
+function changeHardDungeonTooltip(idlist, leafLv)
+{
+	for(var id of idlist)
+		delete evolTooltip[id];
+	for(var i = leafLv + 1; i < idlist.length - 1; i++)
+	{
+		var list = {};
+		list[idlist[leafLv]] = 1 << (i-leafLv);
+		evolTooltip[idlist[i]] = list;
+	}
+}
+
 grayiconlist = [
 	//新版珍妮佛的冒險
 	//2682,2686,2690,2694,2695
@@ -1183,6 +1210,8 @@ menuOrder = [
 	'幻魔特區 朱雀',
 	'幻魔特區 朱雀Ⅱ',
 	'幻魔特區 朱雀Ⅲ',
+	'===協力 Dragon\'s Blader Zero',
+	"Dragon's Blader ZERO",  // 協力
 	'===近期結束副本',
 	'喰牙RIZE2 -Tearing Eyes-',
 	'響命CrossDerive ACT2',
@@ -1282,7 +1311,6 @@ menuOrder = [
 	'煉獄來訪者',
 	'星耀學園‧遺願的繼承者',
 	'新生珍妮佛的冒險',
-	"Dragon's Blader ZERO",
 	"Dragon's Blader",
 	'妖精花園',
 	'黃昏的四神書',
