@@ -976,6 +976,10 @@ data = {
 	9101: SimpleSelf(9101, [3,5,7,10], ["PW","AW1","PW","F1","PW2","HW1","AW1F2","HW1F2","F2","INVP"]),
 	9105: SimpleSelf(9105, [3,5,7,10], ["PF","UAF3","UHF3","F1","C5","PF2","F2","AF2","HF2","R1"]),
 	9109: SimpleSelf(9109, [3,5,7,10], ["A2","PW","H2","F1","PW2","UHW3","F2","UAW3","R1","INVA"]),
+	// 雙翼的失落伊甸Ⅲ Lord of Evil
+	9405: SimpleSelf(9405, [3,5,7,10], ["C10","PW","PW2","F3","A2","H2","DA1","INVD","AWT2","HWT2"]),
+	9409: SimpleSelf(9409, [3,5,7,10], ["PF","UAF3","UHF3","PF2","F3","INV","R1","AF2","HF2","DF2"]),
+	9413: SimpleSelf(9413, [3,5,7,10], ["C10","PT","UAT3","UHT3","PT2","R1","F3","AT2","HT2","E1"]),
 };
 
 series = {
@@ -1070,6 +1074,7 @@ series = {
 	'喰牙RIZE2 -Tearing Eyes-': [9002,9006,9010,9014],
 	'幻魔特區RELOADED -GardeniA dist.-': [9180,9184,9188],
 	'空戰的德爾基馬斯Ⅲ 飄揚的軍旗': [9097,9101,9105,9109],
+	'雙翼的失落伊甸Ⅲ Lord of Evil': [9405,9409,9413],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -1123,7 +1128,8 @@ seriesAlias = {
 	'響命CrossDerive ACT2': ['響命Ⅱ'],
 	'喰牙RIZE': ['喰牙Ⅰ','喰牙RIZEⅠ'],
 	'喰牙RIZE2 -Tearing Eyes-': ['喰牙Ⅱ'],
-	'幻魔特區RELOADED -GardeniA dist.-': ['幻魔R']
+	'幻魔特區RELOADED -GardeniA dist.-': ['幻魔R'],
+	'雙翼的失落伊甸Ⅲ Lord of Evil': ['雙翼Ⅲ'],
 };
 
 evolTooltip = {
@@ -1212,20 +1218,17 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
+	'雙翼的失落伊甸Ⅲ Lord of Evil',
 	'空戰的德爾基馬斯Ⅲ 飄揚的軍旗',
-	'幻魔特區RELOADED -GardeniA dist.-',
-	'===幻魔特區朱雀復刻',
-	'幻魔特區 朱雀',
-	'幻魔特區 朱雀Ⅱ',
-	'幻魔特區 朱雀Ⅲ',
 	'===空戰的德爾基馬斯復刻',
 	'空戰的德爾基馬斯',
 	'空戰的德爾基馬斯Ⅱ 昏暗英雄',
-	'===協力 Dragon\'s Blader Zero',
-	"Dragon's Blader ZERO",  // 協力
+	'===雙翼的失落伊甸復刻',
+	'雙翼的失落伊甸',
+	'雙翼的失落伊甸Ⅱ WWMF',
 	'===近期結束副本',
-	'喰牙RIZE2 -Tearing Eyes-',
-	'響命CrossDerive ACT2',
+	"Dragon's Blader ZERO",  // 協力
+	'幻魔特區RELOADED -GardeniA dist.-',
 	'===魔導士之家：響命CrossDerive',
 	'響命CrossDerive',
 	'===魔導士之家：巧克力森林',
@@ -1241,6 +1244,7 @@ menuOrder = [
 	'天界的雙子 訣別的年代記',
 	'===魔導士之家：古代森林的千年櫻花',
 	'古代森林的千年櫻花',
+	//'===魔導士之家：空戰的德爾基馬斯', // 復刻中
 	'===魔導士之家：庫洛姆‧麥格納魔導學園',
 	'庫洛姆‧麥格納Ⅰ魔導學園',
 	'庫洛姆‧麥格納Ⅱ學園祭',
@@ -1254,9 +1258,7 @@ menuOrder = [
 	'八百萬諸神祕聞',
 	'八百萬諸神祕聞2',
 	'YAOYORO Z',
-	'===魔導士之家：雙翼的失落伊甸',
-	'雙翼的失落伊甸',
-	'雙翼的失落伊甸Ⅱ WWMF',
+	//'===魔導士之家：雙翼的失落伊甸', // 復刻中
 	'===魔導士之家：天上岬',
 	'天上岬～永恆的公主～',
 	'天上岬的調香師',
@@ -1270,7 +1272,10 @@ menuOrder = [
 	'===魔導士之家：霸眼戰線',
 	'霸眼戰線',
 	'霸眼戰線2',
-	//'===魔導士之家：幻魔特區', // 復刻中
+	'===魔導士之家：幻魔特區朱雀',
+	'幻魔特區 朱雀',
+	'幻魔特區 朱雀Ⅱ',
+	'幻魔特區 朱雀Ⅲ',
 	'===魔導士之家：超魔導列傳',
 	'超魔導列傳',
 	'續・超魔導列傳',
@@ -1285,6 +1290,8 @@ menuOrder = [
 	'===魔導士之家：聖惡魔女子學院',
 	'聖惡魔女子學院',
 	'===過去副本',
+	'喰牙RIZE2 -Tearing Eyes-',
+	'響命CrossDerive ACT2',
 	'喰牙RIZE',
 	'歌頌永恆的克羅諾斯Ⅲ',
 	'黃昏無夢者Ⅲ 絡園loreless',
