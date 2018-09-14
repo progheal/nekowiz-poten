@@ -1218,6 +1218,7 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
+	'Orlha Report 茸毛頑偶熊',
 	'雙翼的失落伊甸Ⅲ Lord of Evil',
 	'空戰的德爾基馬斯Ⅲ 飄揚的軍旗',
 	'===空戰的德爾基馬斯復刻',
@@ -1317,7 +1318,6 @@ menuOrder = [
 	'初夏的魔法使慶典',
 	'Orlha Report 懷著怨念的亡君',
 	'Orlha Report 無罪的罪人',
-	'Orlha Report 茸毛頑偶熊',
 	'蕊颯',
 	'異界神的祝福試煉',
 	'聖誕老人的禮物',
