@@ -980,6 +980,10 @@ data = {
 	9405: SimpleSelf(9405, [3,5,7,10], ["C10","PW","PW2","F3","A2","H2","DA1","INVD","AWT2","HWT2"]),
 	9409: SimpleSelf(9409, [3,5,7,10], ["PF","UAF3","UHF3","PF2","F3","INV","R1","AF2","HF2","DF2"]),
 	9413: SimpleSelf(9413, [3,5,7,10], ["C10","PT","UAT3","UHT3","PT2","R1","F3","AT2","HT2","E1"]),
+	// the Gate 協力
+	9336: HardDungeon(9336, [3,4,6,8,10], ["INVS","PF2","UAF3","UHF3","PF2","F3","AF3","HF3","C10","X15"]),
+	// AbyssCode07 寂寞的境界
+	9371: HardDungeon(9371, [2,4,5,7,10], ["PT2","UAT3","UHT3","PT2","R1","AT3","HT3","F3","A4","INVA"]),
 };
 
 series = {
@@ -1075,6 +1079,8 @@ series = {
 	'幻魔特區RELOADED -GardeniA dist.-': [9180,9184,9188],
 	'空戰的德爾基馬斯Ⅲ 飄揚的軍旗': [9097,9101,9105,9109],
 	'雙翼的失落伊甸Ⅲ Lord of Evil': [9405,9409,9413],
+	'the Gate': [9336],
+	'AbyssCode07 寂寞的境界': [9371],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -1130,6 +1136,7 @@ seriesAlias = {
 	'喰牙RIZE2 -Tearing Eyes-': ['喰牙Ⅱ'],
 	'幻魔特區RELOADED -GardeniA dist.-': ['幻魔R'],
 	'雙翼的失落伊甸Ⅲ Lord of Evil': ['雙翼Ⅲ'],
+	'AbyssCode07 寂寞的境界': ['AbyssCode7','AbCd7','AbCd07'],
 };
 
 evolTooltip = {
@@ -1180,13 +1187,14 @@ hardDungeonTooltip = [
 	data[series['AbyssCode06 劫末之獸'][0]].id,
 	data[series["Dragon's Blader ZERO"][0]].id,
 	data[series['Tempest Blader'][0]].id,
-	data[series['AbyssCode05 冥世的天蓋'][0]].id,
 	data[series['德蕾姬亞'][0]].id,
 	data[series['VOID ZONE 絕天鎧裝'][0]].id,
 	data[series['Heretic Blader Howl at the moon'][0]].id,
 	data[series['Soul of Kings'][0]].id,
 	data[series['Soul of Kings'][1]].id,
 	data[series['Soul of Kings'][2]].id,
+	data[series['the Gate'][0]].id,
+	data[series['AbyssCode07 寂寞的境界'][0]].id,
 ]
 
 hardDungeonTooltip.forEach(function(idlist){
@@ -1218,34 +1226,33 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
+	'AbyssCode07 寂寞的境界',
+	'the Gate',
 	'Orlha Report 茸毛頑偶熊',
+	'===近期結束副本',
 	'雙翼的失落伊甸Ⅲ Lord of Evil',
 	'空戰的德爾基馬斯Ⅲ 飄揚的軍旗',
-	'===空戰的德爾基馬斯復刻',
-	'空戰的德爾基馬斯',
-	'空戰的德爾基馬斯Ⅱ 昏暗英雄',
-	'===雙翼的失落伊甸復刻',
-	'雙翼的失落伊甸',
-	'雙翼的失落伊甸Ⅱ WWMF',
-	'===近期結束副本',
-	"Dragon's Blader ZERO",  // 協力
-	'幻魔特區RELOADED -GardeniA dist.-',
 	'===魔導士之家：響命CrossDerive',
 	'響命CrossDerive',
 	'===魔導士之家：巧克力森林',
 	'巧克力森林',
 	'===魔導士之家：桃娘傳',
 	'桃娘傳',
+	'===魔導士之家：魔轟三鐵傑',
+	'魔轟三鐵傑 對 地獄三十六歌仙',
 	'===魔導士之家：神聖天空之星',
 	'惡作劇女神與兔子的故事',
 	'===魔導士之家：神龍降臨',
 	'神龍降臨Ⅰ',
 	'神龍降臨Ⅱ',
+	'心龍天翔 Rising Dragon',
 	'===魔導士之家：訣別的年代記',
 	'天界的雙子 訣別的年代記',
 	'===魔導士之家：古代森林的千年櫻花',
 	'古代森林的千年櫻花',
-	//'===魔導士之家：空戰的德爾基馬斯', // 復刻中
+	'===魔導士之家：空戰的德爾基馬斯',
+	'空戰的德爾基馬斯',
+	'空戰的德爾基馬斯Ⅱ 昏暗英雄',
 	'===魔導士之家：庫洛姆‧麥格納魔導學園',
 	'庫洛姆‧麥格納Ⅰ魔導學園',
 	'庫洛姆‧麥格納Ⅱ學園祭',
@@ -1259,7 +1266,9 @@ menuOrder = [
 	'八百萬諸神祕聞',
 	'八百萬諸神祕聞2',
 	'YAOYORO Z',
-	//'===魔導士之家：雙翼的失落伊甸', // 復刻中
+	'===魔導士之家：雙翼的失落伊甸',
+	'雙翼的失落伊甸',
+	'雙翼的失落伊甸Ⅱ WWMF',
 	'===魔導士之家：天上岬',
 	'天上岬～永恆的公主～',
 	'天上岬的調香師',
@@ -1291,6 +1300,8 @@ menuOrder = [
 	'===魔導士之家：聖惡魔女子學院',
 	'聖惡魔女子學院',
 	'===過去副本',
+	"Dragon's Blader ZERO",  // 協力
+	'幻魔特區RELOADED -GardeniA dist.-',
 	'喰牙RIZE2 -Tearing Eyes-',
 	'響命CrossDerive ACT2',
 	'喰牙RIZE',
@@ -1308,10 +1319,8 @@ menuOrder = [
 	'淡薄的藍色光芒 第二章 虛幻聖域',
 	'魔法GLICOⅠ',
 	'魔法GLICOⅡ',
-	'魔轟三鐵傑 對 地獄三十六歌仙',
 	'《幻世之約》—沉月與洛恩斯的交匯',
 	'武鬥之巔‧寒冰嶺上的召集',
-	'心龍天翔 Rising Dragon',
 	'追憶的閃耀光輝',
 	'白貓×黑貓×glico 快樂甜點嘉年華',
 	'德蕾姬亞',
