@@ -999,6 +999,10 @@ data = {
 	9292: SimpleSelf(9292, [3,5,7,10], ["C10","A2","F1","PT","H2","PT2","F2","AT1D1","HT1D1","R1"]),
 	9296: SimpleSelf(9296, [3,5,7,10], ["C10","PW","H3","A3","PW2","R1","E1","AW2","HW2","F3"]),
 	9300: SimpleSelf(9300, [3,5,7,10], ["PT","H3","A3","PT2","F1","R1","F2","AT2","HT2","G2"]),
+	// SUGARLESS BAMBINA
+	9665: SimpleSelf(9665, [3,5,7,10], ["C10","PF","AF2","HF2","PF2","F3","R1","UAF3","UHF3","INV"]),
+	9669: SimpleSelf(9669, [3,5,7,10], ["C10","PW","AW2","HW2","PW2","R1","F3","AW1D2","HW1D2","INVD"]),
+	9673: SimpleSelf(9673, [3,5,7,10], ["C10","PT","UAT3","UHT3","PT2","R1","F4","AT2","HT2","F4"]),
 };
 
 series = {
@@ -1098,6 +1102,7 @@ series = {
 	'AbyssCode07 寂寞的境界': [9371],
 	'新說 桃娘傳Ⅱ 機關桃源虹繪卷': [9775,9779,9783,9787],
 	'再續・超魔導列傳 終極萬聖節少女!': [9284,9288,9292,9296,9300],
+	'SUGARLESS BAMBINA': [9665,9669,9673],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -1154,6 +1159,7 @@ seriesAlias = {
 	'雙翼的失落伊甸Ⅲ Lord of Evil': ['雙翼Ⅲ'],
 	'AbyssCode07 寂寞的境界': ['AbyssCode7','AbCd7','AbCd07'],
 	'新說 桃娘傳Ⅱ 機關桃源虹繪卷': ['新說桃娘傳Ⅱ'],
+	'SUGARLESS BAMBINA': ['無糖少女'],
 };
 
 evolTooltip = {
@@ -1243,14 +1249,14 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
+	'SUGARLESS BAMBINA',
 	'Orlha Report 懷著怨念的亡君',
-	'Heretic Blader Howl at the moon', // 協力
 	'再續・超魔導列傳 終極萬聖節少女!',
 	'===超魔導列傳復刻',
 	'超魔導列傳 終極女孩',
 	'續・超魔導列傳 終極夏日女孩!',
 	'===近期結束副本',
-	'新說 桃娘傳Ⅱ 機關桃源虹繪卷',
+	'Heretic Blader Howl at the moon', // 協力
 	'===魔導士之家：響命CrossDerive',
 	'響命CrossDerive',
 	'===魔導士之家：巧克力森林',
@@ -1321,6 +1327,7 @@ menuOrder = [
 	'===魔導士之家：聖惡魔女子學院',
 	'聖惡魔女子學院',
 	'===過去副本',
+	'新說 桃娘傳Ⅱ 機關桃源虹繪卷',
 	'AbyssCode07 寂寞的境界',
 	'the Gate', // 協力
 	'雙翼的失落伊甸Ⅲ Lord of Evil',
