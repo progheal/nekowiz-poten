@@ -169,11 +169,11 @@ for(var num = 1; num <= 10; num++)
 					name: Attribute[attr]('純屬性')+toRoman(num1)+'・'+TypeName[type1]
 				};
 			}
-			for(var num1 of [1,2])
+			for(var num1 of [1,2,3])
 			{
 				for(var type2 in TypeName)
 				{
-					for(var num2 of [1,2])
+					for(var num2 of [1,2,3])
 					{
 						potData[attr+type1+num1+type2+num2] = {
 							icon: "Senzai_"+AttrIcon[attr]+"_"+type1+type2,
@@ -183,7 +183,7 @@ for(var num = 1; num <= 10; num++)
 				}
 				for(var type2 in SubTypeName)
 				{
-					for(var num2 of [1,2])
+					for(var num2 of [1,2,3])
 					{
 						potData[attr+type1+num1+type2+num2] = {
 							icon: "Senzai_"+AttrIcon[attr]+"_"+type1+type2,
@@ -938,9 +938,12 @@ data = {
 	8353: SimpleSelf(8353, [3,5,7,10], ["C10","A3","PT","F1","H3","PT2","PT2","F2","HT2","INVA"]),
 	8362: SimpleSelf(8362, [4,7,10],   ["C10","A2","F1","PF","H2","PF2","F1","AF1L2","HF1L2","INVS"]),
 	// Soul of Kings
-	7213: HardDungeon(7213, [2,5,7,10], ["PF","DL1","F1","A2","PF2","R1","F2","HF2","AF2D1","INVA"]),
-	7217: HardDungeon(7217, [2,5,7,10], ["PW","DL1","H2","A2","PW2","R1","F2","AW2","HW2D1","INVS"]),
-	7221: HardDungeon(7221, [2,5,7,10], ["PT","DD1","F1","A2","PT2","R1","F2","HT2","AT2L1","INVS"]),
+	9150: HardDungeonWithId([7218,7219,7220,7221,9150], [2,5,7,10,10],
+		[4,["PT","DD1","F3","AT2","PT2","R1","HT2","HT1L3","AT1L3","INVS"],["PT","DD1","F1","A2","PT2","R1","F2","HT2","AT2L1","INVS"]],1),
+	9151: HardDungeonWithId([7210,7211,7212,7213,9151], [2,5,7,10,10],
+		[4,["PF","DL1","F3","AF2","PF2","R1","HF2","HF1D3","AF1D3","INVA"],["PF","DL1","F1","A2","PF2","R1","F2","HF2","AF2D1","INVA"]],1),
+	9152: HardDungeonWithId([7214,7215,7216,7217,9152], [2,5,7,10,10],
+		[4,["PW","DL1","HW2","AW2","PW2","R1","F2","AW1D3","HW1D3","INVS"],["PW","DL1","H2","A2","PW2","R1","F2","AW2","HW2D1","INVS"]],1),
 	// 八百萬諸神祕聞4 沉眠京城的悠久之歌
 	8491: SimpleSelf(8491, [2,4,6,10], ["C10","PT","PT2","F3","A2","H2","R1","G2","AFT2","HFT2"]),
 	8495: SimpleSelf(8495, [2,4,6,10], ["C10","PF","PF2","F3","A2","H2","DA1","INVD","AFW2","HFW2"]),
@@ -1087,7 +1090,7 @@ series = {
 	'霸眼戰線3 聖劍與霸眼': [8195,8199,8203,8207],
 	'Heretic Blader Howl at the moon': [8469],
 	'喰牙RIZE': [8345,8349,8353,8362],
-	'Soul of Kings': [7213,7217,7221],
+	'Soul of Kings': [9150,9151,9152],
 	'八百萬諸神祕聞4 沉眠京城的悠久之歌': [8491,8495,8499,8503],
 	'偶像ω喵！': [8434,8438,8442],
 	'聖惡魔女子學院2': [8831,8835,8839],
@@ -1249,14 +1252,10 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
-	'SUGARLESS BAMBINA',
-	'Orlha Report 懷著怨念的亡君',
-	'再續・超魔導列傳 終極萬聖節少女!',
-	'===超魔導列傳復刻',
-	'超魔導列傳 終極女孩',
-	'續・超魔導列傳 終極夏日女孩!',
+	'Soul of Kings', // 協力
 	'===近期結束副本',
-	'Heretic Blader Howl at the moon', // 協力
+	'SUGARLESS BAMBINA',
+	'再續・超魔導列傳 終極萬聖節少女!',
 	'===魔導士之家：響命CrossDerive',
 	'響命CrossDerive',
 	'===魔導士之家：巧克力森林',
@@ -1286,6 +1285,7 @@ menuOrder = [
 	'庫洛姆‧麥格納Ⅳ單戀☆狂想曲',
 	'庫洛姆‧麥格納 零',
 	'===魔導士之家：Orlha Report',
+	'Orlha Report 懷著怨念的亡君',
 	'Orlha Report 無罪的罪人',
 	'Orlha Report 茸毛頑偶熊',
 	'===魔導士之家：黃昏無夢者',
@@ -1315,7 +1315,9 @@ menuOrder = [
 	'幻魔特區 朱雀',
 	'幻魔特區 朱雀Ⅱ',
 	'幻魔特區 朱雀Ⅲ',
-	//'===魔導士之家：超魔導列傳',	// 復刻中
+	'===魔導士之家：超魔導列傳',
+	'超魔導列傳 終極女孩',
+	'續・超魔導列傳 終極夏日女孩!',
 	'===魔導士之家：Blader',
 	"Demon's Blader",
 	'Divine Blader',
@@ -1327,6 +1329,7 @@ menuOrder = [
 	'===魔導士之家：聖惡魔女子學院',
 	'聖惡魔女子學院',
 	'===過去副本',
+	'Heretic Blader Howl at the moon', // 協力
 	'新說 桃娘傳Ⅱ 機關桃源虹繪卷',
 	'AbyssCode07 寂寞的境界',
 	'the Gate', // 協力
@@ -1342,7 +1345,6 @@ menuOrder = [
 	'偶像ω喵！',
 	'聖惡魔女子學院2',
 	'八百萬諸神祕聞4 沉眠京城的悠久之歌',
-	'Soul of Kings', // 協力
 	'霸眼戰線3 聖劍與霸眼',
 	'VOID ZONE 絕天鎧裝',
 	'神聖天空之星',
