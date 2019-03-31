@@ -14,6 +14,7 @@ potData = {
 	INVS:{icon: "Senzai_Invalidate", name: "使敵方技能的特殊技能封印失效"},
 	INVP:{icon: "Senzai_Invalidate", name: "使敵方技能的毒攻擊失效"},
 	INVD:{icon: "Senzai_Invalidate", name: "使敵方技能的死亡秒針失效"},
+	INVPWD:{icon: "Senzai_Invalidate", name: "使敵方技能的毒攻擊、屬性弱化、死亡秒針失效"},
 	SHIN:{icon: "Senzai_Shingan",    name: "心眼：看穿肉眼無從得見的真實"},
 	X15: {icon: "Senzai_DMG_up_HP_down", name: "提升傷害Ⅰ＆HP下降Ⅴ"},
 }
@@ -46,6 +47,10 @@ for(var num = 1; num <= 5; num++)
 	potData['F'+num] = {
 		icon: "Senzai_FastSkill",
 		name: "快速技能"+toRoman(num)
+	};
+	potData['FS'+num] = {
+		icon: "Senzai_Second_fast",
+		name: "第二回快速技能"+toRoman(num)
 	};
 }
 
@@ -222,6 +227,23 @@ function SimpleSelfWithId(idlist, maxPot, pots, alias)
 function SimpleSelf(lastid, maxPot, pots, alias)
 {
 	return SimpleSelfWithId(GenerateIdList(lastid, maxPot.length), maxPot, pots, alias);
+}
+
+function TwoLevelSelfWithId(idlist, maxPot, pots, alias)
+{
+	return {
+		alias: alias,
+		id: idlist,
+		maxPot: maxPot,
+		pots: pots,
+		evol: [[3]],
+		material: [[idlist[0],idlist[0],idlist[0]]]
+	};
+}
+
+function TwoLevelSelf(lastid, maxPot, pots, alias)
+{
+	return TwoLevelSelfWithId(GenerateIdList(lastid, maxPot.length), maxPot, pots, alias);
 }
 
 // For cards that uses material to evolve
@@ -1006,6 +1028,26 @@ data = {
 	9665: SimpleSelf(9665, [3,5,7,10], ["C10","PF","AF2","HF2","PF2","F3","R1","UAF3","UHF3","INV"]),
 	9669: SimpleSelf(9669, [3,5,7,10], ["C10","PW","AW2","HW2","PW2","R1","F3","AW1D2","HW1D2","INVD"]),
 	9673: SimpleSelf(9673, [3,5,7,10], ["C10","PT","UAT3","UHT3","PT2","R1","F4","AT2","HT2","F4"]),
+	// 神聖天空之星2
+	9530: SimpleSelf(9530, [3,5,7,10], ["PT","AWT2","HWT2","PT2","F4","C10","R1","DA1","AT1W2","HT1W2"]),
+	9534: SimpleSelf(9534, [3,5,7,10], ["PF","AF3","HF3","PF2","F3","R2","DT2","UAF3","UHF3","INVS"]),
+	9538: SimpleSelf(9538, [3,5,7,10], ["C10","PW","AW2","HW2","PW2","R1","F4","AW1F2","HW1F2","AGO2"]),
+	9541: SimpleSelf(9541, [4,7,10], ["PF2","UAF3","UHF3","PF2","F4","R1","INV","AF3","HF3","E2"]),
+	// Tempest Blader The Lance of the Bane
+	9815: HardDungeon(9815, [3,4,6,8,10], ["F1","AF2","HF2","PF2","F2","PF2","DA1","AF1L2","HF1L2","INVPWD"]),
+	// 黃金時機稍縱即逝。快趁鬼不在洗個夠！
+	9603: HardDungeon(9603, [3,5,7,8,10], ["PT2","AT2","HT2","PT2","R1","F4","G3","AA2","HA2","DA1"]),
+	9612: HardDungeon(9612, [3,5,7,8,10], ["PW2","AW2","HW2","PW2","R1","F3","G3","AA2","HA2","DA1"]),
+	// 沉睡的遺跡 Outlander
+	9841: TwoLevelSelf(9841, [3,10], ["C10","PT","AFT2","HFT2","PT2","R1","F1","AT1F1","HT1F1","F2"]),
+	9843: TwoLevelSelf(9843, [3,10], ["C10","PW","AW2","HW2","PW2","R1","F3","AW1D2","HW1D2","INVP"]),
+	9845: TwoLevelSelf(9845, [3,10], ["C10","PF","AF2","HF2","PF2","R1","F3","AF1L2","HF1L2","INVD"]),
+	9847: TwoLevelSelf(9847, [3,10], ["C10","PT","AT2","HT2","PT2","R1","F2","AT1L2","HT1L2","INVS"]),
+	// Birth Of New Order
+	9994: TwoLevelSelf(9994, [3,10], ["PW","H3","A3","PW2","F1","R1","F2","AW2","HW2","G2"]),
+	9996: TwoLevelSelf(9996, [3,10], ["PW2","AW2","HW2","PW2","DA1","FS4","INVPWD","AW1D2","HW1D2","FS4"]),
+	9998: TwoLevelSelf(9998, [4,10], ["PF2","AF2","HF2","PF2","R1","F4","INVPWD","AA2","HA2","F4"]),
+	10001: TwoLevelSelfWithId([9999,10001], [4,10], ["C10","PT","AT2","HT2","PT2","R1","F3","AT1L2","HT1L2","INVA"]),
 };
 
 series = {
@@ -1106,6 +1148,11 @@ series = {
 	'新說 桃娘傳Ⅱ 機關桃源虹繪卷': [9775,9779,9783,9787],
 	'再續・超魔導列傳 終極萬聖節少女!': [9284,9288,9292,9296,9300],
 	'SUGARLESS BAMBINA': [9665,9669,9673],
+	'神聖天空之星2': [9530,9534,9538,9541],
+	'Tempest Blader The Lance of the Bane': [9815],
+	'黃金時機稍縱即逝。快趁鬼不在洗個夠！': [9603,9612],
+	'沉睡的遺跡 Outlander': [9841,9843,9845,9847],
+	'Birth Of New Order': [9994,9996,9998,10001],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -1163,6 +1210,8 @@ seriesAlias = {
 	'AbyssCode07 寂寞的境界': ['AbyssCode7','AbCd7','AbCd07'],
 	'新說 桃娘傳Ⅱ 機關桃源虹繪卷': ['新說桃娘傳Ⅱ'],
 	'SUGARLESS BAMBINA': ['無糖少女'],
+	'黃金時機稍縱即逝。快趁鬼不在洗個夠！': ['雞狗協力'],
+	'Birth Of New Order': ['BONO'],
 };
 
 evolTooltip = {
@@ -1221,6 +1270,9 @@ hardDungeonTooltip = [
 	data[series['Soul of Kings'][2]].id,
 	data[series['the Gate'][0]].id,
 	data[series['AbyssCode07 寂寞的境界'][0]].id,
+	data[series['黃金時機稍縱即逝。快趁鬼不在洗個夠！'][0]].id,
+	data[series['黃金時機稍縱即逝。快趁鬼不在洗個夠！'][1]].id,
+	data[series['Tempest Blader The Lance of the Bane'][0]].id,
 ]
 
 hardDungeonTooltip.forEach(function(idlist){
@@ -1252,10 +1304,17 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
-	'Soul of Kings', // 協力
+	'Birth Of New Order',
+	'===復刻：空戰的德爾基馬斯',
+	'空戰的德爾基馬斯',
+	'空戰的德爾基馬斯Ⅱ 昏暗英雄',
+	'空戰的德爾基馬斯Ⅲ 飄揚的軍旗',
 	'===近期結束副本',
-	'SUGARLESS BAMBINA',
 	'再續・超魔導列傳 終極萬聖節少女!',
+	'===魔導士之家：偶像ω喵！',
+	'偶像ω喵！',
+	'===魔導士之家：喰牙RIZE',
+	'喰牙RIZE',
 	'===魔導士之家：響命CrossDerive',
 	'響命CrossDerive',
 	'===魔導士之家：巧克力森林',
@@ -1265,19 +1324,22 @@ menuOrder = [
 	'新說 桃娘傳 妖爺合戰誓助劍',
 	'===魔導士之家：魔轟三鐵傑',
 	'魔轟三鐵傑 對 地獄三十六歌仙',
+	'===魔導士之家：淡薄的藍色光芒',
+	'淡薄的藍色光芒 第二章 虛幻聖域',
 	'===魔導士之家：神聖天空之星',
+	'神聖天空之星',
 	'惡作劇女神與兔子的故事',
 	'===魔導士之家：神龍降臨',
 	'神龍降臨Ⅰ',
 	'神龍降臨Ⅱ',
 	'心龍天翔 Rising Dragon',
+	'===魔導士之家：追憶的閃耀光輝',
+	'追憶的閃耀光輝',
 	'===魔導士之家：訣別的年代記',
 	'天界的雙子 訣別的年代記',
 	'===魔導士之家：古代森林的千年櫻花',
 	'古代森林的千年櫻花',
-	'===魔導士之家：空戰的德爾基馬斯',
-	'空戰的德爾基馬斯',
-	'空戰的德爾基馬斯Ⅱ 昏暗英雄',
+	//'===魔導士之家：空戰的德爾基馬斯', // 復刻中, 0402
 	'===魔導士之家：庫洛姆‧麥格納魔導學園',
 	'庫洛姆‧麥格納Ⅰ魔導學園',
 	'庫洛姆‧麥格納Ⅱ學園祭',
@@ -1291,10 +1353,12 @@ menuOrder = [
 	'===魔導士之家：黃昏無夢者',
 	'黃昏無夢者',
 	'黃昏無夢者Ⅱ 殘響dearless',
+	'黃昏無夢者Ⅲ 絡園loreless',
 	'===魔導士之家：八百萬諸神祕聞',
 	'八百萬諸神祕聞',
 	'八百萬諸神祕聞2',
 	'YAOYORO Z',
+	'八百萬諸神祕聞4 沉眠京城的悠久之歌',
 	'===魔導士之家：雙翼的失落伊甸',
 	'雙翼的失落伊甸',
 	'雙翼的失落伊甸Ⅱ WWMF',
@@ -1311,6 +1375,7 @@ menuOrder = [
 	'===魔導士之家：霸眼戰線',
 	'霸眼戰線',
 	'霸眼戰線2',
+	'霸眼戰線3 聖劍與霸眼',
 	'===魔導士之家：幻魔特區朱雀',
 	'幻魔特區 朱雀',
 	'幻魔特區 朱雀Ⅱ',
@@ -1328,32 +1393,29 @@ menuOrder = [
 	'歌頌永恆的克羅諾斯Ⅱ',
 	'===魔導士之家：聖惡魔女子學院',
 	'聖惡魔女子學院',
+	'聖惡魔女子學院2',
 	'===過去副本',
+	'VOID ZONE 絕天鎧裝',
+	'沉睡的遺跡 Outlander',
+	'黃金時機稍縱即逝。快趁鬼不在洗個夠！', // 協力
+	"Dragon's Blader ZERO",  // 協力
+	'Soul of Kings', // 協力
+	'Tempest Blader The Lance of the Bane', // 協力
+	'神聖天空之星2',
+	'SUGARLESS BAMBINA',
 	'Heretic Blader Howl at the moon', // 協力
 	'新說 桃娘傳Ⅱ 機關桃源虹繪卷',
 	'AbyssCode07 寂寞的境界',
 	'the Gate', // 協力
 	'雙翼的失落伊甸Ⅲ Lord of Evil',
-	'空戰的德爾基馬斯Ⅲ 飄揚的軍旗',
-	"Dragon's Blader ZERO",  // 協力
 	'幻魔特區RELOADED -GardeniA dist.-',
 	'喰牙RIZE2 -Tearing Eyes-',
 	'響命CrossDerive ACT2',
-	'喰牙RIZE',
 	'歌頌永恆的克羅諾斯Ⅲ',
-	'黃昏無夢者Ⅲ 絡園loreless',
-	'偶像ω喵！',
-	'聖惡魔女子學院2',
-	'八百萬諸神祕聞4 沉眠京城的悠久之歌',
-	'霸眼戰線3 聖劍與霸眼',
-	'VOID ZONE 絕天鎧裝',
-	'神聖天空之星',
-	'淡薄的藍色光芒 第二章 虛幻聖域',
 	'魔法GLICOⅠ',
 	'魔法GLICOⅡ',
 	'《幻世之約》—沉月與洛恩斯的交匯',
 	'武鬥之巔‧寒冰嶺上的召集',
-	'追憶的閃耀光輝',
 	'白貓×黑貓×glico 快樂甜點嘉年華',
 	'德蕾姬亞',
 	'初夏的魔法使慶典',
