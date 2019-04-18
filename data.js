@@ -1,12 +1,6 @@
 potData = {
 	N1:  {icon: "Senzai_Chain_boost",name: "提升連鎖Ⅰ"},
 	RΞ:  {icon: "Senzai_Konki",      name: "九死一生Ξ"},
-	PF:  {icon: "Senzai_Appear_F",   name: "問題類型屬性提昇·火"},
-	PW:  {icon: "Senzai_Appear_W",   name: "問題類型屬性提昇·水"},
-	PT:  {icon: "Senzai_Appear_T",   name: "問題類型屬性提昇·雷"},
-	PF2: {icon: "Senzai_Appear_F",   name: "問題類型屬性提昇Ⅱ·火"},
-	PW2: {icon: "Senzai_Appear_W",   name: "問題類型屬性提昇Ⅱ·水"},
-	PT2: {icon: "Senzai_Appear_T",   name: "問題類型屬性提昇Ⅱ·雷"},
 	B1:  {icon: "Senzai_BattleEnd",  name: "戰鬥結束後回復全體隊友的HP"},
 	CG1: {icon: "Senzai_Chain_guard",name: "於一次任務中，僅限一次保護連鎖數"},
 	INV: {icon: "Senzai_Invalidate", name: "使敵方技能的封印失效"},
@@ -14,10 +8,12 @@ potData = {
 	INVS:{icon: "Senzai_Invalidate", name: "使敵方技能的特殊技能封印失效"},
 	INVP:{icon: "Senzai_Invalidate", name: "使敵方技能的毒攻擊失效"},
 	INVD:{icon: "Senzai_Invalidate", name: "使敵方技能的死亡秒針失效"},
+	INVR:{icon: "Senzai_Invalidate", name: "使敵方技能的消除技能充填失效"},
 	INVPWD:{icon: "Senzai_Invalidate", name: "使敵方技能的毒攻擊、屬性弱化、死亡秒針失效"},
 	SHIN:{icon: "Senzai_Shingan",    name: "心眼：看穿肉眼無從得見的真實"},
 	X15: {icon: "Senzai_DMG_up_HP_down", name: "提升傷害Ⅰ＆HP下降Ⅴ"},
 }
+
 
 // 1 to 10 only
 function toRoman(num)
@@ -148,17 +144,28 @@ for(var num = 1; num <= 10; num++)
 			}
 		}
 	}
-	
+
 	for(var attr of ['D'])
 	{
 		for(var type2 in SubTypeName)
 		{
-			for(var num2 of [1,2])
+			for(var num2 of [1,2,3])
 			{
 				potData[attr+type2+num2] = {
 					icon: "Senzai_"+AttrIcon[attr]+"_DL",
 					name: Attribute[attr](SubTypeName[type2]+'屬性')+toRoman(num2)
 				};
+			}
+		}
+	}
+
+	for(var t in TypeName)
+	{
+		for(var num = 1; num <= 4; num++)
+		{
+			potData['P'+t+(num==1?'':num)] = {
+				icon: "Senzai_Appear_"+t,
+				name: "問題類型屬性提昇"+(num==1?'':toRoman(num))+"·"+TypeName[t]
 			}
 		}
 	}
@@ -1048,6 +1055,27 @@ data = {
 	9996: TwoLevelSelf(9996, [3,10], ["PW2","AW2","HW2","PW2","DA1","FS4","INVPWD","AW1D2","HW1D2","FS4"]),
 	9998: TwoLevelSelf(9998, [4,10], ["PF2","AF2","HF2","PF2","R1","F4","INVPWD","AA2","HA2","F4"]),
 	10001: TwoLevelSelfWithId([9999,10001], [4,10], ["C10","PT","AT2","HT2","PT2","R1","F3","AT1L2","HT1L2","INVA"]),
+	// 黃昏無夢者Ⅳ 黃昏mareless
+	10089: TwoLevelSelf(10089, [3,10], ["C10","AFT2","PT","HFT2","FS3","PT2","AT1F2","HT1F2","FS4","INVPWD"]),
+	10091: TwoLevelSelf(10091, [3,10], ["AW2","HW2","F1","C10","PW","DF1","PW2","UAW3","UHW3","INVA"]),
+	10093: TwoLevelSelf(10093, [3,10], ["PF","AF2","F1","A2","PF2","HF2","F2","AF1D2","HF1D2","INVS"]),
+	10095: TwoLevelSelf(10095, [3,10], ["PT2","AT2","HT2","F1","PT2","F2","AT1L2","HT1L2","R1","INVS"]),
+	// MARELESS 夢境之蝶
+	10120: TwoLevelSelf(10120, [3,10], ["C10","AF1D2","HF1D2","F1","PF","HF2","AF2","PF2","F1","CG1"]),
+	// AbCd 協力
+	8737: HardDungeonWithId([7009,7010,7011,7012,7013,8737], [1,3,6,8,10,10],
+		[5,["PF2","AF2","HF2","PF2","R1","F4","AF1D2","HF1D2","INVP","INVR"],["PF","F1","R1","PF2","AF1","F2","HF2","AF2","INVP","INVR"]]),
+	8738: HardDungeonWithId([5117,5118,5119,5120,5121,8738], [1,2,3,6,10,10],
+		[5,["PT2","AT2","HT2","PT2","R1","DD3","R1","AT1L2","HT1L2","F3"],["PT","HT1","F1","R1","H2","HT1","R1","PT2","AT1","F1"]]),
+	8739: HardDungeonWithId([5535,5536,5537,5538,5539,8739], [1,2,3,6,10,10],
+		[5,["PW2","AW2","HW2","PW2","R2","DA1","INVS","AW1L2","HW1L2","F3"],
+		 4,["A2","AW1","PW2","DA1","R1","H2","PW2","HW2","AW2","F2"],["A2","HW1","PW2","DA1","R1","H2"]]),
+	8740: HardDungeonWithId([6293,6294,6295,6296,6297,8740], [1,2,3,6,10,10],
+		[5,["PF4","AF2","HF2","F2","R1","DW2","AAB2","AF1D2","HF1D2","INVS"],["PF","A2","PF2","H2","HF1","R1","HF2","DW1","AAB2","INVS"]]),
+	8741: HardDungeonWithId([5740,5741,5742,5743,5744,8741], [1,2,3,6,10,10],
+		[5,["PT2","AT2","HT2","PT2","DA1","F2","INVA","AT1L2","HT1L2","F2"],["PT","F1","A2","PT2","HT2","A3","F2","PT2","HT2","AT2"]]),
+	8742: HardDungeonWithId([8265,8266,8267,8268,8269,8742], [3,4,6,8,10,10],
+		[5,["PW2","AW2","HW2","PW2","R1","SHIN","AW1D2","HW1D2","DA1","F4"],["PW2","AW2","HW2","PW2","R1","F2","AW1D2","HW1D2","DA1","F2"]]),
 };
 
 series = {
@@ -1153,6 +1181,14 @@ series = {
 	'黃金時機稍縱即逝。快趁鬼不在洗個夠！': [9603,9612],
 	'沉睡的遺跡 Outlander': [9841,9843,9845,9847],
 	'Birth Of New Order': [9994,9996,9998,10001],
+	'黃昏無夢者Ⅳ 黃昏mareless': [10089,10091,10093,10095],
+	'MARELESS 夢境之蝶': [10120],
+	'AbCd：《黑虐之王》': [8737],
+	'AbCd：《於聖地知曉絕望為何物》': [8738],
+	'AbCd：《降臨，接著是聖戰》': [8739],
+	'AbCd：《觀神之祭品》': [8740],
+	'AbCd：《漂流至冥世》': [8741],
+	'AbCd：《Myth Slayer》': [8742],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -1212,6 +1248,14 @@ seriesAlias = {
 	'SUGARLESS BAMBINA': ['無糖少女'],
 	'黃金時機稍縱即逝。快趁鬼不在洗個夠！': ['雞狗協力'],
 	'Birth Of New Order': ['BONO'],
+	'黃昏無夢者Ⅳ 黃昏mareless': ['黃昏Ⅳ'],
+	'MARELESS 夢境之蝶': ['黃昏0'],
+	'AbCd：《黑虐之王》': ['AbCd協力01'],
+	'AbCd：《於聖地知曉絕望為何物》': ['AbCd協力02'],
+	'AbCd：《降臨，接著是聖戰》': ['AbCd協力03'],
+	'AbCd：《觀神之祭品》': ['AbCd協力04'],
+	'AbCd：《漂流至冥世》': ['AbCd協力05'],
+	'AbCd：《Myth Slayer》': ['AbCd協力06'],
 };
 
 evolTooltip = {
@@ -1273,6 +1317,12 @@ hardDungeonTooltip = [
 	data[series['黃金時機稍縱即逝。快趁鬼不在洗個夠！'][0]].id,
 	data[series['黃金時機稍縱即逝。快趁鬼不在洗個夠！'][1]].id,
 	data[series['Tempest Blader The Lance of the Bane'][0]].id,
+	data[series['AbCd：《黑虐之王》'][0]].id,
+	data[series['AbCd：《於聖地知曉絕望為何物》'][0]].id,
+	data[series['AbCd：《降臨，接著是聖戰》'][0]].id,
+	data[series['AbCd：《觀神之祭品》'][0]].id,
+	data[series['AbCd：《漂流至冥世》'][0]].id,
+	data[series['AbCd：《Myth Slayer》'][0]].id,
 ]
 
 hardDungeonTooltip.forEach(function(idlist){
@@ -1304,13 +1354,26 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
-	'Birth Of New Order',
-	'===復刻：空戰的德爾基馬斯',
-	'空戰的德爾基馬斯',
-	'空戰的德爾基馬斯Ⅱ 昏暗英雄',
-	'空戰的德爾基馬斯Ⅲ 飄揚的軍旗',
+	'黃昏無夢者Ⅳ 黃昏mareless',
+	'MARELESS 夢境之蝶',
+	'===復刻：黃昏無夢者',
+	'黃昏無夢者',
+	'黃昏無夢者Ⅱ 殘響dearless',
+	'黃昏無夢者Ⅲ 絡園loreless',
+	'===復刻：幻魔特區',
+	'幻魔特區 朱雀',
+	'幻魔特區 朱雀Ⅱ',
+	'幻魔特區 朱雀Ⅲ',
+	'幻魔特區RELOADED -GardeniA dist.-',
+	'===協力：AbCd',
+	'AbCd：《黑虐之王》',
+	'AbCd：《於聖地知曉絕望為何物》',
+	'AbCd：《降臨，接著是聖戰》',
+	'AbCd：《觀神之祭品》',
+	'AbCd：《漂流至冥世》',
+	'AbCd：《Myth Slayer》',
 	'===近期結束副本',
-	'再續・超魔導列傳 終極萬聖節少女!',
+	'Birth Of New Order',
 	'===魔導士之家：偶像ω喵！',
 	'偶像ω喵！',
 	'===魔導士之家：喰牙RIZE',
@@ -1339,7 +1402,10 @@ menuOrder = [
 	'天界的雙子 訣別的年代記',
 	'===魔導士之家：古代森林的千年櫻花',
 	'古代森林的千年櫻花',
-	//'===魔導士之家：空戰的德爾基馬斯', // 復刻中, 0402
+	'===魔導士之家：空戰的德爾基馬斯',
+	'空戰的德爾基馬斯',
+	'空戰的德爾基馬斯Ⅱ 昏暗英雄',
+	'空戰的德爾基馬斯Ⅲ 飄揚的軍旗',
 	'===魔導士之家：庫洛姆‧麥格納魔導學園',
 	'庫洛姆‧麥格納Ⅰ魔導學園',
 	'庫洛姆‧麥格納Ⅱ學園祭',
@@ -1350,10 +1416,7 @@ menuOrder = [
 	'Orlha Report 懷著怨念的亡君',
 	'Orlha Report 無罪的罪人',
 	'Orlha Report 茸毛頑偶熊',
-	'===魔導士之家：黃昏無夢者',
-	'黃昏無夢者',
-	'黃昏無夢者Ⅱ 殘響dearless',
-	'黃昏無夢者Ⅲ 絡園loreless',
+	//'===魔導士之家：黃昏無夢者', // 復刻中, 0512
 	'===魔導士之家：八百萬諸神祕聞',
 	'八百萬諸神祕聞',
 	'八百萬諸神祕聞2',
@@ -1376,10 +1439,7 @@ menuOrder = [
 	'霸眼戰線',
 	'霸眼戰線2',
 	'霸眼戰線3 聖劍與霸眼',
-	'===魔導士之家：幻魔特區朱雀',
-	'幻魔特區 朱雀',
-	'幻魔特區 朱雀Ⅱ',
-	'幻魔特區 朱雀Ⅲ',
+	//'===魔導士之家：幻魔特區', // 復刻中, 0507
 	'===魔導士之家：超魔導列傳',
 	'超魔導列傳 終極女孩',
 	'續・超魔導列傳 終極夏日女孩!',
@@ -1395,6 +1455,7 @@ menuOrder = [
 	'聖惡魔女子學院',
 	'聖惡魔女子學院2',
 	'===過去副本',
+	'再續・超魔導列傳 終極萬聖節少女!',
 	'VOID ZONE 絕天鎧裝',
 	'沉睡的遺跡 Outlander',
 	'黃金時機稍縱即逝。快趁鬼不在洗個夠！', // 協力
@@ -1408,7 +1469,6 @@ menuOrder = [
 	'AbyssCode07 寂寞的境界',
 	'the Gate', // 協力
 	'雙翼的失落伊甸Ⅲ Lord of Evil',
-	'幻魔特區RELOADED -GardeniA dist.-',
 	'喰牙RIZE2 -Tearing Eyes-',
 	'響命CrossDerive ACT2',
 	'歌頌永恆的克羅諾斯Ⅲ',
