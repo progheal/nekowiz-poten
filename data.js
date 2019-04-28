@@ -1076,6 +1076,8 @@ data = {
 		[5,["PT2","AT2","HT2","PT2","DA1","F2","INVA","AT1L2","HT1L2","F2"],["PT","F1","A2","PT2","HT2","A3","F2","PT2","HT2","AT2"]]),
 	8742: HardDungeonWithId([8265,8266,8267,8268,8269,8742], [3,4,6,8,10,10],
 		[5,["PW2","AW2","HW2","PW2","R1","SHIN","AW1D2","HW1D2","DA1","F4"],["PW2","AW2","HW2","PW2","R1","F2","AW1D2","HW1D2","DA1","F2"]]),
+	// 幻魔特區RELOADEDⅡ -RE:unite-
+	10291: TwoLevelSelf(10291, [3,10], ["PW2","AWT2","HWT2","FS3","R1","Aundefined3","Hundefined3","FS5","INVA","INVS"]),
 };
 
 series = {
@@ -1189,6 +1191,7 @@ series = {
 	'AbCd：《觀神之祭品》': [8740],
 	'AbCd：《漂流至冥世》': [8741],
 	'AbCd：《Myth Slayer》': [8742],
+	'幻魔特區RELOADEDⅡ -RE:unite-': [10291],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -1241,7 +1244,7 @@ seriesAlias = {
 	'響命CrossDerive ACT2': ['響命Ⅱ'],
 	'喰牙RIZE': ['喰牙Ⅰ','喰牙RIZEⅠ'],
 	'喰牙RIZE2 -Tearing Eyes-': ['喰牙Ⅱ'],
-	'幻魔特區RELOADED -GardeniA dist.-': ['幻魔R'],
+	'幻魔特區RELOADED -GardeniA dist.-': ['幻魔R1'],
 	'雙翼的失落伊甸Ⅲ Lord of Evil': ['雙翼Ⅲ'],
 	'AbyssCode07 寂寞的境界': ['AbyssCode7','AbCd7','AbCd07'],
 	'新說 桃娘傳Ⅱ 機關桃源虹繪卷': ['新說桃娘傳Ⅱ'],
@@ -1256,6 +1259,7 @@ seriesAlias = {
 	'AbCd：《觀神之祭品》': ['AbCd協力04'],
 	'AbCd：《漂流至冥世》': ['AbCd協力05'],
 	'AbCd：《Myth Slayer》': ['AbCd協力06'],
+	'幻魔特區RELOADEDⅡ -RE:unite-': ['幻魔R2'],
 };
 
 evolTooltip = {
@@ -1354,6 +1358,7 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
+	'幻魔特區RELOADEDⅡ -RE:unite-',
 	'黃昏無夢者Ⅳ 黃昏mareless',
 	'MARELESS 夢境之蝶',
 	'===復刻：黃昏無夢者',
@@ -1365,6 +1370,12 @@ menuOrder = [
 	'幻魔特區 朱雀Ⅱ',
 	'幻魔特區 朱雀Ⅲ',
 	'幻魔特區RELOADED -GardeniA dist.-',
+	'===黑貓地下城復刻',
+	'沉睡的遺跡 Outlander',
+	'VOID ZONE 絕天鎧裝',
+	'喰牙RIZE',
+	'響命CrossDerive',
+	'天界的雙子 訣別的年代記',
 	'===協力：AbCd',
 	'AbCd：《黑虐之王》',
 	'AbCd：《於聖地知曉絕望為何物》',
@@ -1373,13 +1384,10 @@ menuOrder = [
 	'AbCd：《漂流至冥世》',
 	'AbCd：《Myth Slayer》',
 	'===近期結束副本',
-	'Birth Of New Order',
 	'===魔導士之家：偶像ω喵！',
 	'偶像ω喵！',
-	'===魔導士之家：喰牙RIZE',
-	'喰牙RIZE',
-	'===魔導士之家：響命CrossDerive',
-	'響命CrossDerive',
+	//'===魔導士之家：喰牙RIZE', // 地下城復刻 5/31
+	//'===魔導士之家：響命CrossDerive', // 地下城復刻 5/31
 	'===魔導士之家：巧克力森林',
 	'巧克力森林',
 	'===魔導士之家：桃娘傳',
@@ -1398,8 +1406,7 @@ menuOrder = [
 	'心龍天翔 Rising Dragon',
 	'===魔導士之家：追憶的閃耀光輝',
 	'追憶的閃耀光輝',
-	'===魔導士之家：訣別的年代記',
-	'天界的雙子 訣別的年代記',
+	//'===魔導士之家：訣別的年代記', // 地下城復刻 5/31
 	'===魔導士之家：古代森林的千年櫻花',
 	'古代森林的千年櫻花',
 	'===魔導士之家：空戰的德爾基馬斯',
@@ -1455,9 +1462,8 @@ menuOrder = [
 	'聖惡魔女子學院',
 	'聖惡魔女子學院2',
 	'===過去副本',
+	'Birth Of New Order',
 	'再續・超魔導列傳 終極萬聖節少女!',
-	'VOID ZONE 絕天鎧裝',
-	'沉睡的遺跡 Outlander',
 	'黃金時機稍縱即逝。快趁鬼不在洗個夠！', // 協力
 	"Dragon's Blader ZERO",  // 協力
 	'Soul of Kings', // 協力
