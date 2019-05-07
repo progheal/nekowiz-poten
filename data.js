@@ -1078,6 +1078,8 @@ data = {
 		[5,["PW2","AW2","HW2","PW2","R1","SHIN","AW1D2","HW1D2","DA1","F4"],["PW2","AW2","HW2","PW2","R1","F2","AW1D2","HW1D2","DA1","F2"]]),
 	// 幻魔特區RELOADEDⅡ -RE:unite-
 	10291: TwoLevelSelf(10291, [3,10], ["PW2","AWT2","HWT2","FS3","R1","Aundefined3","Hundefined3","FS5","INVA","INVS"]),
+	// 黃金假面
+	8306: SimpleSelf(8306, [3,5,7,10], ["PT3","C10","E2","G2","AT3","HT3","DA1","F1","R1","INV"]),
 };
 
 series = {
@@ -1192,6 +1194,7 @@ series = {
 	'AbCd：《漂流至冥世》': [8741],
 	'AbCd：《Myth Slayer》': [8742],
 	'幻魔特區RELOADEDⅡ -RE:unite-': [10291],
+	'黃金假面': [8306],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -1358,18 +1361,14 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
-	'幻魔特區RELOADEDⅡ -RE:unite-',
+	'黃金假面',
+	'德蕾姬亞',
 	'黃昏無夢者Ⅳ 黃昏mareless',
 	'MARELESS 夢境之蝶',
 	'===復刻：黃昏無夢者',
 	'黃昏無夢者',
 	'黃昏無夢者Ⅱ 殘響dearless',
 	'黃昏無夢者Ⅲ 絡園loreless',
-	'===復刻：幻魔特區',
-	'幻魔特區 朱雀',
-	'幻魔特區 朱雀Ⅱ',
-	'幻魔特區 朱雀Ⅲ',
-	'幻魔特區RELOADED -GardeniA dist.-',
 	'===黑貓地下城復刻',
 	'沉睡的遺跡 Outlander',
 	'VOID ZONE 絕天鎧裝',
@@ -1384,6 +1383,7 @@ menuOrder = [
 	'AbCd：《漂流至冥世》',
 	'AbCd：《Myth Slayer》',
 	'===近期結束副本',
+	'幻魔特區RELOADEDⅡ -RE:unite-',
 	'===魔導士之家：偶像ω喵！',
 	'偶像ω喵！',
 	//'===魔導士之家：喰牙RIZE', // 地下城復刻 5/31
@@ -1446,7 +1446,11 @@ menuOrder = [
 	'霸眼戰線',
 	'霸眼戰線2',
 	'霸眼戰線3 聖劍與霸眼',
-	//'===魔導士之家：幻魔特區', // 復刻中, 0507
+	'===魔導士之家：幻魔特區',
+	'幻魔特區 朱雀',
+	'幻魔特區 朱雀Ⅱ',
+	'幻魔特區 朱雀Ⅲ',
+	'幻魔特區RELOADED -GardeniA dist.-',
 	'===魔導士之家：超魔導列傳',
 	'超魔導列傳 終極女孩',
 	'續・超魔導列傳 終極夏日女孩!',
@@ -1483,7 +1487,6 @@ menuOrder = [
 	'《幻世之約》—沉月與洛恩斯的交匯',
 	'武鬥之巔‧寒冰嶺上的召集',
 	'白貓×黑貓×glico 快樂甜點嘉年華',
-	'德蕾姬亞',
 	'初夏的魔法使慶典',
 	'蕊颯',
 	'異界神的祝福試煉',
