@@ -108,6 +108,17 @@ for(var num = 1; num <= 10; num++)
 		}
 	}
 
+	for(var attr of ['A','H'])
+	{
+		for(var num = 1; num <= 5; num++)
+		{
+			potData[attr+'X'+num] = {
+				icon: "Senzai_"+AttrIcon[attr]+"_xN",
+				name: Attribute[attr]('複屬性')+toRoman(num)
+			};
+		}
+	}
+
 	for(var attr in Attribute)
 	{
 		for(var dt of ['FW', 'FT', 'WT'])
@@ -1077,9 +1088,19 @@ data = {
 	8742: HardDungeonWithId([8265,8266,8267,8268,8269,8742], [3,4,6,8,10,10],
 		[5,["PW2","AW2","HW2","PW2","R1","SHIN","AW1D2","HW1D2","DA1","F4"],["PW2","AW2","HW2","PW2","R1","F2","AW1D2","HW1D2","DA1","F2"]]),
 	// 幻魔特區RELOADEDⅡ -RE:unite-
-	10291: TwoLevelSelf(10291, [3,10], ["PW2","AWT2","HWT2","FS3","R1","Aundefined3","Hundefined3","FS5","INVA","INVS"]),
+	10291: TwoLevelSelf(10291, [3,10], ["PW2","AWT2","HWT2","FS3","R1","AX3","HX3","FS5","INVA","INVS"]),
 	// 黃金假面
 	8306: SimpleSelf(8306, [3,5,7,10], ["PT3","C10","E2","G2","AT3","HT3","DA1","F1","R1","INV"]),
+	// 神聖天空之星3
+	10386: TwoLevelSelf(10386, [3,10], ["PF2","AFT2","HFT2","FS3","R1","AX3","HX3","FS5","INVA","INVS"]),
+	// 霸眼戰線4 覺醒之王
+	10470: TwoLevelSelf(10470, [3,10], ["PW","AW2","HW2","PW2","R1","F2","INVS","AW1T2","HW1T2","F2"]),
+	10472: TwoLevelSelf(10472, [3,10], ["PT2","UAT3","UHT3","PT2","R1","F2","DA1","AT3","HT3","F1"]),
+	10474: TwoLevelSelf(10474, [4,10], ["F2","UAF3","UHF3","PF","F3","AF3","HF3","F4","PF","INVS"]),
+	10476: TwoLevelSelf(10476, [4,10], ["PW2","AW1D2","HW1D2","R1","PW2","AX3","HX3","INVS","F5","B1"]),
+	// the Gate
+	10661: HardDungeonWithId([9332,9333,9334,9335,9336,10661], [3,4,6,8,10,10],
+		[5,["INVS","PF2","UAF4","UHF4","PF2","F3","AF4","HF4","C10","X15"],["INVS","PF2","UAF3","UHF3","PF2","F3","AF3","HF3","C10","X15"]]),
 };
 
 series = {
@@ -1195,6 +1216,9 @@ series = {
 	'AbCd：《Myth Slayer》': [8742],
 	'幻魔特區RELOADEDⅡ -RE:unite-': [10291],
 	'黃金假面': [8306],
+	'神聖天空之星3': [10386],
+	'霸眼戰線4 覺醒之王': [10470,10472,10474/*,10476*/],
+	'the Gate': [10661],
 };
 
 for(var s in series) series[s].forEach(function(id){data[id].series = s;});
@@ -1239,6 +1263,7 @@ seriesAlias = {
 	'霸眼戰線': ['霸眼戰線Ⅰ', '霸眼Ⅰ'],
 	'霸眼戰線2': ['霸眼Ⅱ'],
 	'霸眼戰線3 聖劍與霸眼': ['霸眼Ⅲ'],
+	'霸眼戰線4 覺醒之王': ['霸眼Ⅳ'],
 	'Soul of Kings': ['SOK'],
 	'八百萬諸神祕聞4 沉眠京城的悠久之歌': ['八百萬諸神祕聞Ⅳ','八百萬Ⅳ','800w4','8004','3200w'],
 	'聖惡魔女子學院': ['聖惡魔Ⅰ','聖惡魔女子學院Ⅰ'],
@@ -1330,6 +1355,7 @@ hardDungeonTooltip = [
 	data[series['AbCd：《觀神之祭品》'][0]].id,
 	data[series['AbCd：《漂流至冥世》'][0]].id,
 	data[series['AbCd：《Myth Slayer》'][0]].id,
+	data[series['the Gate'][0]].id,
 ]
 
 hardDungeonTooltip.forEach(function(idlist){
@@ -1361,33 +1387,23 @@ grayiconlist = [
 
 menuOrder = [
 	'御三家',
-	'黃金假面',
-	'德蕾姬亞',
-	'黃昏無夢者Ⅳ 黃昏mareless',
-	'MARELESS 夢境之蝶',
-	'===復刻：黃昏無夢者',
-	'黃昏無夢者',
-	'黃昏無夢者Ⅱ 殘響dearless',
-	'黃昏無夢者Ⅲ 絡園loreless',
-	'===黑貓地下城復刻',
-	'沉睡的遺跡 Outlander',
-	'VOID ZONE 絕天鎧裝',
-	'喰牙RIZE',
-	'響命CrossDerive',
-	'天界的雙子 訣別的年代記',
-	'===協力：AbCd',
-	'AbCd：《黑虐之王》',
-	'AbCd：《於聖地知曉絕望為何物》',
-	'AbCd：《降臨，接著是聖戰》',
-	'AbCd：《觀神之祭品》',
-	'AbCd：《漂流至冥世》',
-	'AbCd：《Myth Slayer》',
-	'===近期結束副本',
-	'幻魔特區RELOADEDⅡ -RE:unite-',
+	'霸眼戰線4 覺醒之王',
+	'the Gate',
+	'神聖天空之星3',
+	'===復刻：神聖天空之星',
+	'神聖天空之星',
+	'惡作劇女神與兔子的故事',
+	'===復刻：霸眼戰線',
+	'霸眼戰線',
+	'霸眼戰線2',
+	'霸眼戰線3 聖劍與霸眼',
+	//'===近期結束副本',
 	'===魔導士之家：偶像ω喵！',
 	'偶像ω喵！',
-	//'===魔導士之家：喰牙RIZE', // 地下城復刻 5/31
-	//'===魔導士之家：響命CrossDerive', // 地下城復刻 5/31
+	'===魔導士之家：喰牙RIZE',
+	'喰牙RIZE',
+	'===魔導士之家：響命CrossDerive',
+	'響命CrossDerive',
 	'===魔導士之家：巧克力森林',
 	'巧克力森林',
 	'===魔導士之家：桃娘傳',
@@ -1397,16 +1413,15 @@ menuOrder = [
 	'魔轟三鐵傑 對 地獄三十六歌仙',
 	'===魔導士之家：淡薄的藍色光芒',
 	'淡薄的藍色光芒 第二章 虛幻聖域',
-	'===魔導士之家：神聖天空之星',
-	'神聖天空之星',
-	'惡作劇女神與兔子的故事',
+	//'===魔導士之家：神聖天空之星', // 復刻中, 0616
 	'===魔導士之家：神龍降臨',
 	'神龍降臨Ⅰ',
 	'神龍降臨Ⅱ',
 	'心龍天翔 Rising Dragon',
 	'===魔導士之家：追憶的閃耀光輝',
 	'追憶的閃耀光輝',
-	//'===魔導士之家：訣別的年代記', // 地下城復刻 5/31
+	'===魔導士之家：訣別的年代記',
+	'天界的雙子 訣別的年代記',
 	'===魔導士之家：古代森林的千年櫻花',
 	'古代森林的千年櫻花',
 	'===魔導士之家：空戰的德爾基馬斯',
@@ -1423,7 +1438,10 @@ menuOrder = [
 	'Orlha Report 懷著怨念的亡君',
 	'Orlha Report 無罪的罪人',
 	'Orlha Report 茸毛頑偶熊',
-	//'===魔導士之家：黃昏無夢者', // 復刻中, 0512
+	'===魔導士之家：黃昏無夢者',
+	'黃昏無夢者',
+	'黃昏無夢者Ⅱ 殘響dearless',
+	'黃昏無夢者Ⅲ 絡園loreless',
 	'===魔導士之家：八百萬諸神祕聞',
 	'八百萬諸神祕聞',
 	'八百萬諸神祕聞2',
@@ -1442,10 +1460,7 @@ menuOrder = [
 	'AbyssCode04 燃燒殆盡的陽光',
 	'AbyssCode05 冥世的天蓋',
 	'AbyssCode06 劫末之獸',
-	'===魔導士之家：霸眼戰線',
-	'霸眼戰線',
-	'霸眼戰線2',
-	'霸眼戰線3 聖劍與霸眼',
+	//'===魔導士之家：霸眼戰線', // 復刻中, 0626
 	'===魔導士之家：幻魔特區',
 	'幻魔特區 朱雀',
 	'幻魔特區 朱雀Ⅱ',
@@ -1466,6 +1481,19 @@ menuOrder = [
 	'聖惡魔女子學院',
 	'聖惡魔女子學院2',
 	'===過去副本',
+	'沉睡的遺跡 Outlander',
+	'VOID ZONE 絕天鎧裝',
+	'黃金假面',
+	'德蕾姬亞',
+	'AbCd：《黑虐之王》', // AbCd 協力
+	'AbCd：《於聖地知曉絕望為何物》', // AbCd 協力
+	'AbCd：《降臨，接著是聖戰》', // AbCd 協力
+	'AbCd：《觀神之祭品》', // AbCd 協力
+	'AbCd：《漂流至冥世》', // AbCd 協力
+	'AbCd：《Myth Slayer》', // AbCd 協力
+	'黃昏無夢者Ⅳ 黃昏mareless',
+	'MARELESS 夢境之蝶',
+	'幻魔特區RELOADEDⅡ -RE:unite-',
 	'Birth Of New Order',
 	'再續・超魔導列傳 終極萬聖節少女!',
 	'黃金時機稍縱即逝。快趁鬼不在洗個夠！', // 協力
